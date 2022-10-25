@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PatientsManager : MonoBehaviour
 {
@@ -30,6 +31,9 @@ public class PatientsManager : MonoBehaviour
 
         PatientsList.Add(p);
         PatientsGOList.Add(pGO);
+
+        //start dotween sequence
+        Moving(pGO.transform);
     }
 
     private Patient PatientParameters()
@@ -49,5 +53,15 @@ public class PatientsManager : MonoBehaviour
 
         Patient p = new Patient(serviceToSee);
         return p;
+    }
+
+    private void Moving(Transform go)
+    {
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(go.transform.DOMove(_ServiceList[0].transform.position,2));
+        sequence.Append(go.transform.DOMove(_ServiceList[1].transform.position,2));
+        sequence.Append(go.transform.DOMove(_ServiceList[2].transform.position,2));
+        sequence.Append(go.transform.DOMove(_ServiceList[3].transform.position,2));
+        sequence.Append(go.transform.DOMove(_ServiceList[4].transform.position,2));
     }
 }
