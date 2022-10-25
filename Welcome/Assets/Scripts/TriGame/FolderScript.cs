@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class File
+public class FolderScript
 {
-    public int file_ID;
-    public bool[] trueService = { false, false, false, false };
+    public int folder_ID;
+    public bool[] trueService = { false, false, false, false, false };
     public bool completed = false;
     public int service_ID;
 
-    public File(int valueService)
+    public FolderScript(int valueService)
     {
         service_ID = valueService;
         trueService[service_ID] = true;
