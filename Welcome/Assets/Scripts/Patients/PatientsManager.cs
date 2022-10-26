@@ -13,6 +13,7 @@ public enum PatientState {
 public class PatientsManager : MonoBehaviour
 {
     private float _TIMEMoving = 2;
+    private float _LimiteService = 5;
 
 
 
@@ -58,7 +59,7 @@ public class PatientsManager : MonoBehaviour
     private void MovingTowards(int service, int id)
     {
         print("avance vers :"+service+" patient n°"+id);
-        if(_ServiceList[service].WaitingID.Count >= 5)
+        if(_ServiceList[service].WaitingID.Count >= _LimiteService)
         {
             //Afficher un problème ou qlq chose
             PatientsGOList[id].transform.DOMove(-_LeavePoint.transform.position,_TIMEMoving).SetEase(Ease.Linear).OnComplete(() => {
@@ -70,9 +71,11 @@ public class PatientsManager : MonoBehaviour
         }
 
         _ServiceList[service].WaitingID.Add(id);
-        PatientsGOList[id].transform.DOMove(_ServiceList[service].transform.position,_TIMEMoving).SetEase(Ease.Linear);
 
-        if(_ServiceList[service].WaitingID.Count == 1)return;
+        Vector3 pos = ReducDistance(service, id);
+        PatientsGOList[id].transform.DOMove(pos,_TIMEMoving).SetEase(Ease.Linear);
+
+        /*if(_ServiceList[service].WaitingID.Count == 1)return;
 
         
         StartCoroutine(killTween(_TIMEMoving - (_ServiceList[service].WaitingID.Count / 10f)));
@@ -80,7 +83,7 @@ public class PatientsManager : MonoBehaviour
         {
             yield return new WaitForSeconds(sec);
             DOTween.Kill(PatientsGOList[id].transform);
-        }
+        }*/
     }
 
     private void MovingToExit(int id)
@@ -116,5 +119,23 @@ public class PatientsManager : MonoBehaviour
             yield return new WaitForSeconds(sec);
             DOTween.Kill(PatientsGOList[id].transform);
         }
+    }
+
+    private Vector3 ReducDistance(int service, int id)
+    {
+        Vector3 arrive = _ServiceList[service].transform.position;
+
+        float departx = PatientsGOList[id].transform.position.x;
+        float departy = PatientsGOList[id].transform.position.y;
+
+        float difx = (arrive.x - departx)/2f;
+        float dify = (arrive.y - departy)/2f;
+
+        float percentage = (_LimiteService - (_ServiceList[service].WaitingID.Count-1)) / _LimiteService;
+
+        float x = departx + difx + (difx * percentage);
+        float y = departy + dify + (dify * percentage);
+
+        return new Vector3(x,y,0);
     }
 }
