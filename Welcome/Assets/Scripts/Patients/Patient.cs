@@ -10,6 +10,7 @@ public class Patient
     public PositionMap CurrentPos = PositionMap.nothing;
     public bool[] ServiceCompleted = {true,true,true,true,true};//5 servives
     public bool Completed = false;
+    public PatientState State = PatientState.Walking;
 
     public Patient(List<int> toSee)
     {
