@@ -35,6 +35,7 @@ public class PatientsManager : MonoBehaviour
         foreach(ServiceState ss in _ServiceList)
         {
             ss.OnPatientDone += MovingNext;
+            ss.OnPatientDoneLine += MovingCloser;
         }
     }
 
@@ -57,7 +58,7 @@ public class PatientsManager : MonoBehaviour
     private void MovingTowards(int service, int id)
     {
         print("avance vers :"+service+" patient n°"+id);
-        if(_ServiceList[service].WaitingID.Count >= 20)
+        if(_ServiceList[service].WaitingID.Count >= 5)
         {
             //Afficher un problème ou qlq chose
             PatientsGOList[id].transform.DOMove(-_LeavePoint.transform.position,_TIMEMoving).SetEase(Ease.Linear).OnComplete(() => {
@@ -103,5 +104,17 @@ public class PatientsManager : MonoBehaviour
         }
 
         MovingToExit(id);
+    }
+
+    private void MovingCloser(int service, int id)
+    {
+        PatientsGOList[id].transform.DOMove(_ServiceList[service].transform.position,_TIMEMoving).SetEase(Ease.Linear);
+        
+        StartCoroutine(killTween(_TIMEMoving - (_ServiceList[service].WaitingID.Count / 10f)));
+        IEnumerator killTween(float sec)
+        {
+            yield return new WaitForSeconds(sec);
+            DOTween.Kill(PatientsGOList[id].transform);
+        }
     }
 }
