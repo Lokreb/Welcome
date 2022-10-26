@@ -1,22 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
-
-public enum PositionMap {nothing, Conveyor, Service};
+using UnityEngine;
 
 [System.Serializable]
 public class Patient
 {
     public int ID;
-    public PositionMap CurrentPos = PositionMap.nothing;
-    public bool[] ServiceCompleted = {true,true,true,true,true};//5 servives
+    public bool[] ServiceCompleted = {false,true,true,true,true};//5 servives
     public bool Completed = false;
-    public PatientState State = PatientState.Walking;
 
-    public Patient(List<int> toSee)
+    public Patient()//add difficulty
     {
-        foreach(int a in toSee)
+
+        for(int a=1;a<5;a++)
         {
-            ServiceCompleted[a] = false;
+            ServiceCompleted[a] = (.5 >= Random.value);
         }
+        
     }
 }
