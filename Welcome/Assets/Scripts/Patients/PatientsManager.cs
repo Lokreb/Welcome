@@ -14,8 +14,11 @@ public class PatientsManager : MonoBehaviour
 {
     private float _TIMEMoving = 2;
 
+
+
     public GameObject PatientPrefab;
-    [SerializeField]private GameObject _spawnPoint;
+    [SerializeField]private GameObject _SpawnPoint;
+    [SerializeField]private GameObject _LeavePoint;
 
     public List<Patient> PatientsList = new List<Patient>();
     [HideInInspector]public List<GameObject> PatientsGOList = new List<GameObject>();
@@ -37,7 +40,7 @@ public class PatientsManager : MonoBehaviour
 
     public void Spawn()
     {
-        GameObject pGO = Instantiate(PatientPrefab,new Vector3(_spawnPoint.transform.position.x,_spawnPoint.transform.position.y,0f),Quaternion.identity);
+        GameObject pGO = Instantiate(PatientPrefab,new Vector3(_SpawnPoint.transform.position.x,_SpawnPoint.transform.position.y,0f),Quaternion.identity);
         pGO.transform.SetParent(transform);
         Patient p = new Patient();
         p.ID = valueID;
@@ -51,18 +54,22 @@ public class PatientsManager : MonoBehaviour
         valueID++;
     }
 
-    private void MovingTowards(int service, int ID)
+    private void MovingTowards(int service, int id)
     {
-        print("avance vers :"+service+" patient n°"+ID);
-        if(_ServiceList[service].WaitingID.Count >= 5)
+        print("avance vers :"+service+" patient n°"+id);
+        if(_ServiceList[service].WaitingID.Count >= 20)
         {
             //Afficher un problème ou qlq chose
+            PatientsGOList[id].transform.DOMove(-_LeavePoint.transform.position,_TIMEMoving).SetEase(Ease.Linear).OnComplete(() => {
+            Destroy(PatientsGOList[id]);
+        
+            });
             Debug.Log("Service surchargé");
             return;
         }
 
-        _ServiceList[service].WaitingID.Add(ID);
-        PatientsGOList[ID].transform.DOMove(_ServiceList[service].transform.position,_TIMEMoving).SetEase(Ease.Linear);
+        _ServiceList[service].WaitingID.Add(id);
+        PatientsGOList[id].transform.DOMove(_ServiceList[service].transform.position,_TIMEMoving).SetEase(Ease.Linear);
 
         if(_ServiceList[service].WaitingID.Count == 1)return;
 
@@ -71,8 +78,16 @@ public class PatientsManager : MonoBehaviour
         IEnumerator killTween(float sec)
         {
             yield return new WaitForSeconds(sec);
-            DOTween.Kill(PatientsGOList[ID].transform);
+            DOTween.Kill(PatientsGOList[id].transform);
         }
+    }
+
+    private void MovingToExit(int id)
+    {
+        PatientsGOList[id].transform.DOMove(_LeavePoint.transform.position,_TIMEMoving).SetEase(Ease.Linear).OnComplete(() => {
+            Destroy(PatientsGOList[id]);
+        
+        });
     }
 
     private void MovingNext(int id,int serviceID)
@@ -86,5 +101,7 @@ public class PatientsManager : MonoBehaviour
             MovingTowards(a,id);
             return;
         }
+
+        MovingToExit(id);
     }
 }
