@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FolderManager : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class FolderManager : MonoBehaviour
     {
         _ID = 0;
         FolderList.Clear();
+        
     }
 
     // Update is called once per frame
@@ -33,14 +35,27 @@ public class FolderManager : MonoBehaviour
         GameObject fGO = Instantiate(FolderPrefab, new Vector3(_spawnPosition.transform.position.x, _spawnPosition.transform.position.y, 0f), Quaternion.identity);
         fGO.transform.parent = _spawnPosition.transform;
         int valueService = Random.Range(1, 5);
+        fGO.GetComponent<Image>().sprite = CreateSprite(valueService);
         FolderScript f = new FolderScript(valueService);
         f.folder_ID = _ID;
         Debug.Log("ID = " + f.folder_ID);
         for(int i = 0; i < 5; i++)
         {
             if (f.trueService[i])
-                Debug.Log("TRUE SERVICE ==== " + i);
+                Debug.Log("ID : " + f.folder_ID + "TRUE SERVICE ==== " + i);
         }
         _ID++;
+    }
+
+
+    public Sprite CreateSprite(int trueServiceValue)
+    {
+        string[] imagesName = { "Passoire", "Poêle", "Passoire", "Poêle", "Passoire" };
+        string pathImage = Application.dataPath + "/Resources/Sprites/" + imagesName[trueServiceValue-1] + ".png";
+        byte[] pngBytes = System.IO.File.ReadAllBytes(pathImage);
+        Texture2D tex = new Texture2D(200, 200);
+        tex.LoadImage(pngBytes);
+        Sprite result = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(1f, 1f));
+        return result;
     }
 }
