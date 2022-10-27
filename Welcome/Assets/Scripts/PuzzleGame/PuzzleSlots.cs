@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class PuzzleSlots : MonoBehaviour
+public class PuzzleSlots : MonoBehaviour, IDropHandler
 {
-    // Start is called before the first frame update
-    void Start()
+    public static bool pointerIsOnSlot = false;
+    public static string nameSelectedSlot;
+
+    public void OnDrop(PointerEventData eventData)
     {
-        
+        nameSelectedSlot = name;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PointerOnSlot()
     {
-        
+        pointerIsOnSlot = true;
+    }
+
+    public void PointerOutSlot()
+    {
+        pointerIsOnSlot = false;
     }
 }
