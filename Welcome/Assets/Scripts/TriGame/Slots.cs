@@ -8,10 +8,9 @@ public class Slots : MonoBehaviour, IDropHandler
     public static bool pointerIsOnSlot = false;
     public static string nameSelectedSlot;
 
-
     public void OnDrop(PointerEventData eventData)
     {
-        Debug.Log("DROP");
+        nameSelectedSlot = name;
     }
 
     public void PointerOnSlot()
