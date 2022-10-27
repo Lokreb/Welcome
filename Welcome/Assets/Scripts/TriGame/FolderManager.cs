@@ -22,12 +22,13 @@ public class FolderManager : MonoBehaviour
         FolderList.Clear();
         _gameData.idCible.Clear();
         _gameData.count = 0;
+        _gameData.scoreSortGame = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        while(_ID < 6)
+        while(_ID < 40)
         {
             Spawn();
         }
