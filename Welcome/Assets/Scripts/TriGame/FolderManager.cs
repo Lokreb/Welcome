@@ -6,8 +6,6 @@ using UnityEngine.UI;
 public class FolderManager : MonoBehaviour
 {
     public GameObject FolderPrefab;
-    public List<FolderScript> FolderList = new List<FolderScript>();
-    [HideInInspector] public List<GameObject> FolderListGO = new List<GameObject>();
 
     private int _ID;
     [SerializeField] private GameObject _spawnPosition;
@@ -19,7 +17,6 @@ public class FolderManager : MonoBehaviour
     void Start()
     {
         _ID = 0;
-        FolderList.Clear();
         _gameData.idCible.Clear();
         _gameData.count = 0;
         _gameData.scoreSortGame = 0;
