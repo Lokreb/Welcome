@@ -12,6 +12,8 @@ public class GameDataScript : ScriptableObject
 
     public int score = 0;
 
+    public int scoreSortGame = 0;
+
     public int volume = 100;
     public int music = 100;
 
