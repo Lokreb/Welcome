@@ -62,29 +62,31 @@ public class Items : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEn
             {
                 case "ServiceA":
                     if (_gameData.idCible[_gameData.count] == 1)
-                        _gameData.score += 10;
+                        _gameData.scoreSortGame += 10;
                     else
-                        _gameData.score -= 10;
+                        _gameData.scoreSortGame -= 10;
                     break;
                 case "ServiceB":
                     if (_gameData.idCible[_gameData.count] == 2)
-                        _gameData.score += 10;
+                        _gameData.scoreSortGame += 10;
                     else
-                        _gameData.score -= 10;
+                        _gameData.scoreSortGame -= 10;
                     break;
                 case "ServiceC":
                     if (_gameData.idCible[_gameData.count] == 3)
-                        _gameData.score += 10;
+                        _gameData.scoreSortGame += 10;
                     else
-                        _gameData.score -= 10;
+                        _gameData.scoreSortGame -= 10;
                     break;
                 case "ServiceD":
                     if (_gameData.idCible[_gameData.count] == 4)
-                        _gameData.score += 10;
+                        _gameData.scoreSortGame += 10;
                     else
-                        _gameData.score -= 10;
+                        _gameData.scoreSortGame -= 10;
                     break;
             }
+            if (_gameData.scoreSortGame < 0)
+                _gameData.scoreSortGame = 0;
             _gameData.count++;
         }
     }
