@@ -10,18 +10,23 @@ public class Items : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEn
     CanvasGroup canvasGroup;
     Vector2 initialPosition;
     public static string nameDrag;
+    [HideInInspector] GameObject spawn;
+    [HideInInspector] string actualTarget;
+    public GameDataScript _gameData;
 
     void Start()
     {
         canvas = GetComponentInParent<Canvas>();
+        spawn = GameObject.FindGameObjectWithTag("Respawn");
+        initialPosition = spawn.GetComponent<RectTransform>().anchoredPosition;
     }
+
 
     void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
-        
         canvasGroup = GetComponent<CanvasGroup>();
-        initialPosition = rectTransform.anchoredPosition;
+
         nameDrag = name;
     }
 
@@ -40,10 +45,48 @@ public class Items : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEn
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.alpha = 1.0f;
-        //FolderScript actualFolder = GameObject.Find(eventData.pointerDrag.transform.parent.name).GetComponent<FolderScript>();
-        //Debug.Log("ID de l'élément selectionné : " + actualFolder.service_ID);
-        //Debug.Log(Slots.nameSelectedSlot);
-        
+        if (Slots.nameSelectedSlot == null)
+        {
+            rectTransform.anchoredPosition = new Vector2(50,50);
+            canvasGroup.blocksRaycasts = true;
+            rectTransform.sizeDelta = new Vector2(200, 200);
+        }
+        else
+        {
+            actualTarget = Slots.nameSelectedSlot;
+            Debug.Log("Vous êtes dans le service " + actualTarget);
+            Slots.nameSelectedSlot = null;
+            Destroy(eventData.pointerDrag);
+
+            switch (actualTarget)
+            {
+                case "ServiceA":
+                    if (_gameData.idCible[_gameData.count] == 1)
+                        _gameData.score += 10;
+                    else
+                        _gameData.score -= 10;
+                    break;
+                case "ServiceB":
+                    if (_gameData.idCible[_gameData.count] == 2)
+                        _gameData.score += 10;
+                    else
+                        _gameData.score -= 10;
+                    break;
+                case "ServiceC":
+                    if (_gameData.idCible[_gameData.count] == 3)
+                        _gameData.score += 10;
+                    else
+                        _gameData.score -= 10;
+                    break;
+                case "ServiceD":
+                    if (_gameData.idCible[_gameData.count] == 4)
+                        _gameData.score += 10;
+                    else
+                        _gameData.score -= 10;
+                    break;
+            }
+            _gameData.count++;
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
