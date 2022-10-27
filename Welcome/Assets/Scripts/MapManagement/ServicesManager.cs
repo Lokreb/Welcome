@@ -8,19 +8,29 @@ public class ServicesManager : MonoBehaviour
 {
     public ServiceState[] Services;
     public GameObject[] ParentsUI;
-    public GameObject Background;
+    public MiniGamePop Background;
     public GameObject Folder;
+
+    private ServiceState _sc;
 
     public void ShowOnClick(ServiceState sc)
     {
-        /*GameObject bg = Instantiate(Background,new Vector3(transform.position.x-260f,transform.position.y,0f),Quaternion.identity);
-        GameObject folder =Instantiate(Folder,new Vector3(transform.position.x+620f,transform.position.y,0f),Quaternion.identity);
+        _sc = sc;
 
-        bg.transform.parent = ParentsUI[0].transform;
-        folder.transform.parent = ParentsUI[1].transform;*/
+        GameObject bg = Instantiate(Background.gameObject,new Vector3(transform.position.x-260f,transform.position.y,0f),Quaternion.identity);
+        GameObject folder = Instantiate(Folder,new Vector3(transform.position.x+620f,transform.position.y,0f),Quaternion.identity);
 
-        //TEST Minijeux accpompli
-        sc.Complete();
+        bg.GetComponent<MiniGamePop>().Result += ResultMiniGame;
+
+        bg.transform.SetParent(ParentsUI[0].transform);
+        folder.transform.SetParent(ParentsUI[1].transform);
+        
+    }
+
+    public void ResultMiniGame(bool win, MiniGamePop pop)
+    {
+        pop.Result -= ResultMiniGame;
+        _sc.Complete(win);
     }
 
 

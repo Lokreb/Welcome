@@ -7,12 +7,12 @@ public class ServiceState : MonoBehaviour
 {
     public int ID;
     public List<int> WaitingID = new List<int>();
-    public event Action<int, int> OnPatientDone;
+    public event Action<int, int, bool> OnPatientDone;
     public event Action<int, int> OnPatientDoneLine;
 
-    public void Complete()
+    public void Complete(bool win)
     {
-        OnPatientDone?.Invoke(WaitingID[0],ID);
+        OnPatientDone?.Invoke(WaitingID[0],ID,win);
         
         int cpt = WaitingID.Count;
 

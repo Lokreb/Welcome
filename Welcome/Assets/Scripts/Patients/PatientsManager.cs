@@ -35,8 +35,17 @@ public class PatientsManager : MonoBehaviour
 
         foreach(ServiceState ss in _ServiceList)
         {
-            ss.OnPatientDone += MovingNext;
+            ss.OnPatientDone += TaskComplete;
             ss.OnPatientDoneLine += MovingCloser;
+        }
+    }
+
+    void OnDestroy()
+    {
+        foreach(ServiceState ss in _ServiceList)
+        {
+            ss.OnPatientDone -= TaskComplete;
+            ss.OnPatientDoneLine -= MovingCloser;
         }
     }
 
@@ -54,6 +63,13 @@ public class PatientsManager : MonoBehaviour
         //Verification Deplacement
         MovingTowards(0, valueID);
         valueID++;
+    }
+
+    private void TaskComplete(int id, int service, bool win)
+    {
+        PatientsList[id].ServiceCompleted[service] = win;
+
+        MovingNext(id, service);
     }
 
     private void MovingTowards(int service, int id)
