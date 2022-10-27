@@ -10,11 +10,9 @@ public class FolderManager : MonoBehaviour
     [HideInInspector] public List<GameObject> FolderListGO = new List<GameObject>();
 
     private int _ID;
-    [SerializeField] private GameObject[] _serviceList;
     [SerializeField] private GameObject _spawnPosition;
 
     [SerializeField] private GameDataScript _gameData;
-    [SerializeField] private int _scoreSort = 0;
 
 
     // Start is called before the first frame update
@@ -57,7 +55,7 @@ public class FolderManager : MonoBehaviour
 
     public Sprite CreateSprite(int trueServiceValue)
     {
-        string[] imagesName = { "Passoire", "Poêle", "Passoire", "Poêle", "Passoire" };
+        string[] imagesName = { "Passoire", "Poêle", "Passoire", "Poêle" };
         string pathImage = Application.dataPath + "/Resources/Sprites/" + imagesName[trueServiceValue-1] + ".png";
         byte[] pngBytes = System.IO.File.ReadAllBytes(pathImage);
         Texture2D tex = new Texture2D(200, 200);
