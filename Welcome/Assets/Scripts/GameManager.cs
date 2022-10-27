@@ -8,40 +8,34 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public GameState State;
+    [SerializeField]private int NumberOfPatient = 30;
+    [SerializeField]private float TimePatientSpawn_sec = 2;
+    [SerializeField]private Patient2 Prefab_Patient;
 
-    public static event Action<GameState> OnGameStateChanged;
+    public GameObject SpawnPoint;
+    public List<Patient2> ListPatient;
 
     void Awake() {
         Instance = this;
     }
 
-    void Start() {
-        UpdateGameState(GameState.Playing);
+    void Start()
+    {
+        StartCoroutine(SpawnPatient());
+        
     }
 
-    public void UpdateGameState(GameState newState){
-        State = newState;
+    IEnumerator SpawnPatient()
+    {
+        while(true)
+        {
+            Patient2 p = Instantiate(Prefab_Patient,SpawnPoint.transform.position,Quaternion.identity);
+            p.gameObject.transform.SetParent(SpawnPoint.transform);
+            ListPatient.Add(p);
 
-        switch(newState){
-            case GameState.Playing :
-                break;
-            case GameState.Pause :
-                break;
-            case GameState.Result :
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(newState), newState,null);
+
+            yield return new WaitForSeconds(TimePatientSpawn_sec);
         }
-
-        OnGameStateChanged?.Invoke(newState);
+        
     }
-}
-
-
-public enum GameState {
-    Playing,
-    Minigame,
-    Pause,
-    Result
 }
