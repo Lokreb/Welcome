@@ -13,20 +13,26 @@ public class FolderManager : MonoBehaviour
     [SerializeField] private GameObject[] _serviceList;
     [SerializeField] private GameObject _spawnPosition;
 
+    [SerializeField] private GameDataScript _gameData;
+    [SerializeField] private int _scoreSort = 0;
+
 
     // Start is called before the first frame update
     void Start()
     {
         _ID = 0;
         FolderList.Clear();
-        
+        _gameData.idCible.Clear();
+        _gameData.count = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        while(_ID < 100)
+        while(_ID < 6)
+        {
             Spawn();
+        }
     }
 
 
@@ -36,13 +42,14 @@ public class FolderManager : MonoBehaviour
         fGO.transform.parent = _spawnPosition.transform;
         int valueService = Random.Range(1, 5);
         fGO.GetComponent<Image>().sprite = CreateSprite(valueService);
+        _gameData.idCible.Add(valueService);
         FolderScript f = new FolderScript(valueService);
         f.folder_ID = _ID;
-        Debug.Log("ID = " + f.folder_ID);
+        Debug.Log("ID = " + f.folder_ID + "  CIBLE ====== " + _gameData.idCible[_ID]);
         for(int i = 0; i < 5; i++)
         {
             if (f.trueService[i])
-                Debug.Log("ID : " + f.folder_ID + "TRUE SERVICE ==== " + i);
+                Debug.Log("ID : " + f.folder_ID + " TRUE SERVICE ==== " + i);
         }
         _ID++;
     }
