@@ -11,9 +11,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]private int NumberOfPatient = 30;
     [SerializeField]private float TimePatientSpawn_sec = 2;
     [SerializeField]private Patient2 Prefab_Patient;
+    [SerializeField]private List<DropZonePatient> _dropZone;
 
-    public GameObject SpawnPoint;
+    [SerializeField]private GameObject _spawnPoint,_dropZoneParent;
     public List<Patient2> ListPatient;
+    
 
     void Awake() {
         Instance = this;
@@ -29,8 +31,8 @@ public class GameManager : MonoBehaviour
     {
         while(true)
         {
-            Patient2 p = Instantiate(Prefab_Patient,SpawnPoint.transform.position,Quaternion.identity);
-            p.gameObject.transform.SetParent(SpawnPoint.transform);
+            Patient2 p = Instantiate(Prefab_Patient,_spawnPoint.transform.position,Quaternion.identity);
+            p.gameObject.transform.SetParent(_spawnPoint.transform);
             ListPatient.Add(p);
 
 
