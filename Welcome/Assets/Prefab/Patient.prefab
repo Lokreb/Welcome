@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7494482217012564506}
   - component: {fileID: 7610510933863940676}
   - component: {fileID: 4644550310266138881}
+  - component: {fileID: 5747827272114293291}
   m_Layer: 5
   m_Name: Patient
   m_TagString: Untagged
@@ -88,3 +89,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07b8d3edc80103047bc9150546409bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5747827272114293291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5278868997959513593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 5
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4644550310266138881}
+          m_TargetAssemblyTypeName: Patient2, Assembly-CSharp
+          m_MethodName: Drag
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
