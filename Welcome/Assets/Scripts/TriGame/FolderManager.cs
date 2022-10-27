@@ -58,11 +58,8 @@ public class FolderManager : MonoBehaviour
     public Sprite CreateSprite(int trueServiceValue)
     {
         string[] imagesName = { "Passoire", "Poêle", "Passoire", "Poêle" };
-        string pathImage = Application.dataPath + "/Resources/Sprites/" + imagesName[trueServiceValue-1] + ".png";
-        byte[] pngBytes = System.IO.File.ReadAllBytes(pathImage);
-        Texture2D tex = new Texture2D(200, 200);
-        tex.LoadImage(pngBytes);
-        Sprite result = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(1f, 1f));
+        string image = "Sprites/" + imagesName[trueServiceValue - 1];
+        Sprite result = Resources.Load<Sprite>(image);
         return result;
     }
 }
