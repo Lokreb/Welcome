@@ -9,7 +9,10 @@ public class ServicesManager : MonoBehaviour
     public ServiceState[] Services;
     public GameObject[] ParentsUI;
     public MiniGamePop Background;
-    public GameObject Folder;
+
+    [SerializeField]private PatientsManager _PatientsManager;
+
+    public event Action<ServiceState, Patient> OnMiniGameStart;
 
     private ServiceState _sc;
 
@@ -18,12 +21,12 @@ public class ServicesManager : MonoBehaviour
         _sc = sc;
 
         GameObject bg = Instantiate(Background.gameObject,new Vector3(transform.position.x-260f,transform.position.y,0f),Quaternion.identity);
-        GameObject folder = Instantiate(Folder,new Vector3(transform.position.x+620f,transform.position.y,0f),Quaternion.identity);
 
         bg.GetComponent<MiniGamePop>().Result += ResultMiniGame;
 
+        OnMiniGameStart?.Invoke(sc, _PatientsManager.PatientsList[sc.WaitingID[0]]);
+
         bg.transform.SetParent(ParentsUI[0].transform);
-        folder.transform.SetParent(ParentsUI[1].transform);
         
     }
 

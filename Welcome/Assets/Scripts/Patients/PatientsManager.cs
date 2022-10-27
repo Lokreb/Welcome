@@ -15,8 +15,6 @@ public class PatientsManager : MonoBehaviour
     private float _TIMEMoving = 2;
     private float _LimiteService = 5;
 
-
-
     public GameObject PatientPrefab;
     [SerializeField]private GameObject _SpawnPoint;
     [SerializeField]private GameObject _LeavePoint;
