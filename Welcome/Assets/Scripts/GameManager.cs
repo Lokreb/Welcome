@@ -19,6 +19,19 @@ public class GameManager : MonoBehaviour
 
     void Awake() {
         Instance = this;
+
+        foreach(DropZonePatient dzp in _dropZone)
+        {
+            dzp.OnDropPatient += PatientDropped;
+        }
+    }
+
+    void OnDestroy()
+    {
+        foreach(DropZonePatient dzp in _dropZone)
+        {
+            dzp.OnDropPatient -= PatientDropped;
+        }
     }
 
     void Start()
@@ -39,5 +52,10 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(TimePatientSpawn_sec);
         }
         
+    }
+
+    void PatientDropped(DropZonePatient dzp)
+    {
+        print(dzp.Name);
     }
 }

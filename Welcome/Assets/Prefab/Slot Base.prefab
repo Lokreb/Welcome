@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8433140847107909860}
   - component: {fileID: 8433140847107909848}
   - component: {fileID: 8433140847107909863}
-  - component: {fileID: 8433140847107909862}
   - component: {fileID: 8433140847107909861}
   m_Layer: 5
   m_Name: Slot Base
@@ -77,35 +76,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8433140847107909862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8433140847107909859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 6
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 8433140847107909861}
-          m_TargetAssemblyTypeName: DropZonePatient, Assembly-CSharp
-          m_MethodName: Placed
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!114 &8433140847107909861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,3 +88,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c91ac4f874cb8d4a910249ae8bd81aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: 

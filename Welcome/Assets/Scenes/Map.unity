@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &70449628 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 844209679253391113, guid: a142198bebfc85b47bd277dcffdcf9b3, type: 3}
+  m_PrefabInstance: {fileID: 1899464341}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c91ac4f874cb8d4a910249ae8bd81aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &333865704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -214,6 +225,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 844209679253391113, guid: b9368f5d49af08948b7825060286d76e, type: 3}
+      propertyPath: Name
+      value: Service 4
+      objectReference: {fileID: 0}
     - target: {fileID: 844209679253391119, guid: b9368f5d49af08948b7825060286d76e, type: 3}
       propertyPath: m_Name
       value: Slot 4
@@ -225,6 +240,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 844209679253391112, guid: b9368f5d49af08948b7825060286d76e, type: 3}
   m_PrefabInstance: {fileID: 333865704}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &518067038 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 844209679253391113, guid: 6c7e3732502990e48876c7a6d9f9d325, type: 3}
+  m_PrefabInstance: {fileID: 1564841849}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c91ac4f874cb8d4a910249ae8bd81aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &537810913
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,10 +431,10 @@ MonoBehaviour:
   TimePatientSpawn_sec: 2
   Prefab_Patient: {fileID: 4644550310266138881, guid: 77e2037b03e3d79448f2cdbd65e2e701, type: 3}
   _dropZone:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 2066401462}
+  - {fileID: 1841648893}
+  - {fileID: 70449628}
+  - {fileID: 518067038}
   _spawnPoint: {fileID: 770976101}
   _dropZoneParent: {fileID: 680635614}
   ListPatient: []
@@ -516,6 +542,10 @@ PrefabInstance:
     - target: {fileID: 844209679253391112, guid: 7869115e5d6a97a42a5ecd746eed5761, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 844209679253391113, guid: 7869115e5d6a97a42a5ecd746eed5761, type: 3}
+      propertyPath: Name
+      value: Service 3
       objectReference: {fileID: 0}
     - target: {fileID: 844209679253391114, guid: 7869115e5d6a97a42a5ecd746eed5761, type: 3}
       propertyPath: m_Delegates.Array.size
@@ -654,6 +684,10 @@ PrefabInstance:
     - target: {fileID: 844209679253391112, guid: 6c7e3732502990e48876c7a6d9f9d325, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 844209679253391113, guid: 6c7e3732502990e48876c7a6d9f9d325, type: 3}
+      propertyPath: Name
+      value: Service 1
       objectReference: {fileID: 0}
     - target: {fileID: 844209679253391119, guid: 6c7e3732502990e48876c7a6d9f9d325, type: 3}
       propertyPath: m_Name
@@ -1042,6 +1076,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 844209679253391113, guid: a142198bebfc85b47bd277dcffdcf9b3, type: 3}
+      propertyPath: Name
+      value: Service 2
+      objectReference: {fileID: 0}
     - target: {fileID: 844209679253391119, guid: a142198bebfc85b47bd277dcffdcf9b3, type: 3}
       propertyPath: m_Name
       value: Slot 2
@@ -1053,3 +1091,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 844209679253391112, guid: a142198bebfc85b47bd277dcffdcf9b3, type: 3}
   m_PrefabInstance: {fileID: 1899464341}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2066401462 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 844209679253391113, guid: b9368f5d49af08948b7825060286d76e, type: 3}
+  m_PrefabInstance: {fileID: 333865704}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c91ac4f874cb8d4a910249ae8bd81aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
