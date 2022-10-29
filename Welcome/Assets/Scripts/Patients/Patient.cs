@@ -1,23 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using DG.Tweening;
 
-[System.Serializable]
-public class Patient
+public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
 {
-    public int ID;
-    public bool[] ServiceCompleted = {false,true,true,true,true};//5 servives
-    public bool Completed = false;
+    private Vector2 _offset,_originalPosition;
+    [SerializeField]private CanvasGroup _canvasGroup;
 
-    public Patient()//add difficulty
+    void Awake()
     {
-
-        for(int a=1;a<5;a++)
-        {
-            ServiceCompleted[a] = (.5 >= Random.value);
-        }
-        
+        _originalPosition = transform.position;
     }
 
-    //Remplacement
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        print("down");
+        _offset = GetMousePos() - (Vector2) transform.position;
+    }
+
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        print("drag");
+        _canvasGroup.blocksRaycasts = false;
+    }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        transform.position = GetMousePos() - _offset;
+    }
+
+    public void OnDrop(PointerEventData eventData)
+    {
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        _canvasGroup.blocksRaycasts = true;
+    }
+
+    
+
+    Vector2 GetMousePos()
+    {
+        return Input.mousePosition;
+    }
 }
