@@ -40,10 +40,12 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
         _canvasGroup.blocksRaycasts = true;
     }
 
-    
-
     Vector2 GetMousePos()
     {
         return Input.mousePosition;
     }
+
+    //Data
+    public Queue<Service> ServicesToSee = new Queue<Service>();
+    public Localisation ServiceLocalisation = Localisation.Start;
 }

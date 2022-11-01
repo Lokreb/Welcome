@@ -9,9 +9,11 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    [SerializeField]private int NumberOfPatient = 30;
-    [SerializeField]private float TimePatientSpawn_sec = 2;
-    [SerializeField]private Patient Prefab_Patient;
+    [SerializeField]private int _numberOfPatient = 30;
+    [SerializeField]private float _timePatientSpawn_sec = 2;
+    [SerializeField]private Patient _prefab_Patient;
+    [SerializeField]private ServicesManager _servicesManager;
+
     [SerializeField]private List<DropZonePatient> _dropZone;
 
     [SerializeField]private GameObject _spawnPoint,_dropZoneParent;
@@ -48,13 +50,15 @@ public class GameManager : MonoBehaviour
     {
         while(true)
         {
-            Patient p = Instantiate(Prefab_Patient,_spawnPoint.transform.position,Quaternion.identity);
+            Patient p = Instantiate(_prefab_Patient,_spawnPoint.transform.position,Quaternion.identity);
             p.gameObject.transform.SetParent(_spawnPoint.transform);
             ListPatient.Add(p);
 
-            p.transform.DOMove(_dropZone[0].WayPoints[0].position,5f).SetEase(Ease.Linear);
+            _servicesManager.AddServicesToSee(p);
+            _servicesManager.CanGoTo(p);
+            //p.transform.DOMove(_dropZone[0].WayPoints[0].position,5f).SetEase(Ease.Linear);
 
-            yield return new WaitForSeconds(TimePatientSpawn_sec);
+            yield return new WaitForSeconds(_timePatientSpawn_sec);
         }
         
     }
