@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using DG.Tweening;
 
 public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
 {
@@ -46,6 +45,8 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     }
 
     //Data
-    public Queue<Service> ServicesToSee = new Queue<Service>();
-    public Localisation ServiceLocalisation = Localisation.Start;
+    //public Queue<Service> ServicesToSee = new Queue<Service>();
+
+    public Queue<Services> ServiceToSee = new Queue<Services>();
+    public int[] PathIn = {0,0};
 }

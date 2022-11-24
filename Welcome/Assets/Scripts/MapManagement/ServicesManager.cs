@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ServicesManager : MonoBehaviour
 { 
-    public Service[] Services;
+    /*public Service[] Services;
 
     [SerializeField]private int _maxServicesToSee = 5;
 
@@ -24,5 +24,5 @@ public class ServicesManager : MonoBehaviour
         {
             print("added patient");
         }
-    }
+    }*/
 }
