@@ -77,10 +77,10 @@ public class GameManager : MonoBehaviour
 
     public void AvanceTapis()
     {
-        foreach(Patient p in _ListPatient)
+        int nbPatient = _ListPatient.Count-1;
+        for (int a = nbPatient; a >= 0; a--)
         {
-            NextCase(p);
-            p.transform.DOMove(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position, .5f).SetEase(Ease.Linear);
+            NextCase(_ListPatient[a]);
         }
     }
 
@@ -88,6 +88,15 @@ public class GameManager : MonoBehaviour
     {
         int[] nextWP = { p.PathIn[0], p.PathIn[1]+1};
         WayPointsValue wp = _ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]];
+
+        if (p.PathIn[0] == 6 && p.PathIn[1] == 2)
+        {
+            wp.Dispo = true;
+            _ListPatient.Remove(p);
+            Destroy(p.gameObject);
+            return;
+        }
+
         if (wp.RoadSplit)
         {
             nextWP[0] = SplitPath(p);
@@ -108,6 +117,8 @@ public class GameManager : MonoBehaviour
             wpNext.Dispo = false;
             p.PathIn = nextWP;
         }
+
+        p.transform.DOMove(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position, .5f).SetEase(Ease.Linear);
     }
 
     int SplitPath(Patient p)
