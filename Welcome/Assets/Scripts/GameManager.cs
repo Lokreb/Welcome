@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
             nextWP[1] = 0;
         }
 
-        if (wp.Service)
+        if (wp.Service && p.InMiniGame)
         {
             nextWP[0] = p.PathIn[0];
             nextWP[1] = p.PathIn[1];
@@ -138,6 +138,8 @@ public class GameManager : MonoBehaviour
         
         if (wpNext.Dispo)
         {
+            if (wpNext.Service) p.InMiniGame = true;
+
             wp.Dispo = true;
             wpNext.Dispo = false;
             p.PathIn = nextWP;

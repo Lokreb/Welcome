@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
@@ -15,13 +16,20 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        print("down");
+        if (!InMiniGame) return;
+
+        InMiniGame = false;
+        GameManager.Instance.NextCase(this);
+
         _offset = GetMousePos() - (Vector2) transform.position;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        print("drag");
+        var tempColor = ImagePerso.color;
+        tempColor.a = .5f;
+        ImagePerso.color = tempColor;
+
         _canvasGroup.blocksRaycasts = false;
     }
 
@@ -36,6 +44,10 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        var tempColor = ImagePerso.color;
+        tempColor.a = 1f;
+        ImagePerso.color = tempColor;
+
         _canvasGroup.blocksRaycasts = true;
     }
 
@@ -46,7 +58,8 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     //Data
     //public Queue<Service> ServicesToSee = new Queue<Service>();
-
+    public Image ImagePerso;
     public Queue<Services> ServiceToSee = new Queue<Services>();
     public int[] PathIn = {0,0};
+    public bool InMiniGame = false;
 }
