@@ -41,6 +41,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void Test()
+    {
+        List<Tween> t = DOTween.PlayingTweens();
+        int nb = t.Count;
+        for(int a=0;a<nb;a++)
+        {
+            print(t[a].intId);
+        }
+    }
     void Start()
     {
         //initialisation ID waypoints
@@ -63,33 +72,42 @@ public class GameManager : MonoBehaviour
     {
         while(EndGame)
         {
-            Patient p = Instantiate(_prefab_Patient,_spawnPoint.transform.position,Quaternion.identity);
-            p.gameObject.transform.SetParent(_spawnPoint.transform);
-            _ListPatient.Add(p);
-
-            //_servicesManager.AddServicesToSee(p);
-            //_servicesManager.CanGoTo(p);
-            SetServiceToSee(p);
-
-            //test 1st
-            WayPointsValue wp = _ListChemins[0].ListWaypoints[0];
-            if (wp.Dispo)
+            if (_numberOfPatient > 0)
             {
-                p.transform.DOMove(wp.transform.position, .5f).SetEase(Ease.Linear);
-                wp.Dispo = false;
-
-            }else
-            {
-                EndGame = false;
-                print("perdu");
+                GeneratePatient();
+                _numberOfPatient--;
             }
-            
+
             yield return new WaitForSeconds(_timePatientSpawn_sec);
-            if(EndGame)AvanceTapis();            
+            if(EndGame)AvanceTapis();
         }
         
     }
 
+    
+    void GeneratePatient()
+    {
+        Patient p = Instantiate(_prefab_Patient, _spawnPoint.transform.position, Quaternion.identity);
+        p.gameObject.transform.SetParent(_spawnPoint.transform);
+        _ListPatient.Add(p);
+
+        //Defini les services à voir
+        SetServiceToSee(p);
+
+        //verification dispo 1er waypoint + déplacement
+        WayPointsValue wp = _ListChemins[0].ListWaypoints[0];
+        if (wp.Dispo)
+        {
+            p.transform.DOMove(wp.transform.position, .5f).SetEase(Ease.Linear);
+            wp.Dispo = false;
+            
+        }
+        else
+        {
+            EndGame = false;
+            print("perdu");
+        }
+    }
     void SetServiceToSee(Patient p)
     {
         int nbServices = UnityEngine.Random.Range(1, 5);
@@ -114,6 +132,7 @@ public class GameManager : MonoBehaviour
     }
 
     Patient _patientRemove = null;
+    int IdTweenSet = 0;
     public void NextCase(Patient p)
     {
         int[] nextWP = { p.PathIn[0], p.PathIn[1]+1};
@@ -157,7 +176,9 @@ public class GameManager : MonoBehaviour
             p.PathIn = nextWP;
         }
 
-        p.transform.DOMove(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position, .4f).SetEase(Ease.Linear);
+        p.transform.DOMove(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position, .4f).SetEase(Ease.Linear).SetId(IdTweenSet);
+        p.TweenID = IdTweenSet;
+        IdTweenSet++;
     }
 
     int SplitPath(Patient p)
@@ -193,6 +214,10 @@ public class GameManager : MonoBehaviour
         return p.PathIn[0]+1;
     }
 
+    public void SetWayPointDispo(int[] id)
+    {
+        _ListChemins[id[0]].ListWaypoints[id[1]].Dispo = true;
+    }
     void PatientDropped(DropZonePatient dzp)
     {
         print(dzp.Name);

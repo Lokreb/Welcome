@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class WayPointsValue : MonoBehaviour, IDropHandler
 {
@@ -18,6 +19,8 @@ public class WayPointsValue : MonoBehaviour, IDropHandler
             Patient p = eventData.pointerDrag.GetComponent<Patient>();
             p.transform.position = transform.position;
 
+            DOTween.Kill(p.TweenID);
+            GameManager.Instance.SetWayPointDispo(p.PathIn);
             p.PathIn[0] = ID[0];
             p.PathIn[1] = ID[1];
         }
