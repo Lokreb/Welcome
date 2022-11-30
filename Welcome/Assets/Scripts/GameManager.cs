@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     [SerializeField]private int _numberOfPatient = 30;
-    [SerializeField]private float _timePatientSpawn_sec = 3;
+    [SerializeField]private float _timePatientSpawn_sec = 3f;
     [SerializeField]private Patient _prefab_Patient;
     [SerializeField]private ServicesManager _servicesManager;
 
@@ -43,12 +43,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(SpawnPatient());  
+        StartCoroutine(SpawnPatient());
     }
 
+    bool EndGame = true;
     IEnumerator SpawnPatient()
     {
-        while(true)
+        while(EndGame)
         {
             Patient p = Instantiate(_prefab_Patient,_spawnPoint.transform.position,Quaternion.identity);
             p.gameObject.transform.SetParent(_spawnPoint.transform);
@@ -57,9 +58,22 @@ public class GameManager : MonoBehaviour
             //_servicesManager.AddServicesToSee(p);
             //_servicesManager.CanGoTo(p);
             SetServiceToSee(p);
-            p.transform.DOMove(_ListChemins[0].ListWaypoints[0].transform.position, 1f).SetEase(Ease.Linear);
 
+            //test 1st
+            WayPointsValue wp = _ListChemins[0].ListWaypoints[0];
+            if (wp.Dispo)
+            {
+                p.transform.DOMove(wp.transform.position, .5f).SetEase(Ease.Linear);
+                wp.Dispo = false;
+
+            }else
+            {
+                EndGame = false;
+                print("perdu");
+            }
+            
             yield return new WaitForSeconds(_timePatientSpawn_sec);
+            if(EndGame)AvanceTapis();            
         }
         
     }
@@ -77,22 +91,27 @@ public class GameManager : MonoBehaviour
 
     public void AvanceTapis()
     {
-        int nbPatient = _ListPatient.Count-1;
-        for (int a = nbPatient; a >= 0; a--)
+        
+        int nbPatient = _ListPatient.Count;
+        for (int a = 0; a < nbPatient; a++)
         {
             NextCase(_ListPatient[a]);
         }
+        _ListPatient.Remove(_patientRemove);
+        _patientRemove = null;
     }
 
+    Patient _patientRemove = null;
     public void NextCase(Patient p)
     {
         int[] nextWP = { p.PathIn[0], p.PathIn[1]+1};
         WayPointsValue wp = _ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]];
 
-        if (p.PathIn[0] == 6 && p.PathIn[1] == 2)
+        if (p.PathIn[0] == 6 && p.PathIn[1] == 2)//Croisement num chemin
         {
             wp.Dispo = true;
-            _ListPatient.Remove(p);
+            //_ListPatient.Remove(p);
+            _patientRemove = p;
             Destroy(p.gameObject);
             return;
         }
@@ -108,7 +127,13 @@ public class GameManager : MonoBehaviour
             nextWP[0] = MergePath(p);
             nextWP[1] = 0;
         }
-        
+
+        if (wp.Service)
+        {
+            nextWP[0] = p.PathIn[0];
+            nextWP[1] = p.PathIn[1];
+        }
+
         WayPointsValue wpNext = _ListChemins[nextWP[0]].ListWaypoints[nextWP[1]];
         
         if (wpNext.Dispo)
@@ -118,7 +143,7 @@ public class GameManager : MonoBehaviour
             p.PathIn = nextWP;
         }
 
-        p.transform.DOMove(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position, .5f).SetEase(Ease.Linear);
+        p.transform.DOMove(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position, .4f).SetEase(Ease.Linear);
     }
 
     int SplitPath(Patient p)

@@ -90,6 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 5277471445526807774}
+  PathIn: 0000000000000000
 --- !u!225 &5277471445526807774
 CanvasGroup:
   m_ObjectHideFlags: 0

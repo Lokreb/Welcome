@@ -7,4 +7,5 @@ public class WayPointsValue : MonoBehaviour
     public bool Dispo = true;
     public bool RoadMerge = false;
     public bool RoadSplit = false;
+    public bool Service = false;
 }

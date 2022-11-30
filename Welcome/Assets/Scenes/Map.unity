@@ -4736,7 +4736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _numberOfPatient: 30
-  _timePatientSpawn_sec: 3
+  _timePatientSpawn_sec: 0.6
   _prefab_Patient: {fileID: 4644550310266138881, guid: 77e2037b03e3d79448f2cdbd65e2e701, type: 3}
   _servicesManager: {fileID: 1581374017}
   _dropZone:
