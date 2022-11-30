@@ -43,6 +43,18 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        //initialisation ID waypoints
+        int nbPath = _ListChemins.Count;
+        for(int a=0;a<nbPath;a++)
+        {
+            int nbWayPoint = _ListChemins[a].ListWaypoints.Count;
+            for(int b=0;b<nbWayPoint;b++)
+            {
+                _ListChemins[a].ListWaypoints[b].ID[0] = a;
+                _ListChemins[a].ListWaypoints[b].ID[1] = b;
+            }
+        }
+
         StartCoroutine(SpawnPatient());
     }
 
@@ -107,7 +119,7 @@ public class GameManager : MonoBehaviour
         int[] nextWP = { p.PathIn[0], p.PathIn[1]+1};
         WayPointsValue wp = _ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]];
 
-        if (p.PathIn[0] == 6 && p.PathIn[1] == 2)//Croisement num chemin
+        if (p.PathIn[0] == 6 && p.PathIn[1] == 2)//Delete fin de chemin
         {
             wp.Dispo = true;
             //_ListPatient.Remove(p);

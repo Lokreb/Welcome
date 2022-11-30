@@ -7,3 +7,4 @@ public class Paths : MonoBehaviour
 {
     public List<WayPointsValue> ListWaypoints = new List<WayPointsValue>();
 }
+
