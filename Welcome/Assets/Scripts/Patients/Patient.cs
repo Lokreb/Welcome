@@ -57,6 +57,19 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
         return Input.mousePosition;
     }
 
+    public void EndMiniGame(bool win)
+    {
+        if (win)
+        {
+            print(ServiceToSee.Peek());
+            ServiceToSee.Dequeue();
+            print(ServiceToSee.Peek());
+        }
+        
+
+        InMiniGame = false;
+        GameManager.Instance.NextCase(this);
+    }
     //Data
     //public Queue<Service> ServicesToSee = new Queue<Service>();
     public Queue<Services> ServiceToSee = new Queue<Services>();

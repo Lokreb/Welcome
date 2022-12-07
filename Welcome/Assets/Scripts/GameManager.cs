@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public event Action<WayPointsValue,Patient> OnPatientService;
+
     [SerializeField]private int _numberOfPatient = 30;
     [SerializeField]private float _timePatientSpawn_sec = 3f;
     [SerializeField]private Patient _prefab_Patient;
@@ -17,7 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]private List<DropZonePatient> _dropZone;
     [SerializeField] private List<Paths> _ListChemins;
 
-    [SerializeField]private GameObject _spawnPoint,_dropZoneParent;
+    [SerializeField]private GameObject _spawnPoint;
 
     [SerializeField] private List<Patient> _ListPatient;
 
@@ -169,8 +171,11 @@ public class GameManager : MonoBehaviour
         
         if (wpNext.Dispo)
         {
-            if (wpNext.Service) p.InMiniGame = true;
-
+            if(wpNext.Service)
+            {
+                p.InMiniGame = true;
+                OnPatientService?.Invoke(wpNext,p);
+            }
             wp.Dispo = true;
             wpNext.Dispo = false;
             p.PathIn = nextWP;

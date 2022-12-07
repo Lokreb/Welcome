@@ -4,42 +4,37 @@ using UnityEngine;
 
 public class Service : MonoBehaviour
 {
-    //Intérieur = transform.position;
-    public Transform[] WaitingPoints;
-    //Queue.Count = waiting pos
+    [SerializeField]private WayPointsValue _wpService;
+    [SerializeField]private Jeu_GeneralFonction _JeuResponse;
 
-    public Dictionary<Patient,int> PatientQueue = new Dictionary<Patient, int>();
-    private int _IDQueue = 0;
+    private Patient _currentPatient;
 
 
-    public bool AddPatient(Patient patient)
+    void Start()
     {
-        if(PatientQueue.Count <= WaitingPoints.Length)
+        GameManager.Instance.OnPatientService += PatientArrive;
+        _JeuResponse.OnGameResponse += ResultMiniGame;
+        _JeuResponse.gameObject.SetActive(false);
+    }
+    private void PatientArrive(WayPointsValue wp,Patient p)
+    {
+        if(_wpService.ID == wp.ID)
         {
-            PatientQueue.Add(patient, _IDQueue);
-            _IDQueue++;
-            return true;
+            _currentPatient = p;
         }
-
-        return false;
     }
 
-    public void RemovePatient(Patient patient)
+    public void OnClick()
     {
-        int removedPatient = PatientQueue[patient];
+        if (_currentPatient == null) return;
 
-        foreach(Patient p in PatientQueue.Keys)
-        {
-            if (PatientQueue[p] <= removedPatient) continue;
+        _JeuResponse.gameObject.SetActive(true);
 
-            PatientQueue[p]--;
-        }
-
-        PatientQueue.Remove(patient);
     }
 
-    public Transform WaitingPosition()
+    void ResultMiniGame(bool win)
     {
-        return null;
+        _currentPatient.EndMiniGame(win);
+        _JeuResponse.gameObject.SetActive(false);
     }
 }
