@@ -79,9 +79,5 @@ public class FolderManager : MonoBehaviour
     {
         _gameData.idCible.Clear();
         _ID = 0;
-        while(_ID < 10)
-        {
-            Spawn();
-        }
     }
 }
