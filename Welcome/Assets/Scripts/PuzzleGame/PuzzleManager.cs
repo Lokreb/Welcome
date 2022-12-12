@@ -12,7 +12,7 @@ public class PuzzleManager : MonoBehaviour
 
     [SerializeField] private GameDataScript _gameData;
 
-    [SerializeField] private GameObject _PuzzleGame;
+    [SerializeField] private Service _Service;
 
     public List<int> spriteValueList = new List<int>();
 
@@ -58,16 +58,17 @@ public class PuzzleManager : MonoBehaviour
 
     public Sprite CreateSprite(int truePosition)
     {
-        string[] imagesName = { "Passoire", "Poêle", "Passoire", "Poêle", "Passoire", "Poêle", "Passoire", "Poêle", "Passoire" };
+        string[] imagesName = { "Passoire", "PoÃªle", "Passoire", "PoÃªle", "Passoire", "PoÃªle", "Passoire", "PoÃªle", "Passoire" };
         string image = "Sprites/" + imagesName[truePosition];
         Sprite result = Resources.Load<Sprite>(image);
         return result;
     }
 
-    public void EndGame() { 
+    public void EndGame() {
         if(_gameData.scorePuzzleGame >= 90)
         {
-            _PuzzleGame.SetActive(false);
+            _gameData.scorePuzzleGame = 0;
+            _Service.ResultMiniGame(true);
         }
     }
 }

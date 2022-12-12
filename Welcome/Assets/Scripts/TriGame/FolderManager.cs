@@ -12,7 +12,7 @@ public class FolderManager : MonoBehaviour
 
     [SerializeField] private GameDataScript _gameData;
 
-    [SerializeField] private GameObject _folderGame;
+    [SerializeField] private Service _Service;
 
 
     // Start is called before the first frame update
@@ -57,7 +57,7 @@ public class FolderManager : MonoBehaviour
 
     public Sprite CreateSprite(int trueServiceValue)
     {
-        string[] imagesName = { "Passoire", "Poêle", "Passoire", "Poêle" };
+        string[] imagesName = { "Passoire", "PoÃªle", "Passoire", "PoÃªle" };
         string image = "Sprites/" + imagesName[trueServiceValue - 1];
         Sprite result = Resources.Load<Sprite>(image);
         return result;
@@ -67,7 +67,9 @@ public class FolderManager : MonoBehaviour
     {
         if(_gameData.count == _gameData.idCible.Capacity)
         {
-            _folderGame.SetActive(false);
+            _gameData.count = 0;
+            _gameData.scoreSortGame = 0;
+            _Service.ResultMiniGame(true);
         }
     }
 }
