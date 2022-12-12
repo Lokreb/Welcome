@@ -68,6 +68,8 @@ public class PuzzleManager : MonoBehaviour
         if(_gameData.scorePuzzleGame >= 90)
         {
             _gameData.scorePuzzleGame = 0;
+            _gameData.idCiblePuzzle.Clear();
+            _gameData.count = 0;
             _Service.ResultMiniGame(true);
             NewGame();
             _ID = 0;
