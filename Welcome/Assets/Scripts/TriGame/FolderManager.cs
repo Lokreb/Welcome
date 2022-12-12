@@ -28,7 +28,7 @@ public class FolderManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        while(_ID < 40)
+        while(_ID < 10)
             {
                 Spawn();
             }
@@ -70,6 +70,18 @@ public class FolderManager : MonoBehaviour
             _gameData.count = 0;
             _gameData.scoreSortGame = 0;
             _Service.ResultMiniGame(true);
+            NewGame();
+            _ID = 0;
+        }
+    }
+
+    public void NewGame()
+    {
+        _gameData.idCible.Clear();
+        _ID = 0;
+        while(_ID < 10)
+        {
+            Spawn();
         }
     }
 }
