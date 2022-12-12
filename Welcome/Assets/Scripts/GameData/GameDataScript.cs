@@ -13,11 +13,13 @@ public class GameDataScript : ScriptableObject
     public int score = 0;
 
     public int scoreSortGame = 0;
+    public int scorePuzzleGame = 0;
 
     public int volume = 100;
     public int music = 100;
 
     public List<int> idCible = new List<int>();
+    public List<int> idCiblePuzzle = new List<int>();
 
     public int count = 0;
 
