@@ -5065,8 +5065,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3477265f5cd93243956249b0f461518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _numberOfPatient: 30
-  _timePatientSpawn_sec: 1
+  _numberOfPatient: 20
+  _timePatientSpawn_sec: 2
+  _timeTapisAvance: 2
+  _PatientSpawnPlacement: 0.5
   _prefab_Patient: {fileID: 4644550310266138881, guid: 77e2037b03e3d79448f2cdbd65e2e701, type: 3}
   _servicesManager: {fileID: 1581374017}
   _ListChemins:

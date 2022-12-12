@@ -12,7 +12,8 @@ public class GameManager : MonoBehaviour
     public event Action<WayPointsValue,Patient> OnPatientService;
 
     [SerializeField]private int _numberOfPatient = 30;
-    [SerializeField]private float _timePatientSpawn_sec = 3f;
+    [SerializeField]private int _timePatientSpawn_sec,_timeTapisAvance = 3;
+    [SerializeField]private float _PatientSpawnPlacement = .5f;
     [SerializeField]private Patient _prefab_Patient;
     [SerializeField]private ServicesManager _servicesManager;
 
@@ -65,10 +66,21 @@ public class GameManager : MonoBehaviour
                 _numberOfPatient--;
             }
 
-            yield return new WaitForSeconds(_timePatientSpawn_sec);
-            if(EndGame)AvanceTapis();
+            yield return new WaitForSeconds(_PatientSpawnPlacement);
+            StartCoroutine(TapisAvancement(_timePatientSpawn_sec-_timeTapisAvance));
+            yield return new WaitForSeconds(_timePatientSpawn_sec-_PatientSpawnPlacement);
         }
         
+    }
+
+    IEnumerator TapisAvancement(int nb)
+    {
+        while(nb>=0)
+        {
+            nb--;
+            AvanceTapis();
+            yield return new WaitForSeconds(_timeTapisAvance);
+        }
     }
 
     
@@ -78,14 +90,14 @@ public class GameManager : MonoBehaviour
         p.gameObject.transform.SetParent(_spawnPoint.transform);
         _ListPatient.Add(p);
 
-        //Defini les services à voir
+        //Defini les services ï¿½ voir
         SetServiceToSee(p);
 
-        //verification dispo 1er waypoint + déplacement
+        //verification dispo 1er waypoint + dï¿½placement
         WayPointsValue wp = _ListChemins[0].ListWaypoints[0];
         if (wp.Dispo)
         {
-            p.transform.DOMove(wp.transform.position, .5f).SetEase(Ease.Linear);
+            p.transform.DOMove(wp.transform.position, _PatientSpawnPlacement).SetEase(Ease.Linear);
             wp.Dispo = false;
             
         }
