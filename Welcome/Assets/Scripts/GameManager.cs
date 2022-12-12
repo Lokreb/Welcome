@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]private Patient _prefab_Patient;
     [SerializeField]private ServicesManager _servicesManager;
 
-    [SerializeField]private List<DropZonePatient> _dropZone;
     [SerializeField] private List<Paths> _ListChemins;
 
     [SerializeField]private GameObject _spawnPoint;
@@ -27,20 +26,6 @@ public class GameManager : MonoBehaviour
 
         if (Instance != null) return;
         Instance = this;
-
-        //changement d'état -> patient change d'état Spawn à S1, S1 à Sx, Sx à Sy... pour définir le chemin
-        foreach(DropZonePatient dzp in _dropZone)
-        {
-            dzp.OnDropPatient += PatientDropped;
-        }
-    }
-
-    void OnDestroy()
-    {
-        foreach(DropZonePatient dzp in _dropZone)
-        {
-            dzp.OnDropPatient -= PatientDropped;
-        }
     }
 
     public void Test()
@@ -222,9 +207,5 @@ public class GameManager : MonoBehaviour
     public void SetWayPointDispo(int[] id)
     {
         _ListChemins[id[0]].ListWaypoints[id[1]].Dispo = true;
-    }
-    void PatientDropped(DropZonePatient dzp)
-    {
-        print(dzp.Name);
     }
 }
