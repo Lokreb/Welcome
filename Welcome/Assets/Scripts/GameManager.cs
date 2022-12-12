@@ -5,6 +5,7 @@ using UnityEngine;
 using DG.Tweening;
 
 public enum Services {A,C,D,E,MAX};
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -15,7 +16,6 @@ public class GameManager : MonoBehaviour
     [SerializeField]private int _timePatientSpawn_sec,_timeTapisAvance = 3;
     [SerializeField]private float _PatientSpawnPlacement = .5f;
     [SerializeField]private Patient _prefab_Patient;
-    [SerializeField]private ServicesManager _servicesManager;
 
     [SerializeField] private List<Paths> _ListChemins;
 
@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
         _ListPatient.Add(p);
 
         //Defini les services � voir
-        SetServiceToSee(p);
+        //SetServiceToSee(p);
 
         //verification dispo 1er waypoint + d�placement
         WayPointsValue wp = _ListChemins[0].ListWaypoints[0];
@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
             print("perdu");
         }
     }
-    void SetServiceToSee(Patient p)
+    /*void SetServiceToSee(Patient p)
     {
         int nbServices = UnityEngine.Random.Range(1, 5);
         for (int a = 0; a < nbServices; a++)
@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
             p.ServiceToSee.Enqueue(service);
  
         }
-    }
+    }*/
 
     public void AvanceTapis()
     {

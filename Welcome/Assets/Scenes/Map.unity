@@ -1386,6 +1386,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jeu1
       objectReference: {fileID: 0}
+    - target: {fileID: 8352325243515712557, guid: 9661d86c7287e72438fded71a7d7e788, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9661d86c7287e72438fded71a7d7e788, type: 3}
 --- !u!224 &142490662 stripped
@@ -2463,7 +2467,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8352325243515712557, guid: 9661d86c7287e72438fded71a7d7e788, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9661d86c7287e72438fded71a7d7e788, type: 3}
@@ -5070,7 +5074,6 @@ MonoBehaviour:
   _timeTapisAvance: 2
   _PatientSpawnPlacement: 0.5
   _prefab_Patient: {fileID: 4644550310266138881, guid: 77e2037b03e3d79448f2cdbd65e2e701, type: 3}
-  _servicesManager: {fileID: 1581374017}
   _ListChemins:
   - {fileID: 1572838055}
   - {fileID: 1382353039}
@@ -7904,7 +7907,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1581374016}
-  - component: {fileID: 1581374017}
   m_Layer: 0
   m_Name: ServicesManager
   m_TagString: Untagged
@@ -7929,18 +7931,6 @@ Transform:
   m_Father: {fileID: 1650924924}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1581374017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1581374015}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03318cc3422af61488e46032e6fd7448, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1582168054 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1776228691106345544, guid: 5a7aeb9941ac199439d5cd886e4cb0ed, type: 3}
