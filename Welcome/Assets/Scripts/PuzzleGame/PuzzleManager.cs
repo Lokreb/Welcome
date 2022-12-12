@@ -23,14 +23,14 @@ public class PuzzleManager : MonoBehaviour
         _gameData.idCiblePuzzle.Clear();
         _gameData.count = 0;
         _gameData.scorePuzzleGame = 0;
+        spriteValueList.Clear();
+        while (_ID < 9)
+            Spawn();
     }
 
     // Update is called once per frame
     void Update()
     {
-        while (_ID < 9)
-            Spawn();
-
         EndGame();
     }
 
@@ -69,6 +69,39 @@ public class PuzzleManager : MonoBehaviour
         {
             _gameData.scorePuzzleGame = 0;
             _Service.ResultMiniGame(true);
+            NewGame();
+            _ID = 0;
         }
+    }
+
+    public void NewGame()
+    {
+        spriteValueList.Clear();
+        _ID = 0;
+        ResetAllSprites();
+        //ResetSprite("Slot_A");
+        while (_ID < 9)
+        {
+            Spawn();
+        }
+    }
+
+    public void ResetSprite(string name)
+    {
+        GameObject go = GameObject.Find("/Canvas/ServicesManager/Services/S1/PuzzleGame/Slots/" + name);
+        go.GetComponent<Image>().sprite = null;
+    }
+
+    public void ResetAllSprites()
+    {
+        ResetSprite("Slot_A");
+        ResetSprite("Slot_B");
+        ResetSprite("Slot_C");
+        ResetSprite("Slot_D");
+        ResetSprite("Slot_E");
+        ResetSprite("Slot_F");
+        ResetSprite("Slot_G");
+        ResetSprite("Slot_H");
+        ResetSprite("Slot_I");
     }
 }
