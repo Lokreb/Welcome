@@ -7,7 +7,7 @@ public class Service : MonoBehaviour
     [SerializeField]private WayPointsValue _wpService;
     [SerializeField]private Jeu_GeneralFonction _JeuResponse;
 
-    private Patient _currentPatient;
+    [SerializeField]private Patient _currentPatient;
 
 
     void Start()
@@ -36,5 +36,6 @@ public class Service : MonoBehaviour
     {
         _currentPatient.EndMiniGame(win);
         _JeuResponse.gameObject.SetActive(false);
+        _currentPatient=null;
     }
 }
