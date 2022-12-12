@@ -12,6 +12,8 @@ public class PuzzleManager : MonoBehaviour
 
     [SerializeField] private GameDataScript _gameData;
 
+    [SerializeField] private GameObject _PuzzleGame;
+
     public List<int> spriteValueList = new List<int>();
 
     // Start is called before the first frame update
@@ -28,6 +30,8 @@ public class PuzzleManager : MonoBehaviour
     {
         while (_ID < 9)
             Spawn();
+
+        EndGame();
     }
 
     public void Spawn()
@@ -58,5 +62,12 @@ public class PuzzleManager : MonoBehaviour
         string image = "Sprites/" + imagesName[truePosition];
         Sprite result = Resources.Load<Sprite>(image);
         return result;
+    }
+
+    public void EndGame() { 
+        if(_gameData.scorePuzzleGame >= 90)
+        {
+            _PuzzleGame.SetActive(false);
+        }
     }
 }
