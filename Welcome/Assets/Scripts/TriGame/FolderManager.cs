@@ -12,6 +12,8 @@ public class FolderManager : MonoBehaviour
 
     [SerializeField] private GameDataScript _gameData;
 
+    [SerializeField] private GameObject _folderGame;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +32,7 @@ public class FolderManager : MonoBehaviour
             {
                 Spawn();
             }
+        EndGame();
     }
 
 
@@ -58,5 +61,13 @@ public class FolderManager : MonoBehaviour
         string image = "Sprites/" + imagesName[trueServiceValue - 1];
         Sprite result = Resources.Load<Sprite>(image);
         return result;
+    }
+
+    public void EndGame()
+    {
+        if(_gameData.count == _gameData.idCible.Capacity)
+        {
+            _folderGame.SetActive(false);
+        }
     }
 }
