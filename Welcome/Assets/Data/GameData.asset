@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aede579a438e78f4abae1685aa284c5a, type: 3}
+  m_Script: {fileID: 11500000, guid: ff956323ba22e544990540d071a961cf, type: 3}
   m_Name: GameData
   m_EditorClassIdentifier: 
   playerName: 
@@ -17,3 +17,5 @@ MonoBehaviour:
   volume: 100
   music: 100
   highscore: 0
+  idCible: 
+  count: 0
