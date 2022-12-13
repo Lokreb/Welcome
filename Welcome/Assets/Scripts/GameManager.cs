@@ -11,8 +11,14 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public event Action<WayPointsValue,Patient> OnPatientService;
+    public event Action<int> OnHumorChange;
+    public event Action OnPatientEnd;
+    public event Action OnTimerChange;
 
     [SerializeField]private int _numberOfPatient = 30;
+    public int PatientFailed { get; private set; } = 0;
+    public int PatientDone { get; private set; } = 0;
+    public int Timer { get; private set; } = 600;
     [SerializeField]private int _timePatientSpawn_sec,_timeTapisAvance = 3;
     [SerializeField]private float _PatientSpawnPlacement = .5f;
     [SerializeField]private int _HumorValue = 100;
@@ -60,6 +66,18 @@ public class GameManager : MonoBehaviour
         }
 
         StartCoroutine(SpawnPatient());
+    }
+
+    int _TimerSeconds = 0;
+    private void FixedUpdate()
+    {
+        _TimerSeconds++;
+        if(_TimerSeconds == 60)
+        {
+            _TimerSeconds = 0;
+            Timer--;
+            OnTimerChange?.Invoke();
+        }
     }
 
     bool EndGame = true;
@@ -133,7 +151,16 @@ public class GameManager : MonoBehaviour
 
         if (p.PathIn[0] == _LastWP[0] && p.PathIn[1] == _LastWP[1])//Delete fin de chemin
         {
-            if (p.ServiceToSee.Count > 0) ChangeHumor(p.ServiceToSee.Count * -5);
+            if (p.ServiceToSee.Count > 0)
+            {
+                PatientFailed++;
+                ChangeHumor(p.ServiceToSee.Count * -5);
+            }
+            else
+            {
+                PatientDone++;
+            }
+            OnPatientEnd?.Invoke();
 
             wp.Dispo = true;
             _patientRemove = p;
@@ -232,5 +259,7 @@ public class GameManager : MonoBehaviour
     public void ChangeHumor(int value)
     {
         _HumorValue += value;
+        if (_HumorValue <= 0) EndGame = false;
+        OnHumorChange?.Invoke(value);
     }
 }

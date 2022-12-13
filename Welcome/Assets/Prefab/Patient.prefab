@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7494482217012564506}
   - component: {fileID: 7610510933863940676}
   - component: {fileID: 5277471445526807774}
-  - component: {fileID: 8906635864991647250}
+  - component: {fileID: 3863949272120917945}
   m_Layer: 5
   m_Name: Patient
   m_TagString: Untagged
@@ -90,7 +90,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &8906635864991647250
+--- !u!114 &3863949272120917945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,12 +99,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5278868997959513593}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07b8d3edc80103047bc9150546409bbb, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87af7fe0c29a74e80160ad622959fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 5277471445526807774}
   _service: {fileID: 3660880242008337554}
-  Patience: 5
+  Patience: 1
   PathIn: 0000000000000000
   InMiniGame: 0
   TweenID: 0
