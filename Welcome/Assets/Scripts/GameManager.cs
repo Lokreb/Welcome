@@ -15,7 +15,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]private int _numberOfPatient = 30;
     [SerializeField]private int _timePatientSpawn_sec,_timeTapisAvance = 3;
     [SerializeField]private float _PatientSpawnPlacement = .5f;
+    [SerializeField]private int _HumorValue = 100;
     [SerializeField]private Patient _prefab_Patient;
+
 
     public Sprite[] ServiceVisuel;
 
@@ -131,8 +133,9 @@ public class GameManager : MonoBehaviour
 
         if (p.PathIn[0] == _LastWP[0] && p.PathIn[1] == _LastWP[1])//Delete fin de chemin
         {
+            if (p.ServiceToSee.Count > 0) ChangeHumor(p.ServiceToSee.Count * -5);
+
             wp.Dispo = true;
-            //_ListPatient.Remove(p);
             _patientRemove = p;
             Destroy(p.gameObject);
             return;
@@ -162,7 +165,7 @@ public class GameManager : MonoBehaviour
         {
             if(wpNext.Service)
             {
-                p.InMiniGame = true;
+                p.AttenteInGame();
                 OnPatientService?.Invoke(wpNext,p);
             }
             wp.Dispo = true;
@@ -224,5 +227,10 @@ public class GameManager : MonoBehaviour
     public void SetWayPointDispo(int[] id)
     {
         _ListChemins[id[0]].ListWaypoints[id[1]].Dispo = true;
+    }
+
+    public void ChangeHumor(int value)
+    {
+        _HumorValue += value;
     }
 }

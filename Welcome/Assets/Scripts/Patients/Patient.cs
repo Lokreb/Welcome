@@ -12,7 +12,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     private Patient _clone;
     [SerializeField]private Image _service;
 
-
+    public float Patience = 5f;
 
     void Awake()
     {
@@ -105,7 +105,9 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     public void EndMiniGame(bool win,Services service)
     {
-        if(win && ServiceToSee.Count > 0)
+        StopCoroutine(Attente());
+
+        if (win && ServiceToSee.Count > 0)
         {
             if(service == ServiceToSee.Peek())
             {
@@ -114,13 +116,31 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
             }
         }
 
-        MoveActionPatient();
-    }
-
-    void MoveActionPatient()
-    {
         InMiniGame = false;
         GameManager.Instance.NextCase(this);
+    }
+
+    public void Playing()
+    {
+        StopCoroutine(Attente());
+    }
+    
+    public void AttenteInGame()
+    {
+        InMiniGame = true;
+        StartCoroutine(Attente());
+    }
+
+    IEnumerator Attente()
+    {
+        while (InMiniGame)
+        {
+            yield return new WaitForSeconds(Patience);
+            if (InMiniGame)
+            {
+                GameManager.Instance.ChangeHumor(-1);
+            }
+        }
     }
 
     //Data

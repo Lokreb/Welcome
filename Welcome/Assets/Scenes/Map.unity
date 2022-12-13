@@ -5498,8 +5498,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _numberOfPatient: 20
   _timePatientSpawn_sec: 2
-  _timeTapisAvance: 2
+  _timeTapisAvance: 1
   _PatientSpawnPlacement: 0.5
+  _JaugeHumeur: 100
   _prefab_Patient: {fileID: 8906635864991647250, guid: 77e2037b03e3d79448f2cdbd65e2e701, type: 3}
   ServiceVisuel:
   - {fileID: 21300000, guid: a56b28145f5c0f54b91740aedf8f097f, type: 3}
@@ -5514,7 +5515,6 @@ MonoBehaviour:
   - {fileID: 2066189151}
   - {fileID: 755861936}
   - {fileID: 2052986080}
-  _LastWP: {fileID: 1626176178}
   _spawnPoint: {fileID: 770976101}
   _ListPatient: []
 --- !u!4 &961861651
