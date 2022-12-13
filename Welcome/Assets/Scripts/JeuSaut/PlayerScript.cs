@@ -24,7 +24,7 @@ public class PlayerScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(isGrounded == true)
+            if(isGrounded)
             {
                 RB.AddForce(Vector2.up * jumpForce);
                 isGrounded = false;
@@ -42,10 +42,7 @@ public class PlayerScript : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("ground"))
         {
-            if (isGrounded == false)
-            {
-                isGrounded = true;
-            }
+            isGrounded = true;
         }
 
         if (collision.gameObject.CompareTag("spike"))
