@@ -103,12 +103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvasGroup: {fileID: 5277471445526807774}
-  _ServiceVisuel:
-  - {fileID: 21300000, guid: a56b28145f5c0f54b91740aedf8f097f, type: 3}
-  - {fileID: 21300000, guid: 838a97f31bde1a44db6a05a9759505dd, type: 3}
-  - {fileID: 21300000, guid: 643d566be9495e148997ceec9ae1df9a, type: 3}
-  - {fileID: 21300000, guid: 496c87fe2b843af4ea347055991ad8e8, type: 3}
   _service: {fileID: 3660880242008337554}
+  _serviceLeft: {fileID: 0}
   PathIn: 0000000000000000
   InMiniGame: 0
   TweenID: 0

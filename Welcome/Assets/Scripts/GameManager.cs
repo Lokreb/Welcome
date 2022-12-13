@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public Sprite[] ServiceVisuel;
 
     [SerializeField] private List<Paths> _ListChemins;
+    private int[] _LastWP = {0,0};
 
     [SerializeField]private GameObject _spawnPoint;
 
@@ -51,7 +52,9 @@ public class GameManager : MonoBehaviour
             {
                 _ListChemins[a].ListWaypoints[b].ID[0] = a;
                 _ListChemins[a].ListWaypoints[b].ID[1] = b;
+                _LastWP[1] = b;
             }
+            _LastWP[0] = a;
         }
 
         StartCoroutine(SpawnPatient());
@@ -110,7 +113,6 @@ public class GameManager : MonoBehaviour
 
     public void AvanceTapis()
     {
-        
         int nbPatient = _ListPatient.Count;
         for (int a = 0; a < nbPatient; a++)
         {
@@ -127,7 +129,7 @@ public class GameManager : MonoBehaviour
         int[] nextWP = { p.PathIn[0], p.PathIn[1]+1};
         WayPointsValue wp = _ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]];
 
-        if (p.PathIn[0] == 6 && p.PathIn[1] == 2)//Delete fin de chemin
+        if (p.PathIn[0] == _LastWP[0] && p.PathIn[1] == _LastWP[1])//Delete fin de chemin
         {
             wp.Dispo = true;
             //_ListPatient.Remove(p);
@@ -171,6 +173,7 @@ public class GameManager : MonoBehaviour
         p.transform.DOMove(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position, .4f).SetEase(Ease.Linear).SetId(IdTweenSet);
         p.TweenID = IdTweenSet;
         IdTweenSet++;
+        if (IdTweenSet == 1000) IdTweenSet = 0;
     }
 
     int SplitPath(Patient p)
