@@ -2065,7 +2065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wpService: {fileID: 1964216088}
   _Jeu: {fileID: 1670411453}
-  _serviceSecteur: 0
+  _serviceSecteur: 1
   _image: {fileID: 263256679}
   _currentPatient: {fileID: 0}
 --- !u!114 &263256679
@@ -5267,12 +5267,12 @@ MonoBehaviour:
   - {fileID: 1465994421}
   - {fileID: 2058532722}
   songDelayInSeconds: 0
-  marginOfError: 0
+  marginOfError: 0.1
   inputDelayInMilliseconds: 0
-  fileLocation: 
-  noteTime: 0
-  noteSpawnY: 0
-  noteTapY: 0
+  fileLocation: testZelda.mid
+  noteTime: 1
+  noteSpawnY: 7
+  noteTapY: -190
 --- !u!4 &705775555
 Transform:
   m_ObjectHideFlags: 0
@@ -5381,7 +5381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wpService: {fileID: 1855054086}
   _Jeu: {fileID: 417892027}
-  _serviceSecteur: 0
+  _serviceSecteur: 2
   _image: {fileID: 715763807}
   _currentPatient: {fileID: 0}
 --- !u!114 &715763807
@@ -14274,7 +14274,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wpService: {fileID: 550899035}
   _Jeu: {fileID: 2118254412}
-  _serviceSecteur: 0
+  _serviceSecteur: 3
   _image: {fileID: 1973921185}
   _currentPatient: {fileID: 0}
 --- !u!114 &1973921185
@@ -14630,9 +14630,7 @@ MonoBehaviour:
   - {fileID: 1973982742}
   - {fileID: 564267951}
   - {fileID: 1083091206}
-  - {fileID: 0}
   - {fileID: 1856886576}
-  - {fileID: 0}
   - {fileID: 1286093926}
   - {fileID: 1789741557}
   - {fileID: 1626176178}
