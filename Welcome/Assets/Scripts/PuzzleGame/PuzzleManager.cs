@@ -12,6 +12,8 @@ public class PuzzleManager : MonoBehaviour
 
     [SerializeField] private GameDataScript _gameData;
 
+    [SerializeField] private Service _Service;
+
     public List<int> spriteValueList = new List<int>();
 
     // Start is called before the first frame update
@@ -21,13 +23,15 @@ public class PuzzleManager : MonoBehaviour
         _gameData.idCiblePuzzle.Clear();
         _gameData.count = 0;
         _gameData.scorePuzzleGame = 0;
+        spriteValueList.Clear();
+        while (_ID < 9)
+            Spawn();
     }
 
     // Update is called once per frame
     void Update()
     {
-        while (_ID < 9)
-            Spawn();
+        EndGame();
     }
 
     public void Spawn()
@@ -54,9 +58,52 @@ public class PuzzleManager : MonoBehaviour
 
     public Sprite CreateSprite(int truePosition)
     {
-        string[] imagesName = { "Passoire", "Poêle", "Passoire", "Poêle", "Passoire", "Poêle", "Passoire", "Poêle", "Passoire" };
+        string[] imagesName = { "Passoire", "PoÃªle", "Passoire", "PoÃªle", "Passoire", "PoÃªle", "Passoire", "PoÃªle", "Passoire" };
         string image = "Sprites/" + imagesName[truePosition];
         Sprite result = Resources.Load<Sprite>(image);
         return result;
+    }
+
+    public void EndGame() {
+        if(_gameData.scorePuzzleGame >= 90)
+        {
+            _gameData.scorePuzzleGame = 0;
+            _gameData.idCiblePuzzle.Clear();
+            _gameData.count = 0;
+            _Service.ResultMiniGame(true);
+            NewGame();
+            _ID = 0;
+        }
+    }
+
+    public void NewGame()
+    {
+        spriteValueList.Clear();
+        _ID = 0;
+        ResetAllSprites();
+        //ResetSprite("Slot_A");
+        while (_ID < 9)
+        {
+            Spawn();
+        }
+    }
+
+    public void ResetSprite(string name)
+    {
+        GameObject go = GameObject.Find("/Canvas/ServicesManager/Services/S1/PuzzleGame/Slots/" + name);
+        go.GetComponent<Image>().sprite = null;
+    }
+
+    public void ResetAllSprites()
+    {
+        ResetSprite("Slot_A");
+        ResetSprite("Slot_B");
+        ResetSprite("Slot_C");
+        ResetSprite("Slot_D");
+        ResetSprite("Slot_E");
+        ResetSprite("Slot_F");
+        ResetSprite("Slot_G");
+        ResetSprite("Slot_H");
+        ResetSprite("Slot_I");
     }
 }

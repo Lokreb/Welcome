@@ -12,6 +12,8 @@ public class FolderManager : MonoBehaviour
 
     [SerializeField] private GameDataScript _gameData;
 
+    [SerializeField] private Service _Service;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,10 +28,11 @@ public class FolderManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        while(_ID < 40)
+        while(_ID < 10)
             {
                 Spawn();
             }
+        EndGame();
     }
 
 
@@ -54,9 +57,27 @@ public class FolderManager : MonoBehaviour
 
     public Sprite CreateSprite(int trueServiceValue)
     {
-        string[] imagesName = { "Passoire", "Poêle", "Passoire", "Poêle" };
+        string[] imagesName = { "Passoire", "PoÃªle", "Passoire", "PoÃªle" };
         string image = "Sprites/" + imagesName[trueServiceValue - 1];
         Sprite result = Resources.Load<Sprite>(image);
         return result;
+    }
+
+    public void EndGame()
+    {
+        if(_gameData.count == _gameData.idCible.Capacity)
+        {
+            _gameData.count = 0;
+            _gameData.scoreSortGame = 0;
+            _Service.ResultMiniGame(true);
+            NewGame();
+            _ID = 0;
+        }
+    }
+
+    public void NewGame()
+    {
+        _gameData.idCible.Clear();
+        _ID = 0;
     }
 }
