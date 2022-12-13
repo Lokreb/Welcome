@@ -15,10 +15,11 @@ public class GameManager : MonoBehaviour
     public event Action OnPatientEnd;
     public event Action OnTimerChange;
 
+    public float TimerSpeed = 1f;
+    public int Timer = 6000;
     [SerializeField]private int _numberOfPatient = 30;
     public int PatientFailed { get; private set; } = 0;
     public int PatientDone { get; private set; } = 0;
-    public int Timer { get; private set; } = 600;
     [SerializeField]private int _timePatientSpawn_sec,_timeTapisAvance = 3;
     [SerializeField]private float _PatientSpawnPlacement = .5f;
     [SerializeField]private int _HumorValue = 100;
@@ -64,20 +65,29 @@ public class GameManager : MonoBehaviour
             }
             _LastWP[0] = a;
         }
-
+        OnTimerChange?.Invoke();
         StartCoroutine(SpawnPatient());
     }
 
     int _TimerSeconds = 0;
     private void FixedUpdate()
     {
-        _TimerSeconds++;
-        if(_TimerSeconds == 60)
+        if (Timer == 0) return;
+
+        _TimerSeconds += Mathf.FloorToInt(1*TimerSpeed);
+
+        if(_TimerSeconds >= 60)
         {
+            Timer -= 1+_TimerSeconds % 60;
             _TimerSeconds = 0;
-            Timer--;
+            if(Timer<=0)
+            {
+                EndGame = false;
+                Timer = 0;
+            }
             OnTimerChange?.Invoke();
         }
+        
     }
 
     bool EndGame = true;

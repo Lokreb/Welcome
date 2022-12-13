@@ -5840,6 +5840,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3477265f5cd93243956249b0f461518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TimerSpeed: 10
+  Timer: 6000
   _numberOfPatient: 2
   _timePatientSpawn_sec: 2
   _timeTapisAvance: 1
