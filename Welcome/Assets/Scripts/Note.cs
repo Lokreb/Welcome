@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Note : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class Note : MonoBehaviour
         {
             transform.localPosition = Vector3.Lerp(Vector3.up * SongManager.Instance.noteSpawnY, Vector3.up * SongManager.Instance.noteDespawnY, t);
             GetComponent<SpriteRenderer>().enabled = true;
+            GetComponent<Image>().enabled = true;
         }
     }
 }
