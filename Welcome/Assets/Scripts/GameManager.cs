@@ -14,12 +14,15 @@ public class GameManager : MonoBehaviour
     public event Action<int> OnHumorChange;
     public event Action OnPatientEnd;
     public event Action OnTimerChange;
+    public event Action OnScoreChange;
 
     public float TimerSpeed = 1f;
     public int Timer = 6000;
     [SerializeField]private int _numberOfPatient = 30;
     public int PatientFailed { get; private set; } = 0;
     public int PatientDone { get; private set; } = 0;
+    public float Score { get; private set; } = 0;
+    public AnimationCurve ScoreMultiplicator;
     [SerializeField]private int _timePatientSpawn_sec,_timeTapisAvance = 3;
     [SerializeField]private float _PatientSpawnPlacement = .5f;
     [SerializeField]private int _HumorValue = 100;
@@ -168,6 +171,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                ChangeScore(200);
                 PatientDone++;
             }
             OnPatientEnd?.Invoke();
@@ -268,8 +272,20 @@ public class GameManager : MonoBehaviour
 
     public void ChangeHumor(int value)
     {
+        ChangeScore(value*10);
+
         _HumorValue += value;
         if (_HumorValue <= 0) EndGame = false;
         OnHumorChange?.Invoke(value);
+    }
+
+    public void ChangeScore(int value)
+    {
+        float multi = 1;
+        
+        if (value >=0) multi = ScoreMultiplicator.Evaluate(TimerSpeed);
+
+        Score += value*multi;
+        OnScoreChange?.Invoke();
     }
 }

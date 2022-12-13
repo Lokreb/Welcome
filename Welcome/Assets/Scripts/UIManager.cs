@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _PatientFailed;
 
     [SerializeField] private TextMeshProUGUI _TimeLeft;
+    [SerializeField] private TextMeshProUGUI _Score;
 
 
     void Start()
@@ -18,6 +19,7 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.OnHumorChange += MoveNeedle;
         GameManager.Instance.OnPatientEnd += PatientUpdate;
         GameManager.Instance.OnTimerChange += TimerUpdate;
+        GameManager.Instance.OnScoreChange += ScoreUpdate;
     }
 
     private void OnDestroy()
@@ -58,5 +60,10 @@ public class UIManager : MonoBehaviour
         string niceTime = string.Format("{0:00}:{1:00}:{2:00}", heures, minutes, seconds);
 
         _TimeLeft.text = niceTime;
+    }
+
+    void ScoreUpdate()
+    {
+        _Score.text = string.Format("{0:0000}", GameManager.Instance.Score.ToString());
     }
 }
