@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]private float _PatientSpawnPlacement = .5f;
     [SerializeField]private Patient _prefab_Patient;
 
+    public Sprite[] ServiceVisuel;
+
     [SerializeField] private List<Paths> _ListChemins;
 
     [SerializeField]private GameObject _spawnPoint;
@@ -105,16 +107,6 @@ public class GameManager : MonoBehaviour
             print("perdu");
         }
     }
-    /*void SetServiceToSee(Patient p)
-    {
-        int nbServices = UnityEngine.Random.Range(1, 5);
-        for (int a = 0; a < nbServices; a++)
-        {
-            Services service = (Services)UnityEngine.Random.Range(0, (int)Services.MAX);
-            p.ServiceToSee.Enqueue(service);
- 
-        }
-    }*/
 
     public void AvanceTapis()
     {
@@ -186,20 +178,32 @@ public class GameManager : MonoBehaviour
         //Split 1/5
         if (p.PathIn[0] == 0)
         {
-            if (p.ServiceToSee.Count == 1) return 5;
+            if (p.ServiceToSee.Count == 0) return 1;
 
-            return 1;
+            switch (p.ServiceToSee.Peek())
+            {
+                case Services.E:
+                    return 5;
+                default:
+                    return 1;
+            }
         }
 
         //Split 2/3
         if (p.PathIn[0] == 1)
         {
-            if (p.ServiceToSee.Peek() == Services.C) return 2;
+            if (p.ServiceToSee.Count == 0) return 3;
 
-            return 3;
+            switch (p.ServiceToSee.Peek())
+            {
+                case Services.C:
+                    return 2;
+                default:
+                    return 3;
+            }
         }
 
-        //FailSafe
+        //failsafe
         return p.PathIn[0]++;
     }
 

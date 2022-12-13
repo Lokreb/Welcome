@@ -8,7 +8,6 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 {
     private Vector2 _offset,_originalPosition;
     [SerializeField]private CanvasGroup _canvasGroup;
-    [SerializeField]private Sprite[] _ServiceVisuel;
 
     private Patient _clone;
     [SerializeField]private Image _service;
@@ -90,33 +89,40 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
         switch (ServiceToSee.Peek())
         {
             case Services.A :
-                _service.sprite = _ServiceVisuel[0];
+                _service.sprite = GameManager.Instance.ServiceVisuel[0];
             break;
             case Services.C :
-                _service.sprite = _ServiceVisuel[1];
+                _service.sprite = GameManager.Instance.ServiceVisuel[1];
             break;
             case Services.D :
-                _service.sprite = _ServiceVisuel[2];
+                _service.sprite = GameManager.Instance.ServiceVisuel[2];
             break;
             case Services.E :
-                _service.sprite = _ServiceVisuel[3];
+                _service.sprite = GameManager.Instance.ServiceVisuel[3];
             break;
         }
     }
 
-    public void EndMiniGame(bool win)
+    public void EndMiniGame(bool win,Services service)
     {
-        if (win)
+        if(win && ServiceToSee.Count > 0)
         {
-            ServiceToSee.Dequeue();
-
-            SetSpriteBulle();
+            if(service == ServiceToSee.Peek())
+            {
+                ServiceToSee.Dequeue();
+                SetSpriteBulle();
+            }
         }
-        
 
+        MoveActionPatient();
+    }
+
+    void MoveActionPatient()
+    {
         InMiniGame = false;
         GameManager.Instance.NextCase(this);
     }
+
     //Data
     public Queue<Services> ServiceToSee = new Queue<Services>();
     public int[] PathIn = {0,0};
