@@ -89,9 +89,7 @@ public class GameManager : MonoBehaviour
         Patient p = Instantiate(_prefab_Patient, _spawnPoint.transform.position, Quaternion.identity);
         p.gameObject.transform.SetParent(_spawnPoint.transform);
         _ListPatient.Add(p);
-
-        //Defini les services � voir
-        //SetServiceToSee(p);
+        p.SetServiceToSee();
 
         //verification dispo 1er waypoint + d�placement
         WayPointsValue wp = _ListChemins[0].ListWaypoints[0];

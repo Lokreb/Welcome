@@ -18,8 +18,6 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     void Awake()
     {
         _originalPosition = transform.position;
-        SetServiceToSee();
-        SetSpriteBulle();
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -39,14 +37,15 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
         _clone = Instantiate(this);
         _clone.gameObject.transform.SetParent(this.transform.parent);
+
+        if (ServiceToSee.Count == 0) return;
+        _clone.ServiceToSee.Enqueue(ServiceToSee.Peek());
+        _clone.SetSpriteBulle();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        _clone.transform.position = GetMousePos() - _offset;
-
-        
-        
+        _clone.transform.position = GetMousePos() - _offset;        
     }
 
     public void OnDrop(PointerEventData eventData)
@@ -65,7 +64,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
         return Input.mousePosition;
     }
 
-    void SetServiceToSee()
+    public void SetServiceToSee()
     {
         int nbServices = UnityEngine.Random.Range(1, 5);
         for (int a = 0; a < nbServices; a++)
@@ -78,9 +77,17 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
         SetSpriteBulle();
     }
 
-    void SetSpriteBulle()
+    public void SetSpriteBulle()
     {
-        switch(ServiceToSee.Peek())
+        if (ServiceToSee.Count == 0)
+        {
+            _service.transform.parent.gameObject.SetActive(false);
+            return;
+        }
+
+        _service.transform.parent.gameObject.SetActive(true);
+
+        switch (ServiceToSee.Peek())
         {
             case Services.A :
                 _service.sprite = _ServiceVisuel[0];
@@ -101,9 +108,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     {
         if (win)
         {
-            print(ServiceToSee.Peek());
             ServiceToSee.Dequeue();
-            print(ServiceToSee.Peek());
 
             SetSpriteBulle();
         }
