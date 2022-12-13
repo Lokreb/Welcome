@@ -24,6 +24,7 @@ public class SpikeGenerator : MonoBehaviour
     void generateSpike()
     {
         GameObject SpikeIns = Instantiate(spike, transform.position, transform.rotation);
+        SpikeIns.transform.parent = GameObject.Find("JumpGame").transform;
         SpikeIns.GetComponent<SpikeScript>().spikeGenerator = this;
     }
 
