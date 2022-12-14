@@ -15,33 +15,33 @@ public class GameManager : MonoBehaviour
     public event Action OnPatientEnd;
     public event Action OnTimerChange;
     public event Action OnScoreChange;
-    public bool GameRunning = true;
 
-    [Range(.5f,5f)]public float TimerSpeed = 1f;
+    [Header("Game Balance")]
     public float Timer = 600;
+    [SerializeField] private int _HumorValue = 100;
+    [SerializeField] private float _SpawnRate = 120f;
+
+    [Header("Game Running Settings")]
+    public bool GameRunning = true;
+    [Range(.5f,5f)]public float TimerSpeed = 1f;
+    [SerializeField, Range(1f, 119f)] private float _ConveyorSpeed = 60f;
+    private float _conveyorCalcul = 120f;//Double vitesse de base -> deplacement 1 sec
     private int _timerTotal = 0;
-    [SerializeField]private float _SpawnRateSet = 120f;
-    private int _spawnTotal = 0;
-    [SerializeField] private float _ConveyorSpeed = 60f;
-    private int _conveyorTotal = 0;
+    
+
+    [HideInInspector]
     public int PatientFailed { get; private set; } = 0;
     public int PatientDone { get; private set; } = 0;
     public float Score { get; private set; } = 0;
-    public AnimationCurve ScoreMultiplicator;
-    [SerializeField]private int _timePatientSpawn_sec,_timeTapisAvance = 3;
-    [SerializeField]private float _PatientSpawnPlacement = .5f;
-    [SerializeField]private int _HumorValue = 100;
-    [SerializeField]private Patient _prefab_Patient;
-
-
+    
+    [Header("GameObject to link")]
     public Sprite[] ServiceVisuel;
-
     [SerializeField] private List<Paths> _ListChemins;
+    [SerializeField] private GameObject _spawnPoint;
+    [SerializeField] private List<Patient> _ListPatient;
+    [SerializeField] private Patient _prefab_Patient;
     private int[] _LastWP = {0,0};
 
-    [SerializeField]private GameObject _spawnPoint;
-
-    [SerializeField] private List<Patient> _ListPatient;
 
     void Awake() {
 
@@ -77,11 +77,14 @@ public class GameManager : MonoBehaviour
     }
 
     float _TimerSeconds = 0;
+    float _conveyorCounter,_spawnCounter;
     private void FixedUpdate()
     {
         if (!GameRunning) return;
 
         _TimerSeconds += 1*TimerSpeed;
+        _conveyorCounter += 1 * TimerSpeed;
+        _spawnCounter += 1 * TimerSpeed;
 
         OnTimerChange?.Invoke();
 
@@ -100,17 +103,18 @@ public class GameManager : MonoBehaviour
 
         }
         
-        //Spawn patient every RateSet
-        if(_TimerSeconds / _SpawnRateSet >= _spawnTotal)
+        //Spawn patient
+        if(_spawnCounter >= _SpawnRate)
         {
-            _spawnTotal++;
+            _spawnCounter = 0;
+            _SpawnRate = UnityEngine.Random.Range(100f,150f);
             GeneratePatient();
         }
 
         //Avance tapis every Speed
-        if (_TimerSeconds / _ConveyorSpeed >= _conveyorTotal)
+        if (_conveyorCounter >= _conveyorCalcul - _ConveyorSpeed)
         {
-            _conveyorTotal++;
+            _conveyorCounter = 0;
             AvanceTapis();
         }
 
@@ -122,9 +126,6 @@ public class GameManager : MonoBehaviour
         p.gameObject.transform.SetParent(_spawnPoint.transform);
         _ListPatient.Add(p);
         p.SetServiceToSee();
-
-        //verification dispo 1er waypoint + d�placement
-        WayPointsValue wp = _ListChemins[0].ListWaypoints[0];
     }
 
     public void AvanceTapis()
@@ -211,7 +212,7 @@ public class GameManager : MonoBehaviour
             p.PathIn = nextWP;
         }
 
-        p.transform.DOMove(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position, .4f/TimerSpeed).SetEase(Ease.Linear).SetId(IdTweenSet);
+        p.transform.DOMove(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position, (_conveyorCalcul - _ConveyorSpeed) / 60 / TimerSpeed).SetEase(Ease.Linear).SetId(IdTweenSet);
         p.TweenID = IdTweenSet;
         IdTweenSet++;
         if (IdTweenSet == 1000) IdTweenSet = 0;
@@ -270,11 +271,8 @@ public class GameManager : MonoBehaviour
 
     public void ChangeScore(int value)
     {
-        float multi = 1;
-        
-        if (value >=0) multi = ScoreMultiplicator.Evaluate(TimerSpeed);
 
-        Score += value*multi;
+        Score += value;
         OnScoreChange?.Invoke();
     }
 }
