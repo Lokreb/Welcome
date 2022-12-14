@@ -200,6 +200,7 @@ public class GameManager : MonoBehaviour
             nextWP[1] = p.PathIn[1];
         }
 
+        print("service"+nextWP[0] + " " + nextWP[1]);
         WayPointsValue wpNext = _ListChemins[nextWP[0]].ListWaypoints[nextWP[1]];
         
         if (wpNext.Dispo)
@@ -222,20 +223,6 @@ public class GameManager : MonoBehaviour
 
     int SplitPath(Patient p)
     {
-        //Split 1/5
-        if (p.PathIn[0] == 0)
-        {
-            if (p.ServiceToSee.Count == 0) return 1;
-
-            switch (p.ServiceToSee.Peek())
-            {
-                case Services.E:
-                    return 5;
-                default:
-                    return 1;
-            }
-        }
-
         //Split 2/3
         if (p.PathIn[0] == 1)
         {
@@ -250,17 +237,23 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        //Split 4/6
+        if (p.PathIn[0] == 4)
+        {
+            if (p.ServiceToSee.Count == 0) return 6;
+        }
+
         //failsafe
-        return p.PathIn[0]++;
+        return p.PathIn[0]+1;
     }
 
     int MergePath(Patient p)
     {
-        //Merge 4
+        //Merge 2-3
         if (p.PathIn[0] == 2) return 4;
 
         //Merge 6
-        if (p.PathIn[0] == 4) return 6;
+        if (p.PathIn[0] == 5) return 1;
 
         return p.PathIn[0]+1;
     }
