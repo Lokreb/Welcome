@@ -200,7 +200,6 @@ public class GameManager : MonoBehaviour
             nextWP[1] = p.PathIn[1];
         }
 
-        print("service"+nextWP[0] + " " + nextWP[1]);
         WayPointsValue wpNext = _ListChemins[nextWP[0]].ListWaypoints[nextWP[1]];
         
         if (wpNext.Dispo)
