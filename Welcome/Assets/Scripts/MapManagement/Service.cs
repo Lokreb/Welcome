@@ -33,8 +33,9 @@ public class Service : MonoBehaviour
     {
         if (_currentPatient == null) return;
 
-        _Jeu.SetActive(true);
         _currentPatient.Playing();
+        _Jeu.SetActive(true);
+        
 
     }
 

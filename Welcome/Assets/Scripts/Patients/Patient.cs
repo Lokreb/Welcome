@@ -122,15 +122,17 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     public void Playing()
     {
-        StopCoroutine(Attente());
+        StopCoroutine(_coroutine);
     }
     
     public void AttenteInGame()
     {
         InMiniGame = true;
-        StartCoroutine(Attente());
+        _coroutine = Attente();
+        StartCoroutine(_coroutine);
     }
 
+    private IEnumerator _coroutine;
     IEnumerator Attente()
     {
         while (InMiniGame)
