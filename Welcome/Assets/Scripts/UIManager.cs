@@ -51,12 +51,12 @@ public class UIManager : MonoBehaviour
 
     void TimerUpdate()
     {
-        int timer = GameManager.Instance.Timer;
+        float timer = GameManager.Instance.Timer;
 
         int heures = Mathf.FloorToInt(timer / 3600F);
         timer %= 3600;
         int minutes = Mathf.FloorToInt(timer/60F);
-        int seconds = timer % 60;
+        int seconds = Mathf.FloorToInt(timer % 60);
         string niceTime = string.Format("{0:00}:{1:00}:{2:00}", heures, minutes, seconds);
 
         _TimeLeft.text = niceTime;

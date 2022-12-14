@@ -17,6 +17,8 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     void Awake()
     {
         _originalPosition = transform.position;
+        PathIn[0] = 0;
+        PathIn[1] = -1;
     }
 
     public void OnPointerDown(PointerEventData eventData)

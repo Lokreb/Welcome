@@ -1474,7 +1474,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1776228691106345544, guid: 5a7aeb9941ac199439d5cd886e4cb0ed, type: 3}
       propertyPath: Service
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1776228691106345544, guid: 5a7aeb9941ac199439d5cd886e4cb0ed, type: 3}
       propertyPath: RoadMerge
@@ -3393,7 +3393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1776228691106345544, guid: 5a7aeb9941ac199439d5cd886e4cb0ed, type: 3}
       propertyPath: Service
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1776228691106345544, guid: 5a7aeb9941ac199439d5cd886e4cb0ed, type: 3}
       propertyPath: ID.Array.size
@@ -5914,7 +5914,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 770976101}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -937, y: -380, z: 0}
+  m_LocalPosition: {x: -1026, y: -313, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1581374016}
@@ -6756,9 +6756,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3477265f5cd93243956249b0f461518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimerSpeed: 10
-  Timer: 6000
-  _numberOfPatient: 1
+  GameRunning: 1
+  TimerSpeed: 1
+  Timer: 600
+  _SpawnRateSet: 120
+  _ConveyorSpeed: 60
   ScoreMultiplicator:
     serializedVersion: 2
     m_Curve:
@@ -10352,7 +10354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1776228691106345544, guid: 5a7aeb9941ac199439d5cd886e4cb0ed, type: 3}
       propertyPath: Service
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1776228691106345544, guid: 5a7aeb9941ac199439d5cd886e4cb0ed, type: 3}
       propertyPath: RoadMerge
@@ -12320,7 +12322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1776228691106345544, guid: 5a7aeb9941ac199439d5cd886e4cb0ed, type: 3}
       propertyPath: Service
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1776228691106345544, guid: 5a7aeb9941ac199439d5cd886e4cb0ed, type: 3}
       propertyPath: ID.Array.size

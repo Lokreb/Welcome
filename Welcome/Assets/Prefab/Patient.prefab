@@ -105,7 +105,7 @@ MonoBehaviour:
   _canvasGroup: {fileID: 5277471445526807774}
   _service: {fileID: 3660880242008337554}
   Patience: 1
-  PathIn: 0000000000000000
+  PathIn: 00000000ffffffff
   InMiniGame: 0
   TweenID: 0
 --- !u!1 &6922217052997113437

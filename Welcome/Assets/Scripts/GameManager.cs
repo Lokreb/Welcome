@@ -15,10 +15,15 @@ public class GameManager : MonoBehaviour
     public event Action OnPatientEnd;
     public event Action OnTimerChange;
     public event Action OnScoreChange;
+    public bool GameRunning = true;
 
-    public float TimerSpeed = 1f;
-    public int Timer = 6000;
-    [SerializeField]private int _numberOfPatient = 30;
+    [Range(.5f,5f)]public float TimerSpeed = 1f;
+    public float Timer = 600;
+    private int _timerTotal = 0;
+    [SerializeField]private float _SpawnRateSet = 120f;
+    private int _spawnTotal = 0;
+    [SerializeField] private float _ConveyorSpeed = 60f;
+    private int _conveyorTotal = 0;
     public int PatientFailed { get; private set; } = 0;
     public int PatientDone { get; private set; } = 0;
     public float Score { get; private set; } = 0;
@@ -69,59 +74,48 @@ public class GameManager : MonoBehaviour
             _LastWP[0] = a;
         }
         OnTimerChange?.Invoke();
-        StartCoroutine(SpawnPatient());
     }
 
-    int _TimerSeconds = 0;
+    float _TimerSeconds = 0;
     private void FixedUpdate()
     {
-        if (Timer == 0) return;
+        if (!GameRunning) return;
 
-        _TimerSeconds += Mathf.FloorToInt(1*TimerSpeed);
+        _TimerSeconds += 1*TimerSpeed;
 
-        if(_TimerSeconds >= 60)
+        OnTimerChange?.Invoke();
+
+        //Chaque in game seconde Timer - 1
+        if (_TimerSeconds / 60 >= _timerTotal)
         {
-            Timer -= 1+_TimerSeconds % 60;
-            _TimerSeconds = 0;
-            if(Timer<=0)
+            _timerTotal++;
+
+            Timer--;
+
+            if (Timer <= 0)
             {
-                EndGame = false;
+                GameRunning = false;
                 Timer = 0;
             }
-            OnTimerChange?.Invoke();
+
         }
         
-    }
-
-    bool EndGame = true;
-    IEnumerator SpawnPatient()
-    {
-        while(EndGame)
+        //Spawn patient every RateSet
+        if(_TimerSeconds / _SpawnRateSet >= _spawnTotal)
         {
-            if (_numberOfPatient > 0)
-            {
-                GeneratePatient();
-                _numberOfPatient--;
-            }
-
-            yield return new WaitForSeconds(_PatientSpawnPlacement);
-            StartCoroutine(TapisAvancement(_timePatientSpawn_sec-_timeTapisAvance));
-            yield return new WaitForSeconds(_timePatientSpawn_sec-_PatientSpawnPlacement);
+            _spawnTotal++;
+            GeneratePatient();
         }
-        
-    }
 
-    IEnumerator TapisAvancement(int nb)
-    {
-        while(nb>=0)
+        //Avance tapis every Speed
+        if (_TimerSeconds / _ConveyorSpeed >= _conveyorTotal)
         {
-            nb--;
+            _conveyorTotal++;
             AvanceTapis();
-            yield return new WaitForSeconds(_timeTapisAvance);
         }
-    }
 
-    
+    }
+  
     void GeneratePatient()
     {
         Patient p = Instantiate(_prefab_Patient, _spawnPoint.transform.position, Quaternion.identity);
@@ -131,17 +125,6 @@ public class GameManager : MonoBehaviour
 
         //verification dispo 1er waypoint + d�placement
         WayPointsValue wp = _ListChemins[0].ListWaypoints[0];
-        if (wp.Dispo)
-        {
-            p.transform.DOMove(wp.transform.position, _PatientSpawnPlacement).SetEase(Ease.Linear);
-            wp.Dispo = false;
-            
-        }
-        else
-        {
-            EndGame = false;
-            print("perdu");
-        }
     }
 
     public void AvanceTapis()
@@ -160,6 +143,20 @@ public class GameManager : MonoBehaviour
     public void NextCase(Patient p)
     {
         int[] nextWP = { p.PathIn[0], p.PathIn[1]+1};
+
+        //spawn
+        if (p.PathIn[1] == -1)
+        {
+            p.PathIn[1] = 0;
+
+            if (!_ListChemins[0].ListWaypoints[0].Dispo)
+            {
+                GameRunning = false;
+                print("perdu");
+                return;
+            }
+        }
+
         WayPointsValue wp = _ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]];
 
         if (p.PathIn[0] == _LastWP[0] && p.PathIn[1] == _LastWP[1])//Delete fin de chemin
@@ -201,7 +198,7 @@ public class GameManager : MonoBehaviour
         }
 
         WayPointsValue wpNext = _ListChemins[nextWP[0]].ListWaypoints[nextWP[1]];
-        
+
         if (wpNext.Dispo)
         {
             if(wpNext.Service)
@@ -214,7 +211,7 @@ public class GameManager : MonoBehaviour
             p.PathIn = nextWP;
         }
 
-        p.transform.DOMove(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position, .4f).SetEase(Ease.Linear).SetId(IdTweenSet);
+        p.transform.DOMove(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position, .4f/TimerSpeed).SetEase(Ease.Linear).SetId(IdTweenSet);
         p.TweenID = IdTweenSet;
         IdTweenSet++;
         if (IdTweenSet == 1000) IdTweenSet = 0;
@@ -267,7 +264,7 @@ public class GameManager : MonoBehaviour
         ChangeScore(value*10);
 
         _HumorValue += value;
-        if (_HumorValue <= 0) EndGame = false;
+        if (_HumorValue <= 0) GameRunning = false;
         OnHumorChange?.Invoke(value);
     }
 
