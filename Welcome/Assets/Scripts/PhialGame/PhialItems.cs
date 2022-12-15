@@ -61,7 +61,7 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
                     PhialManager._winner = true;
 
                 PhialManager._isDraggable = true;
-                PhialManager._isCompleted = true;
+                
 
                 Destroy(eventData.pointerDrag);
             }
@@ -72,7 +72,7 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
                     Debug.Log("Le joueur a gagné");
                 else
                     Debug.Log("Le joueur est un looser, noooooooooooooooooooooob");
-
+                PhialManager._isCompleted = true;
                 Destroy(eventData.pointerDrag);
             }
 
