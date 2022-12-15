@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Game Running Settings")]
     public bool GameRunning = true;
+    private bool _inMinigame = false;
     [Range(0f,5f)]public float TimerSpeed = 1f;
     private int _timerTotal = 0;
     
@@ -85,7 +86,7 @@ public class GameManager : MonoBehaviour
     float _conveyorCounter,_spawnCounter;
     private void FixedUpdate()
     {
-        if (!GameRunning) return;
+        if (!GameRunning || (_inMinigame && GameRunning)) return;
 
         _TimerSeconds += 1*TimerSpeed;
         _conveyorCounter += 1 * TimerSpeed;
@@ -283,6 +284,8 @@ public class GameManager : MonoBehaviour
 
     public void InMinigame(bool playing)
     {
+        _inMinigame = playing;
+
         if(playing)
         {
             OnMiniGamePlaying?.Invoke();

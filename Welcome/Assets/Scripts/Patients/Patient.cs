@@ -143,7 +143,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
         while (InMiniGame)
         {
             yield return new WaitForSeconds(Patience);
-            if (InMiniGame)
+            if (InMiniGame && GameManager.Instance.GameRunning)
             {
                 GameManager.Instance.ChangeHumor(-1);
             }
