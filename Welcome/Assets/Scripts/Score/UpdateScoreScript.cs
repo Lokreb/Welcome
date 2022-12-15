@@ -14,6 +14,6 @@ public class UpdateScoreScript : MonoBehaviour
     {
         //at the end of the game, the score of the current player is displayed above the ranking,
         //so here I simply modify the text concerned like "Votre score est 500 !".
-        score.GetComponent<TextMeshProUGUI>().text = "Your score : " + myData.score + " !";
+        score.GetComponent<TextMeshProUGUI>().text = myData.score + " !";
     }
 }
