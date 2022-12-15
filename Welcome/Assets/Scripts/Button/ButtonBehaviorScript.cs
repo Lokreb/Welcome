@@ -11,9 +11,6 @@ public class ButtonBehaviorScript : MonoBehaviour
     private float normalScale = 1f;
     private float upScale = 1.2f;
     private float speedScale = 0.03f;
-    [SerializeField] private GameDataScript gamedata;
-
-    public AudioClip sfx;
 
     // Start is called before the first frame update
     void Start()
@@ -59,16 +56,4 @@ public class ButtonBehaviorScript : MonoBehaviour
     {
         SceneManager.LoadScene(nomScene);
     }
-
-    public void OnStart()
-    {
-        gamedata.score = 0;
-    }
-
-    /*
-    public void PlaySound()
-    {
-        AudioManager.instance.PlaySound(sfx);
-
-    }*/
 }
