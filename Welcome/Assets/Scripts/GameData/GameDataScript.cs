@@ -20,6 +20,7 @@ public class GameDataScript : ScriptableObject
 
     public List<int> idCible = new List<int>();
     public List<int> idCiblePuzzle = new List<int>();
+    public int idCiblePhial = 0;
 
     public int count = 0;
 
