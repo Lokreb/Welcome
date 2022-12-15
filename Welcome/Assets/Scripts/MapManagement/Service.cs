@@ -17,8 +17,6 @@ public class Service : MonoBehaviour
     {
         GameManager.Instance.OnPatientService += PatientArrive;
         _Jeu.SetActive(false);
-
-        SetServiceSprite();
     }
 
     private void PatientArrive(WayPointsValue wp, Patient p)
@@ -49,24 +47,5 @@ public class Service : MonoBehaviour
         _currentPatient.EndMiniGame(win, _serviceSecteur);
         _Jeu.SetActive(false);
         _currentPatient = null;
-    }
-
-    void SetServiceSprite()
-    {
-        switch (_serviceSecteur)
-        {
-            case Services.A:
-                _image.sprite = GameManager.Instance.ServiceVisuel[0];
-                break;
-            case Services.C:
-                _image.sprite = GameManager.Instance.ServiceVisuel[1];
-                break;
-            case Services.D:
-                _image.sprite = GameManager.Instance.ServiceVisuel[2];
-                break;
-            case Services.E:
-                _image.sprite = GameManager.Instance.ServiceVisuel[3];
-                break;
-        }
     }
 }
