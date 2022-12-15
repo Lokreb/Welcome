@@ -12,7 +12,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     private Patient _clone;
     [SerializeField]private Image _service;
-    [SerializeField]private Canvas _canvas;
+    public Canvas CanvasComponent;
 
     public float Patience = 5f;
 
@@ -134,7 +134,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     {
         if(!playing)
         {
-            _canvas.sortingOrder = 1;
+            CanvasComponent.sortingOrder = 1;
 
             if(InMiniGame)
             {
@@ -148,7 +148,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
             StopCoroutine(_coroutine);
         }
         
-        _canvas.sortingOrder = 0;
+        CanvasComponent.sortingOrder = 0;
     }
     
     public void AttenteInGame()

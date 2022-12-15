@@ -221,7 +221,10 @@ public class GameManager : MonoBehaviour
             p.PathIn = nextWP;
         }
 
-        p.transform.DOMove(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position, (_ConveyorDelai) / 60 / TimerSpeed).SetEase(Ease.Linear).SetId(IdTweenSet);
+        p.transform.DOMove(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position, (_ConveyorDelai) / 60 / TimerSpeed).SetEase(Ease.Linear).SetId(IdTweenSet).OnComplete(()=>
+            {
+                if(p.InMiniGame)p.CanvasComponent.sortingOrder = 0;
+            });;
         p.TweenID = IdTweenSet;
         IdTweenSet++;
         if (IdTweenSet == 1000) IdTweenSet = 0;

@@ -109,7 +109,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a7a9897d3eb35674f845f5e7a4628326, type: 3}
   - {fileID: 21300000, guid: ae378cccdc4404e4799ef0cd8bca6fec, type: 3}
   _service: {fileID: 3660880242008337554}
-  _canvas: {fileID: 2187042940799617923}
+  CanvasComponent: {fileID: 2187042940799617923}
   Patience: 1
   PathIn: 00000000ffffffff
   InMiniGame: 0
