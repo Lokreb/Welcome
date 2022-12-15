@@ -12,19 +12,16 @@ public class PauseController : MonoBehaviour
     [Header("Volume Settings")]
     [SerializeField] private Slider _volumeSlider = null;
     [SerializeField] private GameObject _confirmationPrompt = null;
-    [SerializeField] private int _defaultVolume = 100;
+    [SerializeField] private int _defaultVolume = 50;
 
     [Header("BGM settings")]
     [SerializeField] private Slider _bgmSlider = null;
-    [SerializeField] private int _defaultBGM = 100;
+    [SerializeField] private int _defaultBGM = 50;
 
 
     private void Start()
     {
-        _volumeSlider.value = _defaultVolume;
-        _bgmSlider.value = _defaultBGM;
-        _gameData.music = _defaultBGM;
-        _gameData.volume = _defaultVolume;
+
     }
 
     public void Pause()
