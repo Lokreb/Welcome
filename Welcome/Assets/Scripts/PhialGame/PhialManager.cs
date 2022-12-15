@@ -20,6 +20,9 @@ public class PhialManager : MonoBehaviour
     public static bool _isDraggable;
     public static bool _isCompleted;
 
+    [SerializeField] private Service _Service;
+    [SerializeField] private GameObject _phialItems;
+
     private int _trueValue;
 
     public void Start()
@@ -39,6 +42,11 @@ public class PhialManager : MonoBehaviour
         PhialScript p = new PhialScript(_trueValue);
         _gameData.idCiblePhial = p.value_response;
         Debug.Log("La cible de notre fiole est : " + _gameData.idCiblePhial);
+    }
+
+    private void Update()
+    {
+        ThisIsTheEnd();
     }
 
     public void Spawn()
@@ -75,4 +83,44 @@ public class PhialManager : MonoBehaviour
         itemPosition.Add(900);
         itemPosition.Add(1200);
     }
+
+    public void ThisIsTheEnd()
+    {
+        if (PhialManager._isCompleted)
+        {
+            _gameData.idCiblePhial = 0;
+            _Service.ResultMiniGame(true);
+            foreach (Transform child in _phialItems.transform)
+            {
+                GameObject.Destroy(child.gameObject);
+            }
+            NewGame();
+            _ID = 0;
+            
+        }
+    }
+
+    public void NewGame()
+    {
+        spriteValueList.Clear();
+        _ID = 0;
+        //ResetAllSprites();
+        while (_ID < 3)
+        {
+            Spawn();
+        }
+    }
+
+    /*
+    public void ResetSprite(string name)
+    {
+        GameObject go = GameObject.Find("/Canvas/ServicesManager/MiniGame/PhialGame/Slots/" + name);
+        go.GetComponent<Image>().sprite = null;
+    }
+
+    public void ResetAllSprites()
+    {
+        ResetSprite("Phial");
+        ResetSprite("FinalSlot");
+    }*/
 }

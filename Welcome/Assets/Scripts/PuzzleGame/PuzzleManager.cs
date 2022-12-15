@@ -90,7 +90,7 @@ public class PuzzleManager : MonoBehaviour
 
     public void ResetSprite(string name)
     {
-        GameObject go = GameObject.Find("/Canvas/ServicesManager/Services/S1/PuzzleGame/Slots/" + name);
+        GameObject go = GameObject.Find("/Canvas/ServicesManager/MiniGame/PuzzleGame/Slots/" + name);
         go.GetComponent<Image>().sprite = null;
     }
 
