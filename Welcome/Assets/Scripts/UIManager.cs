@@ -15,14 +15,30 @@ public class UIManager : MonoBehaviour
     public AnimationCurve CurveTension;
     public GameObject Point;
 
-    
+    float _angle = 155f / 424f;
+    float test = 0;
     void FixedUpdate()
     {
-        if(Point.transform.localPosition.x<=-200)return;
+        
+        if(Point.transform.localPosition.x<=-205)return;
         float x = Point.transform.localPosition.x -1;
         float y = CurveTension.Evaluate(x);
 
-        Point.transform.Rotate(0f,0f,.45f);
+        if(x>189 || x<-175)
+        {
+            Point.transform.Rotate(0f, 0f, _angle*2);
+            test += 2;
+        }else if((x < 113 && x > 52) || (x > -92 && x < -31))
+        {
+            Point.transform.Rotate(0f, 0f, _angle*.5f);
+            test += .5f;
+        }
+        else
+        {
+            Point.transform.Rotate(0f, 0f, _angle);
+            test++;
+        }
+        print(test);
         
         Point.transform.localPosition = new Vector2(x,y);
         

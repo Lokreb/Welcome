@@ -9284,17 +9284,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1453796424}
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0.12186928, w: 0.9925462}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children: []
   m_Father: {fileID: 8987965571388125546}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 14}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 200, y: -70}
-  m_SizeDelta: {x: 40, y: 40}
+  m_AnchoredPosition: {x: 219, y: -70}
+  m_SizeDelta: {x: 40, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1453796426
 MonoBehaviour:
@@ -9309,14 +9309,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 0.6509804}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0794eb2bc76d93d46a66854a27811118, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14597,31 +14597,103 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -200
+      time: -205
       value: -70
-      inSlope: 2.0879502
-      outSlope: 2.0879502
-      tangentMode: 0
+      inSlope: 3.2
+      outSlope: 3.2
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.039731063
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0
-      value: 100
-      inSlope: -0.004205721
-      outSlope: -0.004205721
-      tangentMode: 0
+      time: -195
+      value: -38
+      inSlope: 2.5046797
+      outSlope: 2.5046797
+      tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.4761613
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 200
-      value: -70
-      inSlope: -1.9516592
-      outSlope: -1.9516592
-      tangentMode: 0
+      time: -170.28888
+      value: 6.7113004
+      inSlope: 1.4220631
+      outSlope: 1.4220631
+      tangentMode: 34
       weightedMode: 0
-      inWeight: 0.039425507
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: -123.49698
+      value: 55.130005
+      inSlope: 0.77253306
+      outSlope: 0.77253306
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: -63.38788
+      value: 85.80364
+      inSlope: 0.33468297
+      outSlope: 0.33468297
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 7
+      value: 97
+      inSlope: 0.007430382
+      outSlope: 0.007430382
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 72.67682
+      value: 87.52902
+      inSlope: -0.32642612
+      outSlope: -0.32642612
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 138.7818
+      value: 53.90496
+      inSlope: -0.72676814
+      outSlope: -0.72676814
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 176.4303
+      value: 18.331278
+      inSlope: -1.281946
+      outSlope: -1.281946
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 203.8606
+      value: -26.07843
+      inSlope: -2.2600722
+      outSlope: -2.2600722
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 219
+      value: -70
+      inSlope: -2.9011426
+      outSlope: -2.9011426
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -14786,7 +14858,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &8987965572433498350
 MonoBehaviour:
   m_ObjectHideFlags: 0
