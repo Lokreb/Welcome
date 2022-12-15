@@ -12,6 +12,22 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _TimeLeft;
     [SerializeField] private TextMeshProUGUI _Score;
 
+    public AnimationCurve CurveTension;
+    public GameObject Point;
+
+    
+    void FixedUpdate()
+    {
+        if(Point.transform.localPosition.x<=-200)return;
+        float x = Point.transform.localPosition.x -1;
+        float y = CurveTension.Evaluate(x);
+
+        Point.transform.Rotate(0f,0f,.45f);
+        
+        Point.transform.localPosition = new Vector2(x,y);
+        
+    }
+
 
     void Start()
     {
