@@ -278,7 +278,7 @@ public class GameManager : MonoBehaviour
 
         _HumorValue += value;
         if (_HumorValue <= 0) GameRunning = false;
-        OnHumorChange?.Invoke(value);
+        OnHumorChange?.Invoke(_HumorValue);
     }
 
     public void ChangeScore(int value)

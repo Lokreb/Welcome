@@ -15,36 +15,6 @@ public class UIManager : MonoBehaviour
     public AnimationCurve CurveTension;
     public GameObject Point;
 
-    float _angle = 155f / 424f;
-    float test = 0;
-    void FixedUpdate()
-    {
-        
-        if(Point.transform.localPosition.x<=-205)return;
-        float x = Point.transform.localPosition.x -1;
-        float y = CurveTension.Evaluate(x);
-
-        if(x>189 || x<-175)
-        {
-            Point.transform.Rotate(0f, 0f, _angle*2);
-            test += 2;
-        }else if((x < 113 && x > 52) || (x > -92 && x < -31))
-        {
-            Point.transform.Rotate(0f, 0f, _angle*.5f);
-            test += .5f;
-        }
-        else
-        {
-            Point.transform.Rotate(0f, 0f, _angle);
-            test++;
-        }
-        print(test);
-        
-        Point.transform.localPosition = new Vector2(x,y);
-        
-    }
-
-
     void Start()
     {
         GameManager.Instance.OnHumorChange += MoveNeedle;
@@ -56,11 +26,17 @@ public class UIManager : MonoBehaviour
     private void OnDestroy()
     {
         GameManager.Instance.OnHumorChange -= MoveNeedle;
+        GameManager.Instance.OnPatientEnd -= PatientUpdate;
+        GameManager.Instance.OnTimerChange -= TimerUpdate;
+        GameManager.Instance.OnScoreChange -= ScoreUpdate;
     }
+
+    int _lastRotate = 100;
     void MoveNeedle(int value)
     {
+        /*
         if (_needleAnglevalue <= -180) return;
-
+        
         //calcul
         float r_value = value * 1.8f;
 
@@ -71,7 +47,18 @@ public class UIManager : MonoBehaviour
         }
         _needleAnglevalue += r_value;
 
-        _Needle.transform.Rotate(0f,0f,r_value);
+        _Needle.transform.Rotate(0f,0f,r_value);*/
+
+        if (Point.transform.localPosition.x <= -205) return;
+
+        float x = value * 4.24f - 205f;
+        float y = CurveTension.Evaluate(x);
+        float angle = _lastRotate - value;
+        
+        Point.transform.localPosition = new Vector2(x, y);
+        Point.transform.Rotate(0f, 0f, 1.55f * angle);
+
+        _lastRotate = value;
     }
 
     void PatientUpdate()
