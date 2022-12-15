@@ -20,10 +20,13 @@ public class GameManager : MonoBehaviour
 
     [Header("Game Balance")]
     public float Timer = 600;
+    private float _timerStart;
+    public AnimationCurve DifficultyInTime;
     [SerializeField] private int _HumorValue = 100;
     [SerializeField] private float _SpawnRate = 120f;
     [SerializeField] private float _SpawnRateVariance = 10f;
     [SerializeField] private float _ConveyorDelai = 60f;
+    
 
     [Header("Game Running Settings")]
     public bool GameRunning = true;
@@ -80,6 +83,7 @@ public class GameManager : MonoBehaviour
         OnTimerChange?.Invoke();
 
         _spawnRate = _SpawnRate;
+        _timerStart = Timer;
     }
 
     float _TimerSeconds = 0;
@@ -97,6 +101,7 @@ public class GameManager : MonoBehaviour
         //Chaque in game seconde Timer - 1
         if (_TimerSeconds / 60 >= _timerTotal)
         {
+            TimerSpeed = DifficultyInTime.Evaluate(1 - Timer/_timerStart);
             _timerTotal++;
 
             Timer--;
