@@ -15,8 +15,8 @@ public class GameDataScript : ScriptableObject
     public int scoreSortGame = 0;
     public int scorePuzzleGame = 0;
 
-    public int volume = 100;
-    public int music = 100;
+    public int volume = 50;
+    public int music = 50;
 
     public List<int> idCible = new List<int>();
     public List<int> idCiblePuzzle = new List<int>();
