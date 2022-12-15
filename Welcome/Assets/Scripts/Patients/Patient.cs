@@ -134,12 +134,13 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     {
         if(!playing)
         {
-            CanvasComponent.sortingOrder = 1;
-
             if(InMiniGame)
             {
                 AttenteInGame();
+                return;
             }
+
+            CanvasComponent.sortingOrder = 1;
             return;
         }
 
