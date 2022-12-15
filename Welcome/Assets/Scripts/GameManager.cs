@@ -89,7 +89,8 @@ public class GameManager : MonoBehaviour
     float _conveyorCounter,_spawnCounter;
     private void FixedUpdate()
     {
-        if (!GameRunning || (_inMinigame && GameRunning)) return;
+        //if (!GameRunning || (_inMinigame && GameRunning)) return;
+        if (GameStateManager.Instance.CurrentGameState != GameState.Gameplay) return;
 
         _TimerSeconds += 1*TimerSpeed;
         _conveyorCounter += 1 * TimerSpeed;
