@@ -107,6 +107,9 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     public void EndMiniGame(bool win,Services service)
     {
+        GameManager.Instance.OnMiniGamePlaying -= Playing;
+        GameManager.Instance.OnMiniGameEndPlaying -= AttenteInGame;
+
         StopCoroutine(Attente());
 
         if (win && ServiceToSee.Count > 0)

@@ -16,16 +16,18 @@ public class Service : MonoBehaviour
     void Start()
     {
         GameManager.Instance.OnPatientService += PatientArrive;
-        //_JeuResponse.OnGameResponse += ResultMiniGame;
         _Jeu.SetActive(false);
 
         SetServiceSprite();
     }
+
     private void PatientArrive(WayPointsValue wp, Patient p)
     {
         if (_wpService.ID == wp.ID)
         {
             _currentPatient = p;
+            GameManager.Instance.OnMiniGamePlaying += p.Playing;
+            GameManager.Instance.OnMiniGameEndPlaying += p.AttenteInGame;
         }
     }
 
@@ -33,7 +35,7 @@ public class Service : MonoBehaviour
     {
         if (_currentPatient == null) return;
 
-        _currentPatient.Playing();
+        GameManager.Instance.InMinigame(true);
         _Jeu.SetActive(true);
         
 
@@ -43,6 +45,7 @@ public class Service : MonoBehaviour
     {
         if(win) GameManager.Instance.ChangeScore(50);
 
+        GameManager.Instance.InMinigame(false);
         _currentPatient.EndMiniGame(win, _serviceSecteur);
         _Jeu.SetActive(false);
         _currentPatient = null;

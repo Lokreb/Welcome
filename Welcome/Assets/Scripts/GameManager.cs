@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public event Action OnPatientEnd;
     public event Action OnTimerChange;
     public event Action OnScoreChange;
+    public event Action OnMiniGamePlaying;
+    public event Action OnMiniGameEndPlaying;
 
     [Header("Game Balance")]
     public float Timer = 600;
@@ -25,7 +27,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Game Running Settings")]
     public bool GameRunning = true;
-    [Range(.5f,5f)]public float TimerSpeed = 1f;
+    [Range(0f,5f)]public float TimerSpeed = 1f;
     private int _timerTotal = 0;
     
 
@@ -277,5 +279,17 @@ public class GameManager : MonoBehaviour
 
         Score += value;
         OnScoreChange?.Invoke();
+    }
+
+    public void InMinigame(bool playing)
+    {
+        if(playing)
+        {
+            OnMiniGamePlaying?.Invoke();
+            return;
+        }
+
+        OnMiniGameEndPlaying?.Invoke();
+        return;
     }
 }
