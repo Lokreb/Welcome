@@ -41,7 +41,6 @@ public class GameManager : MonoBehaviour
     public float Score { get; private set; } = 0;
     
     [Header("GameObject to link")]
-    public Sprite[] ServiceVisuel;
     [SerializeField] private List<Paths> _ListChemins;
     [SerializeField] private GameObject _spawnPoint;
     [SerializeField] private List<Patient> _ListPatient;

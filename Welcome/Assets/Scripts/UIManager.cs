@@ -8,7 +8,6 @@ public class UIManager : MonoBehaviour
     private float _needleAnglevalue = 0;
 
     [SerializeField] private TextMeshProUGUI _PatientDone;
-    [SerializeField] private TextMeshProUGUI _PatientFailed;
 
     [SerializeField] private TextMeshProUGUI _TimeLeft;
     [SerializeField] private TextMeshProUGUI _Score;
@@ -46,7 +45,6 @@ public class UIManager : MonoBehaviour
     void PatientUpdate()
     {
         _PatientDone.text = GameManager.Instance.PatientDone.ToString();
-        _PatientFailed.text = GameManager.Instance.PatientFailed.ToString();
     }
 
     void TimerUpdate()
