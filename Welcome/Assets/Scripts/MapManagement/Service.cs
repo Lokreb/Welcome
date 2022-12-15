@@ -24,8 +24,6 @@ public class Service : MonoBehaviour
         if (_wpService.ID == wp.ID)
         {
             _currentPatient = p;
-            GameManager.Instance.OnMiniGamePlaying += p.Playing;
-            GameManager.Instance.OnMiniGameEndPlaying += p.AttenteInGame;
         }
     }
 

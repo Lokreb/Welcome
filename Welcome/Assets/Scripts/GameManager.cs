@@ -15,8 +15,7 @@ public class GameManager : MonoBehaviour
     public event Action OnPatientEnd;
     public event Action OnTimerChange;
     public event Action OnScoreChange;
-    public event Action OnMiniGamePlaying;
-    public event Action OnMiniGameEndPlaying;
+    public event Action<bool> OnMiniGamePlaying;
 
     [Header("Game Balance")]
     public float Timer = 600;
@@ -290,13 +289,6 @@ public class GameManager : MonoBehaviour
     {
         _inMinigame = playing;
 
-        if(playing)
-        {
-            OnMiniGamePlaying?.Invoke();
-            return;
-        }
-
-        OnMiniGameEndPlaying?.Invoke();
-        return;
+        OnMiniGamePlaying(playing);
     }
 }
