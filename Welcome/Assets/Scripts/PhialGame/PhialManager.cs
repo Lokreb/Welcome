@@ -96,7 +96,7 @@ public class PhialManager : MonoBehaviour
             }
             NewGame();
             _ID = 0;
-            
+            PhialManager._isCompleted = false;
         }
     }
 
