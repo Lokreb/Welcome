@@ -4380,14 +4380,14 @@ PrefabInstance:
     - target: {fileID: 6646997243338827484, guid: a521ba2ec5789e3448648368083d7651, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1441092109}
     - target: {fileID: 6646997243338827484, guid: a521ba2ec5789e3448648368083d7651, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetMusic
+      value: MusicApply
       objectReference: {fileID: 0}
     - target: {fileID: 6646997243338827484, guid: a521ba2ec5789e3448648368083d7651, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SettingsControllerScript, Assembly-CSharp
+      value: PauseController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6646997243338827485, guid: a521ba2ec5789e3448648368083d7651, type: 3}
       propertyPath: m_Pivot.x
@@ -9837,14 +9837,14 @@ PrefabInstance:
     - target: {fileID: 6384336903406305928, guid: b08627dbcac9397489abb62d1ab4c41e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1441092109}
     - target: {fileID: 6384336903406305928, guid: b08627dbcac9397489abb62d1ab4c41e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetVolume
+      value: VolumeApply
       objectReference: {fileID: 0}
     - target: {fileID: 6384336903406305928, guid: b08627dbcac9397489abb62d1ab4c41e, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SettingsControllerScript, Assembly-CSharp
+      value: PauseController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6384336903406305929, guid: b08627dbcac9397489abb62d1ab4c41e, type: 3}
       propertyPath: m_Pivot.x
@@ -14583,7 +14583,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f5e1e8ff36ec334cb18c3090a15068e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameData: {fileID: 11400000, guid: f9b4c65ed7f27264ab666117dfb94ffc, type: 2}
+  _gameData: {fileID: 0}
 --- !u!114 &2003059116
 MonoBehaviour:
   m_ObjectHideFlags: 0
