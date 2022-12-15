@@ -5286,7 +5286,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6509434, g: 0.07000708, b: 0.59659475, a: 0.85882354}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6756,40 +6756,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3477265f5cd93243956249b0f461518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Timer: 600
+  _HumorValue: 100
+  _SpawnRate: 120
+  _SpawnRateVariance: 10
+  _ConveyorDelai: 60
   GameRunning: 1
   TimerSpeed: 1
-  Timer: 600
-  _SpawnRateSet: 120
-  _ConveyorSpeed: 60
-  ScoreMultiplicator:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 0.47368422
-      outSlope: 0.47368422
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 20
-      value: 10
-      inSlope: 0.47368422
-      outSlope: 0.47368422
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _timePatientSpawn_sec: 2
-  _timeTapisAvance: 1
-  _PatientSpawnPlacement: 0.5
-  _HumorValue: 100
-  _prefab_Patient: {fileID: 3863949272120917945, guid: 77e2037b03e3d79448f2cdbd65e2e701, type: 3}
   ServiceVisuel:
   - {fileID: 21300000, guid: a56b28145f5c0f54b91740aedf8f097f, type: 3}
   - {fileID: 21300000, guid: 838a97f31bde1a44db6a05a9759505dd, type: 3}
@@ -6805,6 +6778,7 @@ MonoBehaviour:
   - {fileID: 2052986080}
   _spawnPoint: {fileID: 770976101}
   _ListPatient: []
+  _prefab_Patient: {fileID: 3863949272120917945, guid: 77e2037b03e3d79448f2cdbd65e2e701, type: 3}
 --- !u!4 &961861651
 Transform:
   m_ObjectHideFlags: 0
@@ -14274,7 +14248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.05442381, g: 1, b: 0, a: 0.85882354}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

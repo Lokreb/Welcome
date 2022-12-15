@@ -20,12 +20,12 @@ public class GameManager : MonoBehaviour
     public float Timer = 600;
     [SerializeField] private int _HumorValue = 100;
     [SerializeField] private float _SpawnRate = 120f;
+    [SerializeField] private float _SpawnRateVariance = 10f;
+    [SerializeField] private float _ConveyorDelai = 60f;
 
     [Header("Game Running Settings")]
     public bool GameRunning = true;
     [Range(.5f,5f)]public float TimerSpeed = 1f;
-    [SerializeField, Range(1f, 119f)] private float _ConveyorSpeed = 60f;
-    private float _conveyorCalcul = 120f;//Double vitesse de base -> deplacement 1 sec
     private int _timerTotal = 0;
     
 
@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
             print(t[a].intId);
         }
     }
+    float _spawnRate;
     void Start()
     {
         //initialisation ID waypoints
@@ -74,6 +75,8 @@ public class GameManager : MonoBehaviour
             _LastWP[0] = a;
         }
         OnTimerChange?.Invoke();
+
+        _spawnRate = _SpawnRate;
     }
 
     float _TimerSeconds = 0;
@@ -107,12 +110,12 @@ public class GameManager : MonoBehaviour
         if(_spawnCounter >= _SpawnRate)
         {
             _spawnCounter = 0;
-            _SpawnRate = UnityEngine.Random.Range(100f,150f);
+            _SpawnRate = UnityEngine.Random.Range(_spawnRate-_SpawnRateVariance,_spawnRate+_SpawnRateVariance);
             GeneratePatient();
         }
 
         //Avance tapis every Speed
-        if (_conveyorCounter >= _conveyorCalcul - _ConveyorSpeed)
+        if (_conveyorCounter >= _ConveyorDelai)
         {
             _conveyorCounter = 0;
             AvanceTapis();
@@ -212,7 +215,7 @@ public class GameManager : MonoBehaviour
             p.PathIn = nextWP;
         }
 
-        p.transform.DOMove(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position, (_conveyorCalcul - _ConveyorSpeed) / 60 / TimerSpeed).SetEase(Ease.Linear).SetId(IdTweenSet);
+        p.transform.DOMove(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position, (_ConveyorDelai) / 60 / TimerSpeed).SetEase(Ease.Linear).SetId(IdTweenSet);
         p.TweenID = IdTweenSet;
         IdTweenSet++;
         if (IdTweenSet == 1000) IdTweenSet = 0;
