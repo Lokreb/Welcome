@@ -139,6 +139,7 @@ public class GameManager : MonoBehaviour
         _ListPatient.Add(p);
 
         GameObject go = Instantiate(_CharactersPrefabAnimations[0], p.transform.position, Quaternion.identity);
+        go.transform.localPosition = new Vector2(go.transform.localPosition.x, go.transform.localPosition.y - 25f);
         go.transform.SetParent(p.transform);
 
         p.SetServiceToSee();
