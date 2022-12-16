@@ -35,7 +35,7 @@ public class Service : MonoBehaviour
 
         GameManager.Instance.InMinigame(true);
         _Jeu.SetActive(true);
-        
+        GameStateManager.Instance.SetState(GameState.Paused);
 
     }
 
@@ -47,5 +47,6 @@ public class Service : MonoBehaviour
         _currentPatient.EndMiniGame(win, _serviceSecteur);
         _Jeu.SetActive(false);
         _currentPatient = null;
+        GameStateManager.Instance.SetState(GameState.Gameplay);
     }
 }
