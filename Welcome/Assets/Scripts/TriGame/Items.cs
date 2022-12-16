@@ -54,7 +54,6 @@ public class Items : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEn
         else
         {
             actualTarget = Slots.nameSelectedSlot;
-            Debug.Log("Vous êtes dans le service " + actualTarget);
             Slots.nameSelectedSlot = null;
             Destroy(eventData.pointerDrag);
 
