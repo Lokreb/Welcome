@@ -12,21 +12,8 @@ public class ConnexionScript : MonoBehaviour
     [Header("Game Data")]
     [SerializeField] private GameDataScript gameData;
 
-
-    void Start()
-    {
-        //userName.text = gameData.playerName;
-
-    }
-
     public void SetName()
     {
         gameData.playerName = userName.text;
-        Debug.Log(gameData.playerName);
-    }
-
-    public void resetName()
-    {
-        gameData.playerName = "";
     }
 }
