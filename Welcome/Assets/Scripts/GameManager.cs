@@ -278,7 +278,12 @@ public class GameManager : MonoBehaviour
         ChangeScore(value*10);
 
         _HumorValue += value;
-        if (_HumorValue <= 0) GameRunning = false;
+        if (_HumorValue <= 0)
+        {
+            _HumorValue = 0;
+            GameRunning = false;
+            GameStateManager.Instance.SetState(GameState.Paused);
+        }
         OnHumorChange?.Invoke(_HumorValue);
     }
 
