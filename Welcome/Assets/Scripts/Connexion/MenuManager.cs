@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
 
     public void newGame()
     {
-        _gameData.name = "";
+        _gameData.playerName = "";
         _gameData.volume = 50;
         _gameData.score = 0;
         _gameData.music = 50;
