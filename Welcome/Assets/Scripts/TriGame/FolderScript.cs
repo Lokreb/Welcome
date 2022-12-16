@@ -7,7 +7,6 @@ public class FolderScript
 {
     public int folder_ID;
     public bool[] trueService = { false, false, false, false, false };
-    public bool completed = false;
     public int service_ID;
 
     public FolderScript(int valueService)
