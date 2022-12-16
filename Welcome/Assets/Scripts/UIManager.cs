@@ -4,9 +4,6 @@ using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _Needle;
-    private float _needleAnglevalue = 0;
-
     [SerializeField] private TextMeshProUGUI _PatientDone;
 
     [SerializeField] private TextMeshProUGUI _TimeLeft;
@@ -34,29 +31,15 @@ public class UIManager : MonoBehaviour
     int _lastRotate = 100;
     void MoveNeedle(int value)
     {
-        /*
-        if (_needleAnglevalue <= -180) return;
-        
-        //calcul
-        float r_value = value * 1.8f;
 
-        if(_needleAnglevalue + r_value < -180)
-        {
-            r_value = 180 + _needleAnglevalue;
-            r_value *= -1;
-        }
-        _needleAnglevalue += r_value;
+        if (Point.transform.localPosition.x <= -212) return;
 
-        _Needle.transform.Rotate(0f,0f,r_value);*/
-
-        if (Point.transform.localPosition.x <= -205) return;
-
-        float x = value * 4.24f - 205f;
+        float x = value * 4.26f - 212f;
         float y = CurveTension.Evaluate(x);
         float angle = _lastRotate - value;
         
         Point.transform.localPosition = new Vector2(x, y);
-        Point.transform.Rotate(0f, 0f, 1.55f * angle);
+        Point.transform.Rotate(0f, 0f, 1.54f * angle);
 
         _lastRotate = value;
     }
