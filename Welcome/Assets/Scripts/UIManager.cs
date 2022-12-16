@@ -1,18 +1,20 @@
 
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private GameObject _Needle;
-    private float _needleAnglevalue = 0;
-
     [SerializeField] private TextMeshProUGUI _PatientDone;
 
     [SerializeField] private TextMeshProUGUI _TimeLeft;
     [SerializeField] private TextMeshProUGUI _Score;
 
-
+    public AnimationCurve CurveTension;
+    public GameObject Point;
+    public Color[] Couleurs;
+    public Image GaugeColor;
+    public Image GaugeCursorColor;
     void Start()
     {
         GameManager.Instance.OnHumorChange += MoveNeedle;
@@ -24,22 +26,37 @@ public class UIManager : MonoBehaviour
     private void OnDestroy()
     {
         GameManager.Instance.OnHumorChange -= MoveNeedle;
+        GameManager.Instance.OnPatientEnd -= PatientUpdate;
+        GameManager.Instance.OnTimerChange -= TimerUpdate;
+        GameManager.Instance.OnScoreChange -= ScoreUpdate;
     }
+
+    int _lastRotate = 100;
     void MoveNeedle(int value)
     {
-        if (_needleAnglevalue <= -180) return;
 
-        //calcul
-        float r_value = value * 1.8f;
+        if (Point.transform.localPosition.x <= -212) return;
 
-        if(_needleAnglevalue + r_value < -180)
-        {
-            r_value = 180 + _needleAnglevalue;
-            r_value *= -1;
-        }
-        _needleAnglevalue += r_value;
+        float x = value * 4.26f - 212f;
+        float y = CurveTension.Evaluate(x);
+        float angle = _lastRotate - value;
+        
+        Point.transform.localPosition = new Vector2(x, y);
+        Point.transform.Rotate(0f, 0f, 1.54f * angle);
 
-        _Needle.transform.Rotate(0f,0f,r_value);
+        ChangeGaugeColor(value);
+
+        _lastRotate = value;
+    }
+
+    void ChangeGaugeColor(int value)
+    {
+        int couleurs = Mathf.CeilToInt(value / (100f/Couleurs.Length)) -1;
+
+        if (couleurs == -1) couleurs = 0;
+
+        GaugeColor.color = Couleurs[couleurs];
+        GaugeCursorColor.color = Couleurs[couleurs];
     }
 
     void PatientUpdate()

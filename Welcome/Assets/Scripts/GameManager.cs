@@ -15,8 +15,7 @@ public class GameManager : MonoBehaviour
     public event Action OnPatientEnd;
     public event Action OnTimerChange;
     public event Action OnScoreChange;
-    public event Action OnMiniGamePlaying;
-    public event Action OnMiniGameEndPlaying;
+    public event Action<bool> OnMiniGamePlaying;
 
     [Header("Game Balance")]
     public float Timer = 600;
@@ -223,7 +222,10 @@ public class GameManager : MonoBehaviour
             p.PathIn = nextWP;
         }
 
-        p.transform.DOMove(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position, (_ConveyorDelai) / 60 / TimerSpeed).SetEase(Ease.Linear).SetId(IdTweenSet);
+        p.transform.DOMove(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position, (_ConveyorDelai) / 60 / TimerSpeed).SetEase(Ease.Linear).SetId(IdTweenSet).OnComplete(()=>
+            {
+                if(p.InMiniGame)p.CanvasComponent.sortingOrder = 0;
+            });;
         p.TweenID = IdTweenSet;
         IdTweenSet++;
         if (IdTweenSet == 1000) IdTweenSet = 0;
@@ -277,7 +279,7 @@ public class GameManager : MonoBehaviour
 
         _HumorValue += value;
         if (_HumorValue <= 0) GameRunning = false;
-        OnHumorChange?.Invoke(value);
+        OnHumorChange?.Invoke(_HumorValue);
     }
 
     public void ChangeScore(int value)
@@ -291,13 +293,6 @@ public class GameManager : MonoBehaviour
     {
         _inMinigame = playing;
 
-        if(playing)
-        {
-            OnMiniGamePlaying?.Invoke();
-            return;
-        }
-
-        OnMiniGameEndPlaying?.Invoke();
-        return;
+        OnMiniGamePlaying(playing);
     }
 }

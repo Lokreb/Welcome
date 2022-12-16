@@ -89,7 +89,7 @@ CanvasGroup:
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  m_IgnoreParentGroups: 1
 --- !u!114 &3863949272120917945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +109,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a7a9897d3eb35674f845f5e7a4628326, type: 3}
   - {fileID: 21300000, guid: ae378cccdc4404e4799ef0cd8bca6fec, type: 3}
   _service: {fileID: 3660880242008337554}
+  CanvasComponent: {fileID: 2187042940799617923}
   Patience: 1
   PathIn: 00000000ffffffff
   InMiniGame: 0
@@ -199,6 +200,7 @@ GameObject:
   - component: {fileID: 8315710256976423227}
   - component: {fileID: 7433469644242183024}
   - component: {fileID: 1164640250763669036}
+  - component: {fileID: 2187042940799617923}
   m_Layer: 5
   m_Name: Bulle
   m_TagString: Untagged
@@ -264,3 +266,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!223 &2187042940799617923
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9102167660642533620}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0

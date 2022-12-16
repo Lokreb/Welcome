@@ -24,8 +24,6 @@ public class Service : MonoBehaviour
         if (_wpService.ID == wp.ID)
         {
             _currentPatient = p;
-            GameManager.Instance.OnMiniGamePlaying += p.Playing;
-            GameManager.Instance.OnMiniGameEndPlaying += p.AttenteInGame;
         }
     }
 
@@ -43,8 +41,8 @@ public class Service : MonoBehaviour
     {
         if(win) GameManager.Instance.ChangeScore(50);
 
-        GameManager.Instance.InMinigame(false);
         _currentPatient.EndMiniGame(win, _serviceSecteur);
+        GameManager.Instance.InMinigame(false);
         _Jeu.SetActive(false);
         _currentPatient = null;
         GameStateManager.Instance.SetState(GameState.Gameplay);

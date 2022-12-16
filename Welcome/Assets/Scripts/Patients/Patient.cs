@@ -12,6 +12,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     private Patient _clone;
     [SerializeField]private Image _service;
+    public Canvas CanvasComponent;
 
     public float Patience = 5f;
 
@@ -20,6 +21,12 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
         _originalPosition = transform.position;
         PathIn[0] = 0;
         PathIn[1] = -1;
+        GameManager.Instance.OnMiniGamePlaying += Playing;
+    }
+
+    void OnDestroy()
+    {
+        GameManager.Instance.OnMiniGamePlaying -= Playing;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -108,9 +115,6 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     public void EndMiniGame(bool win,Services service)
     {
-        GameManager.Instance.OnMiniGamePlaying -= Playing;
-        GameManager.Instance.OnMiniGameEndPlaying -= AttenteInGame;
-
         StopCoroutine(Attente());
 
         if (win && ServiceToSee.Count > 0)
@@ -126,9 +130,26 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
         GameManager.Instance.NextCase(this);
     }
 
-    public void Playing()
+    public void Playing(bool playing)
     {
-        StopCoroutine(_coroutine);
+        if(!playing)
+        {
+            if(InMiniGame)
+            {
+                AttenteInGame();
+                return;
+            }
+
+            CanvasComponent.sortingOrder = 1;
+            return;
+        }
+
+        if(InMiniGame)
+        {
+            StopCoroutine(_coroutine);
+        }
+        
+        CanvasComponent.sortingOrder = 0;
     }
     
     public void AttenteInGame()
