@@ -8,7 +8,7 @@ public class Service : MonoBehaviour
     [SerializeField] private WayPointsValue _wpService;
     [SerializeField] private GameObject _Jeu;
     [SerializeField] private Services _serviceSecteur;
-    [SerializeField] private Image _image;
+    [SerializeField] private GameObject _PopupImage;
 
     [SerializeField] private Patient _currentPatient;
 
@@ -24,6 +24,7 @@ public class Service : MonoBehaviour
         if (_wpService.ID == wp.ID)
         {
             _currentPatient = p;
+            _PopupImage.SetActive(true);
         }
     }
 
@@ -45,6 +46,7 @@ public class Service : MonoBehaviour
         GameManager.Instance.InMinigame(false);
         _Jeu.SetActive(false);
         _currentPatient = null;
+        _PopupImage.SetActive(false);
         GameStateManager.Instance.SetState(GameState.Gameplay);
     }
 }

@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
     
 
     [Header("Game Running Settings")]
-    public bool GameRunning = true;
     private bool _inMinigame = false;
     [Range(0f,5f)]public float TimerSpeed = 1f;
     private int _timerTotal = 0;
@@ -88,7 +87,6 @@ public class GameManager : MonoBehaviour
     float _conveyorCounter,_spawnCounter;
     private void FixedUpdate()
     {
-        //if (!GameRunning || (_inMinigame && GameRunning)) return;
         if (GameStateManager.Instance.CurrentGameState != GameState.Gameplay) return;
 
         _TimerSeconds += 1*TimerSpeed;
@@ -107,7 +105,8 @@ public class GameManager : MonoBehaviour
 
             if (Timer <= 0)
             {
-                GameRunning = false;
+                GameStateManager.Instance.SetState(GameState.Paused);
+                print("fin");
                 Timer = 0;
             }
 
@@ -162,7 +161,7 @@ public class GameManager : MonoBehaviour
 
             if (!_ListChemins[0].ListWaypoints[0].Dispo)
             {
-                GameRunning = false;
+                GameStateManager.Instance.SetState(GameState.Paused);
                 print("perdu");
                 return;
             }
@@ -281,7 +280,6 @@ public class GameManager : MonoBehaviour
         if (_HumorValue <= 0)
         {
             _HumorValue = 0;
-            GameRunning = false;
             GameStateManager.Instance.SetState(GameState.Paused);
         }
         OnHumorChange?.Invoke(_HumorValue);
