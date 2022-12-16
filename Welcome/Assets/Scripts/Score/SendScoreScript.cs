@@ -17,8 +17,6 @@ public class SendScoreScript : MonoBehaviour
     {
         MyBoard.AddScore(myData.playerName, myData.score);
 
-        //MyBoard.GetScores();
-
         StartCoroutine(routine: GetScores());
     }
 

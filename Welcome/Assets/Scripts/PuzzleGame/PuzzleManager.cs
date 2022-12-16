@@ -81,7 +81,6 @@ public class PuzzleManager : MonoBehaviour
         spriteValueList.Clear();
         _ID = 0;
         ResetAllSprites();
-        //ResetSprite("Slot_A");
         while (_ID < 9)
         {
             Spawn();
