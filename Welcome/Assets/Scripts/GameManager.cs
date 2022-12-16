@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.Animations;
 using DG.Tweening;
 
 public enum Services {A,C,D,E,MAX};
@@ -43,6 +44,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _spawnPoint;
     [SerializeField] private List<Patient> _ListPatient;
     [SerializeField] private Patient _prefab_Patient;
+    [SerializeField] private GameObject[] _CharactersPrefabAnimations;
+
     private int[] _LastWP = {0,0};
 
 
@@ -134,6 +137,10 @@ public class GameManager : MonoBehaviour
         Patient p = Instantiate(_prefab_Patient, _spawnPoint.transform.position, Quaternion.identity);
         p.gameObject.transform.SetParent(_spawnPoint.transform);
         _ListPatient.Add(p);
+
+        GameObject go = Instantiate(_CharactersPrefabAnimations[0], p.transform.position, Quaternion.identity);
+        go.transform.SetParent(p.transform);
+
         p.SetServiceToSee();
     }
 
