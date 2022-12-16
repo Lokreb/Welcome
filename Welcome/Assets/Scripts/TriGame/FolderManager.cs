@@ -39,18 +39,19 @@ public class FolderManager : MonoBehaviour
     public void Spawn()
     {
         GameObject fGO = Instantiate(FolderPrefab, new Vector3(_spawnPosition.transform.position.x, _spawnPosition.transform.position.y, 0f), Quaternion.identity);
+        
         fGO.transform.parent = _spawnPosition.transform;
+        
         int valueService = Random.Range(1, 5);
+
         fGO.GetComponent<Image>().sprite = CreateSprite(valueService);
+
         _gameData.idCible.Add(valueService);
+
         FolderScript f = new FolderScript(valueService);
+
         f.folder_ID = _ID;
-        Debug.Log("ID = " + f.folder_ID + "  CIBLE ====== " + _gameData.idCible[_ID]);
-        for(int i = 0; i < 5; i++)
-        {
-            if (f.trueService[i])
-                Debug.Log("ID : " + f.folder_ID + " TRUE SERVICE ==== " + i);
-        }
+
         _ID++;
     }
 
@@ -71,7 +72,6 @@ public class FolderManager : MonoBehaviour
             _gameData.scoreSortGame = 0;
             _Service.ResultMiniGame(true);
             NewGame();
-            _ID = 0;
         }
     }
 
