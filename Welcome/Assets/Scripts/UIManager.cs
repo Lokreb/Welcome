@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class UIManager : MonoBehaviour
@@ -11,7 +12,9 @@ public class UIManager : MonoBehaviour
 
     public AnimationCurve CurveTension;
     public GameObject Point;
-
+    public Color[] Couleurs;
+    public Image GaugeColor;
+    public Image GaugeCursorColor;
     void Start()
     {
         GameManager.Instance.OnHumorChange += MoveNeedle;
@@ -41,7 +44,19 @@ public class UIManager : MonoBehaviour
         Point.transform.localPosition = new Vector2(x, y);
         Point.transform.Rotate(0f, 0f, 1.54f * angle);
 
+        ChangeGaugeColor(value);
+
         _lastRotate = value;
+    }
+
+    void ChangeGaugeColor(int value)
+    {
+        int couleurs = Mathf.CeilToInt(value / (100f/Couleurs.Length)) -1;
+
+        if (couleurs == -1) couleurs = 0;
+
+        GaugeColor.color = Couleurs[couleurs];
+        GaugeCursorColor.color = Couleurs[couleurs];
     }
 
     void PatientUpdate()
