@@ -28,7 +28,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8364060164739382173, guid: 82e393e7387ffd049b0030ff0e5c89b0, type: 3}
       propertyPath: m_Name
-      value: 04 Animator
+      value: 04 Animator Variant
       objectReference: {fileID: 0}
     - target: {fileID: -8131703097289596789, guid: 82e393e7387ffd049b0030ff0e5c89b0, type: 3}
       propertyPath: m_Bounds.m_Center.x
@@ -133,6 +133,14 @@ PrefabInstance:
     - target: {fileID: 6009101754440682391, guid: 82e393e7387ffd049b0030ff0e5c89b0, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6009101754440682391, guid: 82e393e7387ffd049b0030ff0e5c89b0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6009101754440682391, guid: 82e393e7387ffd049b0030ff0e5c89b0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6009101754440682391, guid: 82e393e7387ffd049b0030ff0e5c89b0, type: 3}
       propertyPath: m_LocalPosition.x

@@ -64,11 +64,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -1985283283861919341, guid: c5351d08f4659754b8eed393ad125f2b, type: 3}
       propertyPath: m_Name
-      value: 02 Animator
+      value: 02 Animator Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2661836093508746320, guid: c5351d08f4659754b8eed393ad125f2b, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661836093508746320, guid: c5351d08f4659754b8eed393ad125f2b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2661836093508746320, guid: c5351d08f4659754b8eed393ad125f2b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2661836093508746320, guid: c5351d08f4659754b8eed393ad125f2b, type: 3}
       propertyPath: m_LocalPosition.x

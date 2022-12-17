@@ -43,6 +43,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7813308170717340238, guid: 96470e967d2b7ca46949ff9906f57b17, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: -7813308170717340238, guid: 96470e967d2b7ca46949ff9906f57b17, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: -7813308170717340238, guid: 96470e967d2b7ca46949ff9906f57b17, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -164,7 +172,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5096226768588346380, guid: 96470e967d2b7ca46949ff9906f57b17, type: 3}
       propertyPath: m_Name
-      value: 06 Animator
+      value: 06 Animator Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7169598309409269736, guid: 96470e967d2b7ca46949ff9906f57b17, type: 3}
       propertyPath: m_Bounds.m_Center.x

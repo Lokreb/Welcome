@@ -138,9 +138,11 @@ public class GameManager : MonoBehaviour
         p.gameObject.transform.SetParent(_spawnPoint.transform);
         _ListPatient.Add(p);
 
-        GameObject go = Instantiate(_CharactersPrefabAnimations[0], p.transform.position, Quaternion.identity);
+        int choice = UnityEngine.Random.Range(0,_CharactersPrefabAnimations.Length);
+        GameObject go = Instantiate(_CharactersPrefabAnimations[choice], p.transform.position, Quaternion.identity);
         go.transform.localPosition = new Vector2(go.transform.localPosition.x, go.transform.localPosition.y - 25f);
         go.transform.SetParent(p.transform);
+        p.AnimatorComponent = go.GetComponent<Animator>();
 
         p.SetServiceToSee();
     }
