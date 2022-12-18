@@ -111,6 +111,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ae378cccdc4404e4799ef0cd8bca6fec, type: 3}
   _service: {fileID: 3660880242008337554}
   CanvasComponent: {fileID: 2187042940799617923}
+  AnimatorComponent: {fileID: 0}
   Patience: 1
   PathIn: 00000000ffffffff
   InMiniGame: 0
@@ -305,5 +306,5 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 10
   m_TargetDisplay: 0
