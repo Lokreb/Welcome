@@ -17,6 +17,12 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     public float Patience = 5f;
 
+    //Data
+    public Queue<Services> ServiceToSee = new Queue<Services>();
+    public int[] PathIn = { 0, 0 };
+    public bool InMiniGame = false;
+    public int TweenID;
+
     void Awake()
     {
         _originalPosition = transform.position;
@@ -175,10 +181,4 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
             }
         }
     }
-
-    //Data
-    public Queue<Services> ServiceToSee = new Queue<Services>();
-    public int[] PathIn = {0,0};
-    public bool InMiniGame = false;
-    public int TweenID;
 }
