@@ -131,20 +131,21 @@ public class GameManager : MonoBehaviour
         }
 
     }
-  
+    int choice = 0;
     void GeneratePatient()
     {
         Patient p = Instantiate(_prefab_Patient, _spawnPoint.transform.position, Quaternion.identity);
         p.gameObject.transform.SetParent(_spawnPoint.transform);
         _ListPatient.Add(p);
 
-        int choice = UnityEngine.Random.Range(0,_CharactersPrefabAnimations.Length);
+        //int choice = UnityEngine.Random.Range(0,_CharactersPrefabAnimations.Length);
         GameObject go = Instantiate(_CharactersPrefabAnimations[choice], p.transform.position, Quaternion.identity);
         go.transform.localPosition = new Vector2(go.transform.localPosition.x, go.transform.localPosition.y-5f);
         go.transform.SetParent(p.transform);
         p.AnimatorComponent = go.GetComponent<Animator>();
 
         p.SetServiceToSee();
+        choice = choice == _CharactersPrefabAnimations.Length-1 ? 0 : choice+1 ;
     }
 
     public void AvanceTapis()
