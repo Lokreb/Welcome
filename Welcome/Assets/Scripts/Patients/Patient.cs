@@ -11,9 +11,8 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     [SerializeField]private Sprite[] _ServiceVisuel;
 
     private Patient _clone;
-    [SerializeField]private Image _service;
-    public Canvas CanvasComponent;
-    [HideInInspector] public OrderLayerPatient LayerScript;
+    [SerializeField]private SpriteRenderer _service;
+    [HideInInspector] public Animator AnimatorComponent;
 
     public float Patience = 5f;
 
@@ -54,7 +53,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
         _clone = Instantiate(this);
         _clone.gameObject.transform.SetParent(this.transform.parent);
-        _clone.LayerScript.AnimatorComponent.SetBool("isGrab", true);
+        _clone.AnimatorComponent.SetBool("isGrab", true);
 
         if (ServiceToSee.Count == 0) return;
         _clone.ServiceToSee.Enqueue(ServiceToSee.Peek());
@@ -150,7 +149,6 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
                 return;
             }
 
-            CanvasComponent.sortingOrder = 1;
             return;
         }
 
@@ -159,7 +157,6 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
             StopCoroutine(_coroutine);
         }
         
-        CanvasComponent.sortingOrder = 0;
     }
     
     public void AttenteInGame()

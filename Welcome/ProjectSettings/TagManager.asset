@@ -38,6 +38,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 2541551415
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Map
+    uniqueID: 805272515
+    locked: 0
+  - name: Minigames
+    uniqueID: 1112262825
+    locked: 0
+  - name: UI
+    uniqueID: 3507729655
     locked: 0
