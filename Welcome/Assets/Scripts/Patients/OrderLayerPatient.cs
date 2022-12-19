@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class OrderLayerPatient : MonoBehaviour
 {
+    public Animator AnimatorComponent;
     public SpriteRenderer[] BodyParts;
     public void OrderLayer()
     {

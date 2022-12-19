@@ -31,6 +31,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea377210d716f77409844457afb9ca94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AnimatorComponent: {fileID: 3479722029860310210}
   BodyParts:
   - {fileID: 1081913693851347962}
   - {fileID: 7492088806700939579}

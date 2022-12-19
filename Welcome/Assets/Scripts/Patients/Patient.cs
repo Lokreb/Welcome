@@ -13,7 +13,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     private Patient _clone;
     [SerializeField]private Image _service;
     public Canvas CanvasComponent;
-    [HideInInspector] public Animator AnimatorComponent;
+    [HideInInspector] public OrderLayerPatient LayerScript;
 
     public float Patience = 5f;
 
@@ -54,7 +54,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
         _clone = Instantiate(this);
         _clone.gameObject.transform.SetParent(this.transform.parent);
-        _clone.AnimatorComponent.SetBool("isGrab", true);
+        _clone.LayerScript.AnimatorComponent.SetBool("isGrab", true);
 
         if (ServiceToSee.Count == 0) return;
         _clone.ServiceToSee.Enqueue(ServiceToSee.Peek());

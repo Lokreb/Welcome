@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
         GameObject go = Instantiate(_CharactersPrefabAnimations[choice], p.transform.position, Quaternion.identity);
         go.transform.localPosition = new Vector2(go.transform.localPosition.x, go.transform.localPosition.y - 25f);
         go.transform.SetParent(p.transform);
-        p.AnimatorComponent = go.GetComponent<Animator>();
+        p.LayerScript = go.GetComponent<OrderLayerPatient>();
 
         p.SetServiceToSee();
     }
