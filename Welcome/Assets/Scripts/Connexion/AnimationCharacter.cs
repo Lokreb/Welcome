@@ -1,14 +1,18 @@
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 using System.Collections;
 
 public class AnimationCharacter : MonoBehaviour
 {
     public int PositionAttente;
+    public Sprite[] Sprites;
     private float _originalPosition;
+    private Image _image;
     private void Start()
     {
         _originalPosition = transform.localPosition.y;
+        _image = GetComponent<Image>();
 
         //v1
         //StartCoroutine(Jumps());
@@ -35,26 +39,37 @@ public class AnimationCharacter : MonoBehaviour
         }
     }
 
+    float[] values = { -90f, -60f, -120f, 30f, 90f, 60f, 120f, 30f };
     IEnumerator ScrollingOut()
     {
         yield return new WaitForSeconds(PositionAttente);
 
         while (true)
         {
+            float value = values[Random.Range(0, 8)];
             Sequence scrolling = DOTween.Sequence();
 
             scrolling.Append(transform.DOLocalMove(new Vector2(597, _originalPosition), 2f).SetEase(Ease.InExpo));
             scrolling.Append(transform.DOLocalMove(new Vector2(-815f, _originalPosition), 5f).SetEase(Ease.Linear));
             scrolling.Append(transform.DOLocalMove(new Vector2(-875f, -330f), 1f).SetEase(Ease.InSine));
-            scrolling.Join(transform.DOLocalRotate(new Vector3(0f, 0f, 90f), 1.5f));
+            scrolling.Join(transform.DOLocalRotate(new Vector3(0f, 0f,value), 1.5f));
+            
 
             scrolling.OnComplete(()=>
             {
-                transform.Rotate(0f,0f,-90f);
+                transform.Rotate(0f,0f, -value);
                 transform.localPosition = new Vector2(597f,1000f);
+                _image.sprite = Sprites[Random.Range(0,10)];
             });
 
-            yield return new WaitForSeconds(10f);
+            if(PositionAttente<8f)
+            {
+                yield return new WaitForSeconds(9f);
+            }else
+            {
+                yield return new WaitForSeconds(18f);
+            }
+            
         }
     }
 
