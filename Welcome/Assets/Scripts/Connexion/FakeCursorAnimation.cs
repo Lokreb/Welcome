@@ -40,17 +40,17 @@ public class FakeCursorAnimation : MonoBehaviour
             Sequence randomMouvements = DOTween.Sequence();
 
             //attrape
-            randomMouvements.Append(Cursor.DOLocalMove(new Vector2(-391.4f, -27f), 1.5f).SetEase(Ease.InOutSine));
+            randomMouvements.Append(Cursor.DOLocalMove(new Vector2(-386.4f, -32f), 1.5f).SetEase(Ease.InOutSine));
             //monte
-            randomMouvements.Append(Cursor.DOLocalMove(new Vector2(_shareRandomValueX[5], _shareRandomValueY[5]), 1f).SetEase(Ease.InOutSine));
+            randomMouvements.Append(Cursor.DOLocalMove(new Vector2(_shareRandomValueX[5]+5f, _shareRandomValueY[5]-5f), 1f).SetEase(Ease.InOutSine));
 
             //attente
             for (int a = 0; a < 5; a++)
             {
-                randomMouvements.Append(Cursor.DOLocalMove(new Vector2(_shareRandomValueX[a], _shareRandomValueY[a]), 2.1f).SetEase(Ease.InOutSine));
+                randomMouvements.Append(Cursor.DOLocalMove(new Vector2(_shareRandomValueX[a]+5f, _shareRandomValueY[a]-5f), 2.1f).SetEase(Ease.InOutSine));
             }
             //relache
-            randomMouvements.Append(Cursor.DOLocalMove(new Vector2(929f, 858f), 1f).SetEase(Ease.InOutSine));
+            randomMouvements.Append(Cursor.DOLocalMove(new Vector2(924f, 863f), 1f).SetEase(Ease.InOutSine));
 
             //attente
             for (int a = 0; a < 2; a++)
@@ -72,9 +72,9 @@ public class FakeCursorAnimation : MonoBehaviour
             Sequence charMouvements = DOTween.Sequence();
 
             //chute
-            charMouvements.Append(Char.DOLocalMove(new Vector2(597, -14f), 2f).SetEase(Ease.InExpo));
+            charMouvements.Append(Char.DOLocalMove(new Vector2(597, 0f), 2f).SetEase(Ease.InExpo));
             //tapis
-            charMouvements.Append(Char.DOLocalMove(new Vector2(-391.4f, -14f), 3.5f).SetEase(Ease.Linear));
+            charMouvements.Append(Char.DOLocalMove(new Vector2(-391.4f, 0f), 3.5f).SetEase(Ease.Linear));
             //monte
             charMouvements.Append(Char.DOLocalMove(new Vector2(_shareRandomValueX[5], _shareRandomValueY[5]), 1f).SetEase(Ease.InOutSine));
 
