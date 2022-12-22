@@ -17,7 +17,7 @@ public class WayPointsValue : MonoBehaviour, IDropHandler
         if(eventData.pointerDrag != null && Dispo)
         {
             Patient p = eventData.pointerDrag.GetComponent<Patient>();
-            p.transform.position = transform.position;
+            p.transform.position = new Vector2(transform.position.x, transform.position.y+33f);
 
             DOTween.Kill(p.TweenID);
             GameManager.Instance.SetWayPointDispo(p.PathIn);

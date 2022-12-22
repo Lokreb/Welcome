@@ -6,13 +6,17 @@ using UnityEngine.EventSystems;
 
 public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler, IDropHandler
 {
-    private Vector2 _offset,_originalPosition;
+    private Vector2 _offset;
     [SerializeField]private CanvasGroup _canvasGroup;
     [SerializeField]private Sprite[] _ServiceVisuel;
 
     private Patient _clone;
+    private Color alpha = new Color(1f,1f,1f,.5f);
+    private Color complet = new Color(1f, 1f, 1f, 1f);
+    [SerializeField] private SpriteRenderer _bulle;
     [SerializeField]private SpriteRenderer _service;
-    [HideInInspector] public Animator AnimatorComponent;
+    [HideInInspector] public AnimatorUI AnimatorUIScript;
+    
 
     public float Patience = 5f;
 
@@ -24,7 +28,6 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     void Awake()
     {
-        _originalPosition = transform.position;
         PathIn[0] = 0;
         PathIn[1] = -1;
         GameManager.Instance.OnMiniGamePlaying += Playing;
@@ -37,23 +40,26 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (!InMiniGame) return;
+        /*if (!InMiniGame) return;
 
         InMiniGame = false;
-        GameManager.Instance.NextCase(this);
+        GameManager.Instance.NextCase(this);*/
 
         _offset = GetMousePos() - (Vector2) transform.position;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        _canvasGroup.alpha = .5f;
+        AnimatorUIScript.Transparent(true);
+        _bulle.color = alpha;
+        _service.color = alpha;
         _canvasGroup.blocksRaycasts = false;
         
 
         _clone = Instantiate(this);
-        _clone.gameObject.transform.SetParent(this.transform.parent);
-        _clone.AnimatorComponent.SetBool("isGrab", true);
+        _clone.gameObject.transform.SetParent(transform.parent);
+        _clone.AnimatorUIScript.AnimatorComponent.SetBool("isGrab", true);
+        
 
         if (ServiceToSee.Count == 0) return;
         _clone.ServiceToSee.Enqueue(ServiceToSee.Peek());
@@ -72,9 +78,11 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        _canvasGroup.alpha = 1f;
         Destroy(_clone.gameObject);
         _canvasGroup.blocksRaycasts = true;
+        AnimatorUIScript.Transparent(false);
+        _bulle.color = complet;
+        _service.color = complet;
     }
 
     Vector2 GetMousePos()
@@ -131,10 +139,10 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
             if(service == ServiceToSee.Peek())
             {
                 ServiceToSee.Dequeue();
-                SetSpriteBulle();
             }
         }
 
+        SetSpriteBulle();
         InMiniGame = false;
         GameManager.Instance.NextCase(this);
     }
@@ -161,6 +169,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     
     public void AttenteInGame()
     {
+        _service.transform.parent.gameObject.SetActive(false);
         InMiniGame = true;
         _coroutine = Attente();
         StartCoroutine(_coroutine);

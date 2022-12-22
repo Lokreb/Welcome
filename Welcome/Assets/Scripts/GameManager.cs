@@ -139,9 +139,9 @@ public class GameManager : MonoBehaviour
 
         //int choice = UnityEngine.Random.Range(0,_CharactersPrefabAnimations.Length);
         GameObject go = Instantiate(_CharactersPrefabAnimations[choice], p.transform.position, Quaternion.identity);
-        go.transform.localPosition = new Vector2(go.transform.localPosition.x, go.transform.localPosition.y-5f);
+        go.transform.localPosition = new Vector2(go.transform.localPosition.x, go.transform.localPosition.y-40f);
         go.transform.SetParent(p.transform);
-        p.AnimatorComponent = go.GetComponent<Animator>();
+        p.AnimatorUIScript = go.GetComponent<AnimatorUI>();
 
         p.SetServiceToSee();
         choice = choice == _CharactersPrefabAnimations.Length-1 ? 0 : choice+1 ;
@@ -231,7 +231,8 @@ public class GameManager : MonoBehaviour
             p.PathIn = nextWP;
         }
 
-        p.transform.DOMove(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position, (_ConveyorDelai) / 60 / TimerSpeed).SetEase(Ease.Linear).SetId(IdTweenSet);
+        Vector2 position = new Vector2(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position.x, _ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position.y+33f);
+        p.transform.DOMove(position, (_ConveyorDelai) / 60 / TimerSpeed).SetEase(Ease.Linear).SetId(IdTweenSet);
         p.TweenID = IdTweenSet;
         IdTweenSet++;
         if (IdTweenSet == 1000) IdTweenSet = 0;

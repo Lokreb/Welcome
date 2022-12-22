@@ -47,9 +47,9 @@ TagManager:
   - name: Map
     uniqueID: 805272515
     locked: 0
-  - name: Minigames
-    uniqueID: 1112262825
-    locked: 0
   - name: UI
     uniqueID: 3507729655
+    locked: 0
+  - name: Minigames
+    uniqueID: 1112262825
     locked: 0
