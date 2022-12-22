@@ -5,20 +5,21 @@ using DG.Tweening;
 
 public class BlinkingEffect : MonoBehaviour
 {
-    public Color[] ColorNew;
-    Renderer _renderer;
+    public Transform Exterieur;
+
+    Renderer[] _renderer = {null,null};
     private void Awake()
     {
-        _renderer = GetComponent<Renderer>();
+        _renderer[0] = GetComponent<Renderer>();
+        _renderer[1] = Exterieur.GetComponent<Renderer>();
 
-        Sequence sequence = DOTween.Sequence();
 
-        sequence.Append(_renderer.material.DOColor(ColorNew[1], .5f).SetLoops(10,LoopType.Yoyo).SetEase(Ease.InOutQuad));
-        sequence.Append(_renderer.material.DOColor(ColorNew[0], 0f));
-        sequence.Append(_renderer.material.DOColor(ColorNew[2], .5f).SetLoops(10, LoopType.Yoyo).SetEase(Ease.InOutQuad));
-        sequence.Append(_renderer.material.DOColor(ColorNew[0], 0f));
-        sequence.Append(_renderer.material.DOColor(ColorNew[3], .5f).SetLoops(10, LoopType.Yoyo).SetEase(Ease.InOutQuad));
-        sequence.Append(_renderer.material.DOColor(ColorNew[0], 0f));
+        //alpha
+        _renderer[0].material.DOFade(.75f, .5f).SetLoops(-1,LoopType.Yoyo).SetEase(Ease.InOutQuad);
+        _renderer[1].material.DOFade(.75f, .5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutQuad);
+        //size
+        transform.DOScale(new Vector2(26f,26f), .5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutQuad);
+        Exterieur.DOScale(new Vector2(1.1f,1.1f), .5f).SetLoops(-1, LoopType.Yoyo).SetEase(Ease.InOutQuad);
+
     }
-
 }
