@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _PatientDone;
 
     [SerializeField] private TextMeshProUGUI _TimeLeft;
-    [SerializeField] private TextMeshProUGUI _Score;
+    [SerializeField] private TextMeshProUGUI[] _Score;
 
     public AnimationCurve CurveTension;
     public GameObject Point;
@@ -79,6 +79,7 @@ public class UIManager : MonoBehaviour
 
     void ScoreUpdate()
     {
-        _Score.text = string.Format("{0:0000}", GameManager.Instance.Score.ToString());
+        _Score[0].text = string.Format("{0:0000}", GameManager.Instance.Score.ToString());
+        _Score[1].text = string.Format("{0:0000}", GameManager.Instance.Score.ToString());
     }
 }
