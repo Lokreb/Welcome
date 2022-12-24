@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<Patient> _ListPatient;
     [SerializeField] private Patient _prefab_Patient;
     [SerializeField] private GameObject[] _CharactersPrefabAnimations;
+    [SerializeField] private GameObject _EndPopUp;
 
     private int[] _LastWP = {0,0};
 
@@ -108,8 +109,8 @@ public class GameManager : MonoBehaviour
             if (Timer <= 0)
             {
                 GameStateManager.Instance.SetState(GameState.Paused);
-                print("fin");
                 Timer = 0;
+                _EndPopUp.SetActive(true);
             }
 
         }
@@ -172,7 +173,7 @@ public class GameManager : MonoBehaviour
             if (!_ListChemins[0].ListWaypoints[0].Dispo)
             {
                 GameStateManager.Instance.SetState(GameState.Paused);
-                print("perdu");
+                _EndPopUp.SetActive(true);
                 return;
             }
         }
@@ -289,6 +290,7 @@ public class GameManager : MonoBehaviour
         {
             _HumorValue = 0;
             GameStateManager.Instance.SetState(GameState.Paused);
+            _EndPopUp.SetActive(true);
         }
         OnHumorChange?.Invoke(_HumorValue);
     }
