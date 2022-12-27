@@ -14,6 +14,8 @@ public class FolderManager : MonoBehaviour
 
     [SerializeField] private Service _Service;
 
+    [SerializeField] private Sprite[] _ItemsSprite;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +33,7 @@ public class FolderManager : MonoBehaviour
         while(_ID < 10)
             {
                 Spawn();
-            }
+        }
         EndGame();
     }
 
@@ -44,7 +46,8 @@ public class FolderManager : MonoBehaviour
         
         int valueService = Random.Range(1, 5);
 
-        fGO.GetComponent<Image>().sprite = CreateSprite(valueService);
+        //fGO.GetComponent<Image>().sprite = CreateSprite(valueService);
+        fGO.GetComponent<Image>().sprite = _ItemsSprite[valueService - 1];
 
         _gameData.idCible.Add(valueService);
 
@@ -53,6 +56,11 @@ public class FolderManager : MonoBehaviour
         f.folder_ID = _ID;
 
         _ID++;
+
+        if(_ID==10)
+        {
+            _gameData.idCible.Reverse();
+        }
     }
 
 
