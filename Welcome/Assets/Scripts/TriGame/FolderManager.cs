@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class FolderManager : MonoBehaviour
 {
-    public GameObject FolderPrefab;
+    //public GameObject FolderPrefab;
+    public Items FolderPrefab;
 
     private int _ID;
     [SerializeField] private GameObject _spawnPosition;
@@ -25,23 +26,34 @@ public class FolderManager : MonoBehaviour
         _gameData.count = 0;
         _gameData.scoreSortGame = 0;
 
+        NewGame();
     }
 
     // Update is called once per frame
     void Update()
     {
-        while(_ID < 10)
+        /*while(_ID < 10)
             {
                 Spawn();
-        }
+        }*/
         EndGame();
     }
 
-
+    public void StartMinigame(GameObject go)
+    {
+        if(! go.activeSelf) return;
+        _delaiSpawn = 0f;
+        while (_ID < 10)
+        {
+            Spawn();
+        }
+    }
+    private float _delaiSpawn;
     public void Spawn()
     {
-        GameObject fGO = Instantiate(FolderPrefab, new Vector3(_spawnPosition.transform.position.x, _spawnPosition.transform.position.y, 0f), Quaternion.identity);
-        
+        //GameObject fGO = Instantiate(FolderPrefab, new Vector3(_spawnPosition.transform.position.x, _spawnPosition.transform.position.y-210f, 0f), Quaternion.identity);
+        Items fGO = Instantiate(FolderPrefab, new Vector3(_spawnPosition.transform.position.x, _spawnPosition.transform.position.y - 300f, 0f), Quaternion.identity);
+
         fGO.transform.parent = _spawnPosition.transform;
         
         int valueService = Random.Range(1, 5);
@@ -61,6 +73,9 @@ public class FolderManager : MonoBehaviour
         {
             _gameData.idCible.Reverse();
         }
+
+        fGO.AnimationComponent.Apparition(_delaiSpawn);
+        _delaiSpawn += .02f;
     }
 
 

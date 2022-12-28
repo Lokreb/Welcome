@@ -1136,7 +1136,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 78, y: -270}
+  m_AnchoredPosition: {x: -14, y: -362}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &236273441
@@ -3897,6 +3897,18 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 887535913}
+          m_TargetAssemblyTypeName: FolderManager, Assembly-CSharp
+          m_MethodName: StartMinigame
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1670411453}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -7158,7 +7170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c76c013687b3d544a841b1ff8f6fc9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FolderPrefab: {fileID: 1608162393255919229, guid: db070215c670d43419dcb0d38b2e8d66, type: 3}
+  FolderPrefab: {fileID: 1228254549054475020, guid: db070215c670d43419dcb0d38b2e8d66, type: 3}
   _spawnPosition: {fileID: 1968015158}
   _gameData: {fileID: 11400000, guid: f9b4c65ed7f27264ab666117dfb94ffc, type: 2}
   _Service: {fileID: 584540304}

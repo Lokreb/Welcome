@@ -13,6 +13,7 @@ public class Items : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEn
     [HideInInspector] GameObject spawn;
     [HideInInspector] string actualTarget;
     public GameDataScript _gameData;
+    public AnimationItemsTri AnimationComponent;
 
     void Start()
     {
@@ -47,9 +48,9 @@ public class Items : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEn
         canvasGroup.alpha = 1.0f;
         if (Slots.nameSelectedSlot == null)
         {
-            rectTransform.anchoredPosition = new Vector2(50,50);
+            rectTransform.anchoredPosition = new Vector2(0,0);
             canvasGroup.blocksRaycasts = true;
-            rectTransform.sizeDelta = new Vector2(200, 200);
+            rectTransform.sizeDelta = new Vector2(185.5f, 184.5f);
         }
         else
         {
