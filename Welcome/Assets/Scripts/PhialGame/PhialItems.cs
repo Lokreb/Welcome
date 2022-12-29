@@ -15,7 +15,10 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
     private Vector2 initial_position;
     private Vector2 initial_size;
 
+    [Header("Phial Only")]
     [SerializeField] private Image _ContenantFiole;
+    public int FioleMelange = 0;
+
 
     void Start()
     {
@@ -66,7 +69,24 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
 
                 PhialManager._isDraggable = true;
 
-                eventData.pointerEnter.GetComponentInParent<PhialItems>()._ContenantFiole.color = PhialManager.CouleursPossible[(int)Char.GetNumericValue(name[name.Length - 1])];
+                Color tubeCouleur = new Color();
+                PhialItems fiolescript = eventData.pointerEnter.GetComponentInParent<PhialItems>();
+                switch (fiolescript.FioleMelange)
+                {
+                    case 0:
+                        tubeCouleur = PhialManager.CouleursPossible[(int)Char.GetNumericValue(name[name.Length - 1])];
+                        break;
+                    case 1 :
+                        tubeCouleur = fiolescript._ContenantFiole.color + PhialManager.CouleursPossible[(int)Char.GetNumericValue(name[name.Length - 1])];
+                        tubeCouleur *= .5f;
+                        break;
+                    case 2:
+                        tubeCouleur = new Color(0.527451f, 0.33529415f, 0.22058825f,1f);
+                        break;
+                }
+                fiolescript._ContenantFiole.color = tubeCouleur;
+                fiolescript.FioleMelange += 1;
+
                 Destroy(eventData.pointerDrag);
             }
 
@@ -77,7 +97,11 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
                 else
                     Debug.Log("Le joueur est un looser, noooooooooooooooooooooob");
                 PhialManager._isCompleted = true;
-                Destroy(eventData.pointerDrag);
+
+                _ContenantFiole.color = Color.white;
+                FioleMelange = 0;
+                BackInit();
+                //Destroy(eventData.pointerDrag);
             }
 
             if (PhialManager._isDraggable && name == "Phial" && PhialSlots.nameSelectedSlot != "FinalSlot")

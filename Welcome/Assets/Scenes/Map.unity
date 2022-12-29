@@ -54683,6 +54683,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameData: {fileID: 11400000, guid: f9b4c65ed7f27264ab666117dfb94ffc, type: 2}
   _ContenantFiole: {fileID: 1606395352}
+  FioleMelange: 0
 --- !u!114 &2003059116
 MonoBehaviour:
   m_ObjectHideFlags: 0
