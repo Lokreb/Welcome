@@ -19,14 +19,14 @@ public class FolderManager : MonoBehaviour
 
 
     // Start is called before the first frame update
+    bool _start;
     void Start()
     {
         _ID = 0;
         _gameData.idCible.Clear();
         _gameData.count = 0;
         _gameData.scoreSortGame = 0;
-
-        Spawn();
+        _start = false;
     }
 
     // Update is called once per frame
@@ -36,6 +36,7 @@ public class FolderManager : MonoBehaviour
             {
                 Spawn();
         }*/
+        if (!_start) return;
         EndGame();
     }
 
@@ -48,6 +49,8 @@ public class FolderManager : MonoBehaviour
         {
             Spawn();
         }
+        _start = true;
+
     }
     private float _delaiSpawn;
     public void Spawn()
@@ -70,13 +73,14 @@ public class FolderManager : MonoBehaviour
 
         _ID++;
 
-        if(_ID==10)
+        if (_ID==10)
         {
             _gameData.idCible.Reverse();
         }
 
         fGO.AnimationComponent.Apparition(_delaiSpawn);
         _delaiSpawn += .02f;
+
     }
 
 
@@ -103,5 +107,6 @@ public class FolderManager : MonoBehaviour
     {
         _gameData.idCible.Clear();
         _ID = 0;
+        _start = false;
     }
 }
