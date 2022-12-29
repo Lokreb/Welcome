@@ -23006,8 +23006,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WinLooseClip:
-  - {fileID: 32900000, guid: d196dc492faff6540aea6473aab5bfc0, type: 3}
-  - {fileID: 32900000, guid: fd9657fe91414b744be47a29d749e134, type: 3}
+  - {fileID: 32900000, guid: 9e703038e7f235b4e916a38b7e33b91b, type: 3}
+  - {fileID: 32900000, guid: da44c87ff076f404b9f42120b0728d97, type: 3}
   VideoPlayerComponent: {fileID: 990845434}
   CanvasComponent: {fileID: 990845438}
 --- !u!223 &990845438
