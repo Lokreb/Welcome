@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Service : MonoBehaviour
 {
@@ -9,8 +8,10 @@ public class Service : MonoBehaviour
     [SerializeField] private GameObject _Jeu;
     [SerializeField] private Services _serviceSecteur;
     [SerializeField] private GameObject _PopupImage;
+    [SerializeField] private AnimationsClips _ResultScreen;
 
     [SerializeField] private Patient _currentPatient;
+    
 
 
     void Start()
@@ -41,12 +42,14 @@ public class Service : MonoBehaviour
     public void ResultMiniGame(bool win)
     {
         if(win) GameManager.Instance.ChangeScore(50);
-
         _currentPatient.EndMiniGame(win, _serviceSecteur);
-        GameManager.Instance.InMinigame(false);
+        _ResultScreen.Result(win,this);
+    }
+
+    public void EndResult()
+    {
         _Jeu.SetActive(false);
         _currentPatient = null;
         _PopupImage.SetActive(false);
-        GameStateManager.Instance.SetState(GameState.Gameplay);
     }
 }

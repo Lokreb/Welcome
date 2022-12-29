@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] _CharactersPrefabAnimations;
     [SerializeField] private GameObject _EndPopUp;
 
+
     private int[] _LastWP = {0,0};
 
 

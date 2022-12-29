@@ -94,7 +94,7 @@ public class PhialManager : MonoBehaviour
         if (PhialManager._isCompleted)
         {
             _gameData.idCiblePhial = 0;
-            _Service.ResultMiniGame(true);
+            _Service.ResultMiniGame(_winner);
             foreach (Transform child in _phialItems.transform)
             {
                 GameObject.Destroy(child.gameObject);
