@@ -26,7 +26,7 @@ public class FolderManager : MonoBehaviour
         _gameData.count = 0;
         _gameData.scoreSortGame = 0;
 
-        NewGame();
+        Spawn();
     }
 
     // Update is called once per frame
@@ -43,6 +43,7 @@ public class FolderManager : MonoBehaviour
     {
         if(! go.activeSelf) return;
         _delaiSpawn = 0f;
+        NewGame();
         while (_ID < 10)
         {
             Spawn();

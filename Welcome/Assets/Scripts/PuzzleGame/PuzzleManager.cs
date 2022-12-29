@@ -49,7 +49,7 @@ public class PuzzleManager : MonoBehaviour
         fGO.GetComponent<Image>().sprite = CreateSprite(sprite_value);
         for(int i = 0; i < 9; i++)
         {
-            Debug.Log("ID : " + _ID + " & sprite_value actuelle : " + sprite_value);
+            //Debug.Log("ID : " + _ID + " & sprite_value actuelle : " + sprite_value);
         }
         PuzzleScript p = new PuzzleScript(sprite_value);
         _gameData.idCiblePuzzle.Add(sprite_value);

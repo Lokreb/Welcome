@@ -11,10 +11,8 @@ public class PhialManager : MonoBehaviour
     [SerializeField] private GameObject _spawnPosition;
     [SerializeField] private GameDataScript _gameData;
 
-    //[SerializeField] private Service _Service;
-
     [SerializeField]private List<int> spriteValueList = new List<int>();
-    [SerializeField]private List<int> itemPosition = new List<int>();
+    [SerializeField]private List<float> itemPosition = new List<float>();
 
     public static bool _winner;
     public static bool _isDraggable;
@@ -22,6 +20,8 @@ public class PhialManager : MonoBehaviour
 
     [SerializeField] private Service _Service;
     [SerializeField] private GameObject _phialItems;
+
+    [SerializeField] private Sprite[] _FiolesSprite;
 
     private int _trueValue;
 
@@ -62,7 +62,8 @@ public class PhialManager : MonoBehaviour
         fGO.transform.parent = _spawnPosition.transform;
         fGO.name = "Item" + sprite_value;
 
-        fGO.GetComponent<Image>().sprite = CreateSprite(sprite_value);
+        //fGO.GetComponent<Image>().sprite = CreateSprite(sprite_value);
+        fGO.GetComponent<Image>().sprite = _FiolesSprite[sprite_value];
         _ID++;
     }
 
@@ -79,9 +80,9 @@ public class PhialManager : MonoBehaviour
         _gameData.idCiblePhial = 0;
         _ID = 0;
         spriteValueList.Clear();
-        itemPosition.Add(600);
-        itemPosition.Add(900);
-        itemPosition.Add(1200);
+        itemPosition.Add(_spawnPosition.transform.position.x);
+        itemPosition.Add(_spawnPosition.transform.position.x + 300f);
+        itemPosition.Add(_spawnPosition.transform.position.x + 600f);
     }
 
     public void ThisIsTheEnd()

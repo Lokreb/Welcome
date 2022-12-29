@@ -102,13 +102,13 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
         {
             canvasGroup.alpha = 0.6f;
             canvasGroup.blocksRaycasts = false;
-            rectTransform.sizeDelta = new Vector2(100, 100);
+            rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x*.8f, rectTransform.sizeDelta.y * .8f);
         }
         else
         {
             canvasGroup.alpha = 0.6f;
             canvasGroup.blocksRaycasts = false;
-            rectTransform.sizeDelta = new Vector2(200, 400);
+            rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x * .8f, rectTransform.sizeDelta.y * .8f);
         }
     }
 }
