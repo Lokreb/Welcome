@@ -44,7 +44,7 @@ public class PhialManager : MonoBehaviour
         PhialScript p = new PhialScript(_trueValue);
         _gameData.idCiblePhial = p.value_response;
         CouleursMelangeFiole[1].color = CouleursPossible[_gameData.idCiblePhial];
-        Debug.Log("La cible de notre fiole est : " + _gameData.idCiblePhial);
+        //Debug.Log("La cible de notre fiole est : " + _gameData.idCiblePhial);
     }
 
     private void Update()

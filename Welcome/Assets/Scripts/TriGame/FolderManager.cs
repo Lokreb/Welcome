@@ -17,6 +17,7 @@ public class FolderManager : MonoBehaviour
 
     [SerializeField] private Sprite[] _ItemsSprite;
 
+    public int NBFolder = 3;
 
     // Start is called before the first frame update
     bool _start;
@@ -45,7 +46,7 @@ public class FolderManager : MonoBehaviour
         if(! go.activeSelf) return;
         _delaiSpawn = 0f;
         NewGame();
-        while (_ID < 10)
+        while (_ID < NBFolder)
         {
             Spawn();
         }
@@ -73,7 +74,7 @@ public class FolderManager : MonoBehaviour
 
         _ID++;
 
-        if (_ID==10)
+        if (_ID== NBFolder)
         {
             _gameData.idCible.Reverse();
         }
@@ -94,7 +95,8 @@ public class FolderManager : MonoBehaviour
 
     public void EndGame()
     {
-        if(_gameData.count == _gameData.idCible.Capacity)
+        //if(_gameData.count == _gameData.idCible.Capacity)
+        if (_gameData.count == NBFolder)
         {
             _gameData.count = 0;
             _gameData.scoreSortGame = 0;
