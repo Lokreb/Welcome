@@ -22,6 +22,8 @@ public class PhialManager : MonoBehaviour
     [SerializeField] private GameObject _phialItems;
 
     [SerializeField] private Sprite[] _FiolesSprite;
+    public static Color[] CouleursPossible = {new Color(0.1882353f, 0.454902f, 0.5607843f, 1f),new Color(0.9294118f, 0.1098039f, 0.1411765f,1f),new Color(0.9921569f, 0.7764707f, 0.1803922f,1f) };
+    public Image[] CouleursMelangeFiole;//Joueur - Final
 
     private int _trueValue;
 
@@ -41,6 +43,7 @@ public class PhialManager : MonoBehaviour
         _trueValue = Random.Range(0,3);
         PhialScript p = new PhialScript(_trueValue);
         _gameData.idCiblePhial = p.value_response;
+        CouleursMelangeFiole[1].color = CouleursPossible[_gameData.idCiblePhial];
         Debug.Log("La cible de notre fiole est : " + _gameData.idCiblePhial);
     }
 
@@ -49,9 +52,10 @@ public class PhialManager : MonoBehaviour
         ThisIsTheEnd();
     }
 
+    
     public void Spawn()
     {
-        //TIRER AU SORT LA PIECE QUI SPAWN EN PREMIER
+        //TIRER AU SORT LA PIECE QUI SPAWN EN PREMIER Blue - Red - Yellow
         int sprite_value = Random.Range(0, 3);
         //CHECKER SI CETTE SPRITE N'EST PAS DEJA UTILISEE
         while (spriteValueList.Contains(sprite_value))

@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
@@ -12,6 +14,8 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
     public GameDataScript _gameData;
     private Vector2 initial_position;
     private Vector2 initial_size;
+
+    [SerializeField] private Image _ContenantFiole;
 
     void Start()
     {
@@ -61,8 +65,8 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
                     PhialManager._winner = true;
 
                 PhialManager._isDraggable = true;
-                
 
+                eventData.pointerEnter.GetComponentInParent<PhialItems>()._ContenantFiole.color = PhialManager.CouleursPossible[(int)Char.GetNumericValue(name[name.Length - 1])];
                 Destroy(eventData.pointerDrag);
             }
 
