@@ -18,6 +18,9 @@ public class FolderManager : MonoBehaviour
     [SerializeField] private Sprite[] _ItemsSprite;
 
     public int NBFolder = 3;
+    [Header("Sound Effect")]
+    public AudioSource AudioComponent;
+    public AudioClip Clip;
 
     // Start is called before the first frame update
     bool _start;
@@ -46,11 +49,14 @@ public class FolderManager : MonoBehaviour
         if(! go.activeSelf) return;
         _delaiSpawn = 0f;
         NewGame();
+        AudioComponent.clip = Clip;
+        AudioComponent.Play();
         while (_ID < NBFolder)
         {
             Spawn();
         }
         _start = true;
+        
 
     }
     private float _delaiSpawn;
