@@ -6,43 +6,57 @@ using DG.Tweening;
 
 public class AnimationsClips : MonoBehaviour
 {
-    public VideoClip[] WinLooseClip;
+    public VideoClip[] WinLoseClip;
     public VideoPlayer VideoPlayerComponent;
     public Canvas CanvasComponent;
 
+    public GameObject Support;
+    public GameObject[] ResultSprites;
+
     public void Result(bool result,Service service)
     {
-        if(!result) VideoPlayerComponent.clip = WinLooseClip[1];
+        //VideoPlayerComponent.clip = result ? WinLoseClip[0] : WinLoseClip[1];
 
-        CanvasComponent.sortingLayerName = "Minigames";
-        VideoPlayerComponent.Prepare();
+        //CanvasComponent.sortingLayerName = "Minigames";
 
-        StartCoroutine(LoadingResult(service));
+        //StartCoroutine(LoadingResult(service));
+
+        int win = result ? 0 : 1;
+
+        Sequence sequence = DOTween.Sequence();
+        sequence.Append(Support.transform.DOLocalMoveY(0f, .5f).SetEase(Ease.OutSine));
+        sequence.Append(ResultSprites[win].transform.DOScale(1f, .5f).SetEase(Ease.OutSine));
+        sequence.AppendInterval(.25f);
+
+        sequence.OnComplete(()=>
+        {
+            service.EndResult();
+            Start();
+        });
     }
 
     IEnumerator LoadingResult(Service service)
     {
-        while(!VideoPlayerComponent.isPrepared)
-        {
-            yield return new WaitForFixedUpdate();
-        }
+
+        yield return new WaitForFixedUpdate();
+
 
         VideoPlayerComponent.Play();
-        service.EndResult();
-
+        
         while (VideoPlayerComponent.isPlaying)
         {
             yield return new WaitForFixedUpdate();
         }
-
+        service.EndResult();
         Start();
-        GameManager.Instance.InMinigame(false);
-        GameStateManager.Instance.SetState(GameState.Gameplay);
     }
 
     void Start()
     {
-        CanvasComponent.sortingLayerName = "Background";
-        VideoPlayerComponent.clip = WinLooseClip[0];
+        //CanvasComponent.sortingLayerName = "Background";
+        Support.transform.localPosition = new Vector2(0f, 1000f);
+        ResultSprites[0].transform.localScale = new Vector2(0f,0f);
+        ResultSprites[1].transform.localScale = new Vector2(0f, 0f);
     }
+
 }

@@ -43,13 +43,17 @@ public class Service : MonoBehaviour
     {
         if(win) GameManager.Instance.ChangeScore(50);
         _currentPatient.EndMiniGame(win, _serviceSecteur);
+        _ResultScreen.gameObject.SetActive(true);
         _ResultScreen.Result(win,this);
     }
 
     public void EndResult()
     {
+        _ResultScreen.gameObject.SetActive(false);
         _Jeu.SetActive(false);
         _currentPatient = null;
         _PopupImage.SetActive(false);
+        GameManager.Instance.InMinigame(false);
+        GameStateManager.Instance.SetState(GameState.Gameplay);
     }
 }
