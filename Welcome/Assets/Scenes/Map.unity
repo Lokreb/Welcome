@@ -19694,6 +19694,7 @@ MonoBehaviour:
   noteTapY: -700
   _Service: {fileID: 715763806}
   _Jeu: {fileID: 417892027}
+  _SM: {fileID: 1430838905}
 --- !u!4 &705775555
 Transform:
   m_ObjectHideFlags: 0
@@ -35850,6 +35851,7 @@ MonoBehaviour:
   hitSFX: {fileID: 641513554}
   missSFX: {fileID: 757003977}
   scoreText: {fileID: 118746083}
+  comboScore: 0
 --- !u!1001 &1432190687
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -84,6 +84,11 @@ public class SongManager : MonoBehaviour
             {
                 if (_SM.comboScore > 10)
                 {
+                    _winner = true;
+                    _Service.ResultMiniGame(_winner);
+                } else
+                {
+                    _winner = false;
                     _Service.ResultMiniGame(_winner);
                 }
                 NewGame();
@@ -97,7 +102,7 @@ public class SongManager : MonoBehaviour
     public void NewGame() {
         if(SongManager._isCompleted == true) {
             //Debug.Log("Restart");
-            _winner = false;
+            _SM.comboScore = 0;
             ReadFromFile();
         }
     }
