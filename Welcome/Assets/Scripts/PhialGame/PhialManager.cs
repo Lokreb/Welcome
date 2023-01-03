@@ -100,8 +100,6 @@ public class PhialManager : MonoBehaviour
                 GameObject.Destroy(child.gameObject);
             }
             NewGame();
-            _ID = 0;
-            PhialManager._isCompleted = false;
         }
     }
 
@@ -110,6 +108,11 @@ public class PhialManager : MonoBehaviour
         spriteValueList.Clear();
         _ID = 0;
         PhialManager._winner = false;
+        PhialManager._isCompleted = false;
+        PhialManager._isDraggable = false;
+        _trueValue = Random.Range(0,3);
+        _gameData.idCiblePhial = _trueValue;
+        CouleursMelangeFiole[1].color = CouleursPossible[_trueValue];
         //ResetAllSprites();
         while (_ID < 3)
         {
