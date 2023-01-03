@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Patient _prefab_Patient;
     [SerializeField] private GameObject[] _CharactersPrefabAnimations;
     [SerializeField] private GameObject _EndPopUp;
-
+    [SerializeField] private GameDataScript _GameData;
 
     private int[] _LastWP = {0,0};
 
@@ -110,6 +110,7 @@ public class GameManager : MonoBehaviour
 
             if (Timer <= 0)
             {
+                _GameData.score = (int)Score;
                 GameStateManager.Instance.SetState(GameState.Paused);
                 Timer = 0;
                 _EndPopUp.SetActive(true);
@@ -174,6 +175,7 @@ public class GameManager : MonoBehaviour
 
             if (!_ListChemins[0].ListWaypoints[0].Dispo)
             {
+                _GameData.score = (int)Score;
                 GameStateManager.Instance.SetState(GameState.Paused);
                 _EndPopUp.SetActive(true);
                 return;
