@@ -19,7 +19,7 @@ public class Note : MonoBehaviour
         float t = (float)(timeSinceInstantiated / (SongManager.Instance.noteTime * 2));
 
 
-        if (t > 0.5f)
+        if (t > 0.45f)
         {
             Destroy(gameObject);
         }
