@@ -73,7 +73,7 @@ public class PhialManager : MonoBehaviour
 
     public Sprite CreateSprite(int truePosition)
     {
-        string[] imagesName = {"Passoire", "Poêle", "Passoire"};
+        string[] imagesName = {"Passoire", "Poï¿½le", "Passoire"};
         string image = "Sprites/" + imagesName[truePosition];
         Sprite result = Resources.Load<Sprite>(image);
         return result;
@@ -94,7 +94,7 @@ public class PhialManager : MonoBehaviour
         if (PhialManager._isCompleted)
         {
             _gameData.idCiblePhial = 0;
-            _Service.ResultMiniGame(_winner);
+            _Service.ResultMiniGame(PhialManager._winner);
             foreach (Transform child in _phialItems.transform)
             {
                 GameObject.Destroy(child.gameObject);
@@ -109,6 +109,7 @@ public class PhialManager : MonoBehaviour
     {
         spriteValueList.Clear();
         _ID = 0;
+        PhialManager._winner = false;
         //ResetAllSprites();
         while (_ID < 3)
         {

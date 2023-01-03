@@ -104,9 +104,9 @@ public class FolderManager : MonoBehaviour
         //if(_gameData.count == _gameData.idCible.Capacity)
         if (_gameData.count == NBFolder)
         {
+            _Service.ResultMiniGame(NBFolder*10 == _gameData.scoreSortGame);
             _gameData.count = 0;
             _gameData.scoreSortGame = 0;
-            _Service.ResultMiniGame(true);
             NewGame();
         }
     }
