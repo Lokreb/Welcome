@@ -24,6 +24,7 @@ public class WayPointsValue : MonoBehaviour, IDropHandler
             GameManager.Instance.SetWayPointDispo(p.PathIn);
             p.PathIn[0] = ID[0];
             p.PathIn[1] = ID[1];
+            Dispo=false;
         }
     }
 }
