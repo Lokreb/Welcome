@@ -19691,7 +19691,7 @@ MonoBehaviour:
   fileLocation: testSon.mid
   noteTime: 1
   noteSpawnY: 2
-  noteTapY: -700
+  noteTapY: -680
   _Service: {fileID: 715763806}
   _Jeu: {fileID: 417892027}
   _SM: {fileID: 1430838905}
