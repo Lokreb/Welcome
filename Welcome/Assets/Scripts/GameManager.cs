@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
 
         _spawnRate = _SpawnRate;
         _timerStart = Timer;
+        GameStateManager.Instance.SetState(GameState.Paused);
     }
 
     float _TimerSeconds = 0;
@@ -308,5 +309,10 @@ public class GameManager : MonoBehaviour
         _inMinigame = playing;
 
         OnMiniGamePlaying(playing);
+    }
+
+    public void TutoCheck()
+    {
+        GameStateManager.Instance.SetState(GameState.Gameplay);
     }
 }
