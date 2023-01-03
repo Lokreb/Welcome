@@ -37,13 +37,13 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("La fiole est-elle accessible ?" + PhialManager._isDraggable);
-        if ((name != "Phial" && !PhialManager._isCompleted) || (name == "Phial" && PhialManager._isDraggable))
+        if ((name != "Phial" && !PhialManager._isCompleted && !PhialManager._isDraggable) || (name == "Phial" && PhialManager._isDraggable))
             ResizeOnDrag();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
-        if ((name != "Phial" && !PhialManager._isCompleted) || (name == "Phial" && PhialManager._isDraggable))
+        if ((name != "Phial" && !PhialManager._isCompleted && !PhialManager._isDraggable) || (name == "Phial" && PhialManager._isDraggable))
             rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
@@ -56,13 +56,13 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
         }
         else
         {
-
             if (PhialSlots.nameSelectedSlot == "Phial" && name != "Phial" && !PhialManager._isCompleted)
             {
 
                 Debug.Log("Selection : " + name );
 
-                Debug.Log("Réponse : " + _gameData.idCiblePhial);
+                Debug.Log("Rï¿½ponse : " + _gameData.idCiblePhial);
+                if(PhialManager._isDraggable)return;
 
                 if(name == "Item" + _gameData.idCiblePhial)
                     PhialManager._winner = true;
@@ -93,7 +93,7 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
             if(PhialManager._isDraggable && name == "Phial" && PhialSlots.nameSelectedSlot == "FinalSlot")
             {
                 if (PhialManager._winner)
-                    Debug.Log("Le joueur a gagné");
+                    Debug.Log("Le joueur a gagnï¿½");
                 else
                     Debug.Log("Le joueur est un looser, noooooooooooooooooooooob");
                 PhialManager._isCompleted = true;

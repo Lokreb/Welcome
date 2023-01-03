@@ -24,8 +24,8 @@ public class AnimationsClips : MonoBehaviour
         int win = result ? 0 : 1;
 
         Sequence sequence = DOTween.Sequence();
-        sequence.Append(Support.transform.DOLocalMoveY(0f, .5f).SetEase(Ease.OutSine));
-        sequence.Append(ResultSprites[win].transform.DOScale(1f, .5f).SetEase(Ease.OutSine));
+        sequence.Append(Support.transform.DOLocalMoveY(0f, .35f).SetEase(Ease.OutSine));
+        sequence.Append(ResultSprites[win].transform.DOScale(1f, .35f).SetEase(Ease.OutSine));
         sequence.AppendInterval(.25f);
 
         sequence.OnComplete(()=>
