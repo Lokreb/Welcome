@@ -16,6 +16,12 @@ public class PuzzleManager : MonoBehaviour
 
     public List<int> spriteValueList = new List<int>();
 
+    public List<Sprite> puzzle1 = new List<Sprite>();
+    public List<Sprite> puzzle2 = new List<Sprite>();
+
+    private int actualPuzzle;
+    [SerializeField] Sprite slotSprite;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +30,7 @@ public class PuzzleManager : MonoBehaviour
         _gameData.count = 0;
         _gameData.scorePuzzleGame = 0;
         spriteValueList.Clear();
+        actualPuzzle = Random.Range(0, 2);
         while (_ID < 9)
             Spawn();
     }
@@ -45,23 +52,19 @@ public class PuzzleManager : MonoBehaviour
 
         while (spriteValueList.Contains(sprite_value))
             sprite_value = Random.Range(0, 9);
+        
         spriteValueList.Add(sprite_value);
-        fGO.GetComponent<Image>().sprite = CreateSprite(sprite_value);
-        for(int i = 0; i < 9; i++)
-        {
-            //Debug.Log("ID : " + _ID + " & sprite_value actuelle : " + sprite_value);
-        }
+
+        if(actualPuzzle == 0)
+            fGO.GetComponent<Image>().sprite = puzzle1[sprite_value];
+        else
+            fGO.GetComponent<Image>().sprite = puzzle2[sprite_value];
+
+        fGO.name = "Piece" + (sprite_value + 1);
+        
         PuzzleScript p = new PuzzleScript(sprite_value);
         _gameData.idCiblePuzzle.Add(sprite_value);
         _ID++;
-    }
-
-    public Sprite CreateSprite(int truePosition)
-    {
-        string[] imagesName = { "Passoire", "Poêle", "Passoire", "Poêle", "Passoire", "Poêle", "Passoire", "Poêle", "Passoire" };
-        string image = "Sprites/" + imagesName[truePosition];
-        Sprite result = Resources.Load<Sprite>(image);
-        return result;
     }
 
     public void EndGame() {
@@ -81,6 +84,7 @@ public class PuzzleManager : MonoBehaviour
         spriteValueList.Clear();
         _ID = 0;
         ResetAllSprites();
+        actualPuzzle = Random.Range(0,2);
         while (_ID < 9)
         {
             Spawn();
@@ -90,7 +94,7 @@ public class PuzzleManager : MonoBehaviour
     public void ResetSprite(string name)
     {
         GameObject go = GameObject.Find("/Canvas/ServicesManager/MiniGame/PuzzleGame/Slots/" + name);
-        go.GetComponent<Image>().sprite = null;
+        go.GetComponent<Image>().sprite = slotSprite;
     }
 
     public void ResetAllSprites()
