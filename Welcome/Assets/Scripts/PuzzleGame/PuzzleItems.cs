@@ -46,7 +46,6 @@ public class PuzzleItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.alpha = 1.0f;
-        Debug.Log("NameSelectedSlot ===== " + PuzzleSlots.nameSelectedSlot);
         if (PuzzleSlots.nameSelectedSlot == null)
         {
             StartingPosition();
@@ -56,7 +55,7 @@ public class PuzzleItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
             switch (PuzzleSlots.nameSelectedSlot)
             {
                 case "Slot_A":
-                    if (_gameData.idCiblePuzzle[_gameData.count] == 0)
+                    if (name == "Piece1")
                     {
                         GoodPosition(PuzzleSlots.nameSelectedSlot);
                         Destroy(eventData.pointerDrag);
@@ -65,7 +64,7 @@ public class PuzzleItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
                         StartingPosition();
                     break;
                 case "Slot_B":
-                    if (_gameData.idCiblePuzzle[_gameData.count] == 1)
+                    if (name == "Piece2")
                     {
                         GoodPosition(PuzzleSlots.nameSelectedSlot);
                         Destroy(eventData.pointerDrag);
@@ -74,7 +73,7 @@ public class PuzzleItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
                         StartingPosition();
                     break;
                 case "Slot_C":
-                    if (_gameData.idCiblePuzzle[_gameData.count] == 2)
+                    if (name == "Piece3")
                     {
                         GoodPosition(PuzzleSlots.nameSelectedSlot);
                         Destroy(eventData.pointerDrag);
@@ -83,7 +82,7 @@ public class PuzzleItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
                         StartingPosition();
                     break;
                 case "Slot_D":
-                    if (_gameData.idCiblePuzzle[_gameData.count] == 3)
+                    if (name == "Piece4")
                     {
                         GoodPosition(PuzzleSlots.nameSelectedSlot);
                         Destroy(eventData.pointerDrag);
@@ -92,7 +91,7 @@ public class PuzzleItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
                         StartingPosition();
                     break;
                 case "Slot_E":
-                    if (_gameData.idCiblePuzzle[_gameData.count] == 4)
+                    if (name == "Piece5")
                     {
                         GoodPosition(PuzzleSlots.nameSelectedSlot);
                         Destroy(eventData.pointerDrag);
@@ -101,7 +100,7 @@ public class PuzzleItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
                         StartingPosition();
                     break;
                 case "Slot_F":
-                    if (_gameData.idCiblePuzzle[_gameData.count] == 5)
+                    if (name == "Piece6")
                     {
                         GoodPosition(PuzzleSlots.nameSelectedSlot);
                         Destroy(eventData.pointerDrag);
@@ -110,7 +109,7 @@ public class PuzzleItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
                         StartingPosition();
                     break;
                 case "Slot_G":
-                    if (_gameData.idCiblePuzzle[_gameData.count] == 6)
+                    if (name == "Piece7")
                     {
                         GoodPosition(PuzzleSlots.nameSelectedSlot);
                         Destroy(eventData.pointerDrag);
@@ -119,7 +118,7 @@ public class PuzzleItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
                         StartingPosition();
                     break;
                 case "Slot_H":
-                    if (_gameData.idCiblePuzzle[_gameData.count] == 7)
+                    if (name == "Piece8")
                     {
                         GoodPosition(PuzzleSlots.nameSelectedSlot);
                         Destroy(eventData.pointerDrag);
@@ -128,7 +127,7 @@ public class PuzzleItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
                         StartingPosition();
                     break;
                 case "Slot_I":
-                    if (_gameData.idCiblePuzzle[_gameData.count] == 8)
+                    if (name == "Piece9")
                     {
                         GoodPosition(PuzzleSlots.nameSelectedSlot);
                         Destroy(eventData.pointerDrag);
@@ -149,14 +148,14 @@ public class PuzzleItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     {
         rectTransform.anchoredPosition = new Vector2(0, 0);
         canvasGroup.blocksRaycasts = true;
-        rectTransform.sizeDelta = new Vector2(200, 200);
+        rectTransform.sizeDelta = new Vector2(150, 150);
     }
     
     public void GoodPosition(string name)
     {
         _gameData.scorePuzzleGame += 10;
         _gameData.count++;
-        rectTransform.sizeDelta = new Vector2(260, 260);
+        rectTransform.sizeDelta = new Vector2(200, 200);
         GameObject go = GameObject.Find(name);
         go.GetComponent<Image>().sprite = GetComponent<Image>().sprite;
     }
