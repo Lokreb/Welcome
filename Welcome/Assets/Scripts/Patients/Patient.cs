@@ -68,6 +68,8 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     public void OnDrag(PointerEventData eventData)
     {
+        if(_clone==null)return;
+
         _clone.transform.position = GetMousePos() - _offset;        
     }
 
@@ -77,6 +79,8 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        if(_clone==null)return;
+
         Destroy(_clone.gameObject);
         _canvasGroup.blocksRaycasts = true;
         AnimatorUIScript.Transparent(false);
@@ -168,6 +172,10 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     
     public void AttenteInGame()
     {
+        if(_clone!=null)
+        {
+            OnEndDrag(null);
+        }
         _service.transform.parent.gameObject.SetActive(false);
         InMiniGame = true;
         _coroutine = Attente();
