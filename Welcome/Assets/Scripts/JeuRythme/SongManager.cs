@@ -32,18 +32,21 @@ public class SongManager : MonoBehaviour
 
     public static bool _isPlayed;
     public static bool _isCompleted;
+    public static bool _winner;
 
     [SerializeField] private Service _Service;
     [SerializeField] public GameObject _Jeu;
+    [SerializeField] private ScoreManager _SM;
 
     public static MidiFile midiFile;
     // Start is called before the first frame update
     void Start()
     {
         Instance = this;
-        ReadFromFile();
         _isPlayed = false;
         _isCompleted = false;
+        ReadFromFile();
+        _winner = false;
     }
 
     private void ReadFromFile()
@@ -76,10 +79,17 @@ public class SongManager : MonoBehaviour
        if (audioSource.isPlaying == false && _Jeu.activeSelf == true)
         {
             //_isPlayed = false;
-            _Service.ResultMiniGame(true);
-            //Debug.Log("La musique ne joue plus: " + _isPlayed);
             SongManager._isCompleted = true;
-            NewGame();
+            if(SongManager._isCompleted)
+            {
+                if (_SM.comboScore > 10)
+                {
+                    _Service.ResultMiniGame(_winner);
+                }
+                NewGame();
+            }
+            
+            //Debug.Log("La musique ne joue plus: " + _isPlayed);
             SongManager._isCompleted = false;
         }
     }
@@ -87,6 +97,7 @@ public class SongManager : MonoBehaviour
     public void NewGame() {
         if(SongManager._isCompleted == true) {
             //Debug.Log("Restart");
+            _winner = false;
             ReadFromFile();
         }
     }
