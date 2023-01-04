@@ -18,13 +18,18 @@ public class SendScoreScript : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "MenuScene")
         {
-            StartCoroutine(routine: GetScores());
+            StartGetScores();
         }
     }
 
     public void SendScore()
     {
         MyBoard.AddScore(myData.playerName, myData.score);
+    }
+
+    public void StartGetScores()
+    {
+        StartCoroutine(routine: GetScores());
     }
 
     private IEnumerator GetScores()
