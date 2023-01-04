@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
         _conveyorCounter += 1 * TimerSpeed;
         _spawnCounter += 1 * TimerSpeed;
 
-        OnTimerChange?.Invoke();
+        
 
         //Chaque in game seconde Timer - 1
         if (_TimerSeconds / 60 >= _timerTotal)
@@ -132,6 +132,8 @@ public class GameManager : MonoBehaviour
             _conveyorCounter = 0;
             AvanceTapis();
         }
+        
+        OnTimerChange?.Invoke();
 
     }
     int choice = 0;
