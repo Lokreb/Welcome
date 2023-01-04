@@ -35,6 +35,7 @@ public class SongManager : MonoBehaviour
     public static bool _winner;
 
     [SerializeField] private Service _Service;
+    [SerializeField] private Lane _Lane;
     [SerializeField] public GameObject _Jeu;
     [SerializeField] private ScoreManager _SM;
 
