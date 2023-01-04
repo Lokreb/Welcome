@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Game Balance")]
     public float Timer = 600;
-    private float _timerStart;
+    [HideInInspector]public float _timerStart;
     public AnimationCurve DifficultyInTime;
     [SerializeField] private int _HumorValue = 100;
     [SerializeField] private float _SpawnRate = 120f;
