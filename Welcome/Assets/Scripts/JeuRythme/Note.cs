@@ -7,6 +7,8 @@ public class Note : MonoBehaviour
 {
     double timeInstantiated;
     public float assignedTime;
+    public Image _image;
+    public int _id;
     void Start()
     {
         timeInstantiated = SongManager.GetAudioSourceTime();
@@ -19,7 +21,7 @@ public class Note : MonoBehaviour
         float t = (float)(timeSinceInstantiated / (SongManager.Instance.noteTime * 2));
 
 
-        if (t > 0.45f)
+        if (t > 0.5f)
         {
             Destroy(gameObject);
         }

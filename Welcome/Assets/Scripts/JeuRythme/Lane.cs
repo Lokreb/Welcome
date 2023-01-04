@@ -3,13 +3,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Lane : MonoBehaviour
 {
     public Melanchall.DryWetMidi.MusicTheory.NoteName noteRestriction;
     public KeyCode input;
-    public GameObject notePrefab;
+    public Note notePrefab;
     List<Note> notes = new List<Note>();
+    [SerializeField] List<Sprite> sprites = new List<Sprite>();
     public List<double> timeStamps = new List<double>();
 
     int spawnIndex = 0;
@@ -38,7 +40,9 @@ public class Lane : MonoBehaviour
         {
             if (SongManager.GetAudioSourceTime() >= timeStamps[spawnIndex] - SongManager.Instance.noteTime)
             {
-                var note = Instantiate(notePrefab, transform);
+                Note note = Instantiate(notePrefab, transform);
+
+                note._image.sprite = sprites[UnityEngine.Random.Range(0, sprites.Count)];
                 notes.Add(note.GetComponent<Note>());
                 note.GetComponent<Note>().assignedTime = (float)timeStamps[spawnIndex];
                 spawnIndex++;
