@@ -49,6 +49,8 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (InMiniGame) return;
+
         AnimatorUIScript.Transparent(true);
         _bulle.color = alpha;
         _service.color = alpha;

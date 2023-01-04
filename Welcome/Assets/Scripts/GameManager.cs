@@ -167,7 +167,7 @@ public class GameManager : MonoBehaviour
     public void NextCase(Patient p)
     {
         int[] nextWP = { p.PathIn[0], p.PathIn[1]+1};
-
+        
         //spawn
         if (p.PathIn[1] == -1)
         {
@@ -228,12 +228,24 @@ public class GameManager : MonoBehaviour
         {
             if(wpNext.Service)
             {
-                p.AttenteInGame();
-                OnPatientService?.Invoke(wpNext,p);
+                if(p.ServiceToSee.Count > 0)
+                {
+                    if(wpNext.ServiceAffiliated == p.ServiceToSee.Peek())
+                    {
+                        p.AttenteInGame();
+                        OnPatientService?.Invoke(wpNext,p);
+                        wp.Dispo = true;
+                        wpNext.Dispo = false;
+                        p.PathIn = nextWP;
+                    }
+                }
+            }else
+            {
+                wp.Dispo = true;
+                wpNext.Dispo = false;
+                p.PathIn = nextWP;
             }
-            wp.Dispo = true;
-            wpNext.Dispo = false;
-            p.PathIn = nextWP;
+
         }
 
         Vector2 position = new Vector2(_ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position.x, _ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]].transform.position.y+33f);
