@@ -10,6 +10,7 @@ public class WayPointsValue : MonoBehaviour, IDropHandler
     public bool RoadMerge = false;
     public bool RoadSplit = false;
     public bool Service = false;
+    public Services ServiceAffiliated;
     public int[] ID = { 0, 0 };
 
     public void OnDrop(PointerEventData eventData)

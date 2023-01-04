@@ -49,6 +49,8 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (InMiniGame) return;
+
         AnimatorUIScript.Transparent(true);
         _bulle.color = alpha;
         _service.color = alpha;
@@ -95,10 +97,89 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     public void SetServiceToSee()
     {
-        int nbServices = UnityEngine.Random.Range(1, 5);
+        float tempsRestant = GameManager.Instance.Timer/GameManager.Instance._timerStart*100f;
+        float rng = UnityEngine.Random.Range(0f,1f);
+        int nbServices = 1;
+
+        if(tempsRestant>65)
+        {
+            nbServices = rng >= .4f ? 1 : 2;//60%
+        }
+        else if(tempsRestant>40)
+        {
+            if(rng <= .2f)
+            {
+                nbServices = 1;//20%
+            }else if(rng <= .8f)
+            {
+                nbServices = 2;//60%
+            }else
+            {
+                nbServices = 3;//20%
+            }
+        }
+        else if(tempsRestant>25)
+        {
+            if(rng <= .15f)
+            {
+                nbServices = 1;//15%
+            }else if(rng <= .45f)
+            {
+                nbServices = 2;//30%
+            }else if(rng <= .9f)
+            {
+                nbServices = 3;//45%
+            }else
+            {
+                nbServices = 4;//10%
+            }
+        }else if(tempsRestant>10)
+        {
+            if(rng <= .1f)
+            {
+                nbServices = 1;//10%
+            }else if(rng <= .3f)
+            {
+                nbServices = 2;//20%
+            }else if(rng <= .8f)
+            {
+                nbServices = 3;//50%
+            }else if(rng <= .95f)
+            {
+                nbServices = 4;//15%
+            }else
+            {
+                nbServices = 5;//5%
+            }
+        }else
+        {
+            if(rng <= .1f)
+            {
+                nbServices = 2;//10%
+            }else if(rng <= .6f)
+            {
+                nbServices = 3;//50%
+            }else if(rng <= .9f)
+            {
+                nbServices = 4;//30%
+            }else
+            {
+                nbServices = 5;//10%
+            }
+        }
+        
         for (int a = 0; a < nbServices; a++)
         {
+
             Services service = (Services)UnityEngine.Random.Range(0, (int)Services.MAX);
+
+            if(a>0)
+            {
+                while(ServiceToSee.Peek()==service)
+                {
+                    service = (Services)UnityEngine.Random.Range(0, (int)Services.MAX);
+                }
+            }
             this.ServiceToSee.Enqueue(service);
 
         }
