@@ -17,6 +17,7 @@ public class Lane : MonoBehaviour
     int spawnIndex = 0;
     int inputIndex = 0;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -45,7 +46,8 @@ public class Lane : MonoBehaviour
                 note._image.sprite = sprites[UnityEngine.Random.Range(0, sprites.Count)];
                 notes.Add(note.GetComponent<Note>());
                 note.GetComponent<Note>().assignedTime = (float)timeStamps[spawnIndex];
-                spawnIndex++;
+                spawnIndex++;               
+                Debug.Log("Note numéro : " + spawnIndex);
             }
         }
 

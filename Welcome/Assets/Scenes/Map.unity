@@ -634,7 +634,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1274, y: 515}
+  m_AnchoredPosition: {x: -736, y: 388}
   m_SizeDelta: {x: 200, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &118746083
@@ -7412,7 +7412,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 653, y: -147}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &417892029
@@ -12501,7 +12501,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 9eb0d4abaae68d5438194fa3d47647df, type: 3}
+  m_audioClip: {fileID: 8300000, guid: de52eefa4407d2a40a03cc47b3bbe3c5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -13611,7 +13611,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -763, y: 743}
+  m_AnchoredPosition: {x: -178, y: 615}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &584643773
@@ -19280,10 +19280,10 @@ MonoBehaviour:
   songDelayInSeconds: 0
   marginOfError: 0.15
   inputDelayInMilliseconds: 0
-  fileLocation: testSon.mid
+  fileLocation: Son.mid
   noteTime: 2
   noteSpawnY: 2
-  noteTapY: -870
+  noteTapY: -1000
   _Service: {fileID: 715763806}
   _Jeu: {fileID: 417892027}
   _SM: {fileID: 1430838905}
@@ -21523,14 +21523,14 @@ RectTransform:
   m_GameObject: {fileID: 867628748}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 7.5, y: 0.1, z: 1}
+  m_LocalScale: {x: 9.171094, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 417892028}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -787.0442, y: -94.387}
+  m_AnchoredPosition: {x: -166, y: -352}
   m_SizeDelta: {x: 98.2855, y: 288.7744}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &867628750
@@ -22233,10 +22233,10 @@ RectTransform:
   m_Father: {fileID: 417892028}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -650, y: 200}
-  m_SizeDelta: {x: 1500, y: 800}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &973280072
 MonoBehaviour:
