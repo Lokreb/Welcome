@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Game Running Settings")]
     private bool _inMinigame = false;
-    [Range(0f,5f)]public float TimerSpeed = 1f;
+    [Range(1f,2f)]public float TimerSpeed = 1f;
     private int _timerTotal = 0;
     
 

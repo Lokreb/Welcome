@@ -100,8 +100,10 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
         float tempsRestant = GameManager.Instance.Timer/GameManager.Instance._timerStart*100f;
         float rng = UnityEngine.Random.Range(0f,1f);
         int nbServices = 1;
-
-        if(tempsRestant>65)
+        if(tempsRestant>95)
+        {
+            nbServices = 1;//100%
+        }else if(tempsRestant>65)
         {
             nbServices = rng >= .4f ? 1 : 2;//60%
         }

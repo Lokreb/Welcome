@@ -22008,7 +22008,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3477265f5cd93243956249b0f461518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Timer: 6000
+  Timer: 120
+  _timerStart: 0
   DifficultyInTime:
     serializedVersion: 2
     m_Curve:
@@ -22023,25 +22024,25 @@ MonoBehaviour:
       outWeight: 0.06367155
     - serializedVersion: 3
       time: 0.6
-      value: 2
-      inSlope: 4.9676948
-      outSlope: 9.908998
+      value: 1.5
+      inSlope: 2.770706
+      outSlope: 1.3254104
       tangentMode: 1
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.1441011
+      inWeight: 0.09439687
+      outWeight: 0.33244106
     - serializedVersion: 3
       time: 0.8
-      value: 5
-      inSlope: 12.743313
+      value: 2
+      inSlope: 4.1654167
       outSlope: -0.000013289721
       tangentMode: 1
       weightedMode: 0
-      inWeight: 0.11094154
+      inWeight: 0.2794433
       outWeight: 0.17940076
     - serializedVersion: 3
       time: 1
-      value: 5
+      value: 2
       inSlope: 0
       outSlope: 0
       tangentMode: 34
@@ -22052,10 +22053,10 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _HumorValue: 100
-  _SpawnRate: 120
-  _SpawnRateVariance: 10
+  _SpawnRate: 240
+  _SpawnRateVariance: 30
   _ConveyorDelai: 60
-  TimerSpeed: 1
+  TimerSpeed: 5
   _ListChemins:
   - {fileID: 1572838055}
   - {fileID: 1382353039}
