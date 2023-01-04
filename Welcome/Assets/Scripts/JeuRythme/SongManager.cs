@@ -33,10 +33,12 @@ public class SongManager : MonoBehaviour
     public static bool _isPlayed;
     public static bool _isCompleted;
     public static bool _winner;
+    private bool _flemme;
 
     [SerializeField] private Service _Service;
     [SerializeField] private Lane _Lane;
     [SerializeField] public GameObject _Jeu;
+    [SerializeField] public GameObject _lane;
     [SerializeField] private ScoreManager _SM;
 
     public static MidiFile midiFile;
@@ -48,9 +50,10 @@ public class SongManager : MonoBehaviour
         _isCompleted = false;
         ReadFromFile();
         _winner = false;
+        
     }
 
-    private void ReadFromFile()
+    public void ReadFromFile()
     {
         midiFile = MidiFile.Read(Application.streamingAssetsPath + "/" + fileLocation);
         GetDataFromMidi();
@@ -69,6 +72,7 @@ public class SongManager : MonoBehaviour
     {
         audioSource.Play();
         //_isPlayed = true;
+        _flemme = false;
     }
     public static double GetAudioSourceTime()
     {
@@ -81,7 +85,7 @@ public class SongManager : MonoBehaviour
         {
             //_isPlayed = false;
             SongManager._isCompleted = true;
-            if(SongManager._isCompleted)
+            if(SongManager._isCompleted && !_flemme)
             {
                 if (_SM.comboScore > 10)
                 {
@@ -92,21 +96,25 @@ public class SongManager : MonoBehaviour
                     _winner = false;
                     _Service.ResultMiniGame(_winner);
                 }
-                NewGame();
+                _flemme = true;
+                _lane.SetActive(false);
+                StartCoroutine(NewGame());
             }
-            
             //Debug.Log("La musique ne joue plus: " + _isPlayed);
-            SongManager._isCompleted = false;
         }
     }
 
-    public void NewGame() {
+    IEnumerator NewGame() {
         if(SongManager._isCompleted == true) {
             //Debug.Log("Restart");
             _SM.comboScore = 0;
             ReadFromFile();
+            yield return new WaitForSeconds(5);
+            _lane.SetActive(true);
         }
     }
+
+
 
     void Update()
     {
