@@ -58,10 +58,6 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
         {
             if (PhialSlots.nameSelectedSlot == "Phial" && name != "Phial" && !PhialManager._isCompleted)
             {
-
-                Debug.Log("Selection : " + name );
-
-                Debug.Log("R�ponse : " + _gameData.idCiblePhial);
                 if(PhialManager._isDraggable)return;
 
                 if(name == "Item" + _gameData.idCiblePhial)
@@ -92,16 +88,11 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
 
             if(PhialManager._isDraggable && name == "Phial" && PhialSlots.nameSelectedSlot == "FinalSlot")
             {
-                if (PhialManager._winner)
-                    Debug.Log("Le joueur a gagn�");
-                else
-                    Debug.Log("Le joueur est un looser, noooooooooooooooooooooob");
                 PhialManager._isCompleted = true;
 
                 _ContenantFiole.color = Color.white;
                 FioleMelange = 0;
                 BackInit();
-                //Destroy(eventData.pointerDrag);
             }
 
             if (PhialManager._isDraggable && name == "Phial" && PhialSlots.nameSelectedSlot != "FinalSlot")
