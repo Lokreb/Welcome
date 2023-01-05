@@ -42,7 +42,6 @@ public class PuzzleManager : MonoBehaviour
         EndGame();
     }
 
-    float _delaiSpawn;
     public void Spawn()
     {
         GameObject fGO = Instantiate(puzzlePiecePrefab, new Vector3(_spawnPosition.transform.position.x, _spawnPosition.transform.position.y-300f, 0f), Quaternion.identity);
@@ -68,8 +67,6 @@ public class PuzzleManager : MonoBehaviour
         _gameData.idCiblePuzzle.Add(sprite_value);
         _ID++;
 
-        //fGO.GetComponent<AnimationPuzzle>().Apparition(_delaiSpawn);
-        //_delaiSpawn += .02f;
         fGO.transform.position = slotTransforms[sprite_value].position;
         fGO.GetComponent<AnimationPuzzle>().CutPieces();
     }
@@ -84,6 +81,13 @@ public class PuzzleManager : MonoBehaviour
             //NewGame();
             _ID = 0;
         }
+    }
+
+    public void StartMinigame(GameObject go)
+    {
+        if(! go.activeSelf) return;
+
+        NewGame();
     }
 
     public void NewGame()

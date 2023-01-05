@@ -183,7 +183,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
                 }
             }
             //force service
-            service = Services.C;
+            service = Services.E;
 
 
             this.ServiceToSee.Enqueue(service);

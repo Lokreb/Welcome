@@ -35,7 +35,7 @@ public class PhialManager : MonoBehaviour
         _isDraggable = false;
         _isCompleted = false;
 
-        while (_ID < 3)
+        /*while (_ID < 3)
         {
             Spawn();
         }
@@ -44,7 +44,7 @@ public class PhialManager : MonoBehaviour
         PhialScript p = new PhialScript(_trueValue);
         _gameData.idCiblePhial = p.value_response;
         CouleursMelangeFiole[1].color = CouleursPossible[_gameData.idCiblePhial];
-        //Debug.Log("La cible de notre fiole est : " + _gameData.idCiblePhial);
+        //Debug.Log("La cible de notre fiole est : " + _gameData.idCiblePhial);*/
     }
 
     private void Update()
@@ -52,7 +52,14 @@ public class PhialManager : MonoBehaviour
         ThisIsTheEnd();
     }
 
-    
+    public void StartMinigame(GameObject go)
+    {
+        if(! go.activeSelf) return;
+
+        NewGame();
+    }
+
+    float _delai;
     public void Spawn()
     {
         //TIRER AU SORT LA PIECE QUI SPAWN EN PREMIER Blue - Red - Yellow
@@ -68,6 +75,8 @@ public class PhialManager : MonoBehaviour
 
         //fGO.GetComponent<Image>().sprite = CreateSprite(sprite_value);
         fGO.GetComponent<Image>().sprite = _FiolesSprite[sprite_value];
+        fGO.GetComponent<AnimationFioles>().Pop(_delai);
+        _delai+=.2f;
         _ID++;
     }
 
@@ -99,13 +108,14 @@ public class PhialManager : MonoBehaviour
             {
                 GameObject.Destroy(child.gameObject);
             }
-            NewGame();
+            PhialManager._isCompleted = false;
         }
     }
 
     public void NewGame()
     {
         spriteValueList.Clear();
+        _delai = 0f;
         _ID = 0;
         PhialManager._winner = false;
         PhialManager._isCompleted = false;
