@@ -14,6 +14,6 @@ public class ConnexionScript : MonoBehaviour
 
     public void SetName()
     {
-        gameData.playerName = userName.text;
+        gameData.playerName = userName.text.Substring(0,10);
     }
 }
