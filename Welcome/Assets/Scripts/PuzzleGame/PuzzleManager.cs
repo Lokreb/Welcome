@@ -21,6 +21,7 @@ public class PuzzleManager : MonoBehaviour
 
     private int actualPuzzle;
     [SerializeField] Sprite slotSprite;
+    [SerializeField] Transform[] slotTransforms;
 
     // Start is called before the first frame update
     void Start()
@@ -29,10 +30,10 @@ public class PuzzleManager : MonoBehaviour
         _gameData.idCiblePuzzle.Clear();
         _gameData.count = 0;
         _gameData.scorePuzzleGame = 0;
-        spriteValueList.Clear();
+        /*spriteValueList.Clear();
         actualPuzzle = Random.Range(0, 2);
         while (_ID < 9)
-            Spawn();
+            Spawn();*/
     }
 
     // Update is called once per frame
@@ -43,7 +44,7 @@ public class PuzzleManager : MonoBehaviour
 
     public void Spawn()
     {
-        GameObject fGO = Instantiate(puzzlePiecePrefab, new Vector3(_spawnPosition.transform.position.x, _spawnPosition.transform.position.y, 0f), Quaternion.identity);
+        GameObject fGO = Instantiate(puzzlePiecePrefab, new Vector3(_spawnPosition.transform.position.x, _spawnPosition.transform.position.y-300f, 0f), Quaternion.identity);
         fGO.transform.parent = _spawnPosition.transform;
 
         //TIRER AU SORT LA PIECE QUI SPAWN EN PREMIER
@@ -65,6 +66,9 @@ public class PuzzleManager : MonoBehaviour
         PuzzleScript p = new PuzzleScript(sprite_value);
         _gameData.idCiblePuzzle.Add(sprite_value);
         _ID++;
+
+        fGO.transform.position = slotTransforms[sprite_value].position;
+        fGO.GetComponent<AnimationPuzzle>().CutPieces();
     }
 
     public void EndGame() {
@@ -74,9 +78,16 @@ public class PuzzleManager : MonoBehaviour
             _gameData.idCiblePuzzle.Clear();
             _gameData.count = 0;
             _Service.ResultMiniGame(true);
-            NewGame();
+            //NewGame();
             _ID = 0;
         }
+    }
+
+    public void StartMinigame(GameObject go)
+    {
+        if(! go.activeSelf) return;
+
+        NewGame();
     }
 
     public void NewGame()

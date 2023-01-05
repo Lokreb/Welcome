@@ -17,6 +17,7 @@ public class PhialManager : MonoBehaviour
     public static bool _winner;
     public static bool _isDraggable;
     public static bool _isCompleted;
+    public static bool  _Step1Finish;
 
     [SerializeField] private Service _Service;
     [SerializeField] private GameObject _phialItems;
@@ -37,7 +38,14 @@ public class PhialManager : MonoBehaviour
         ThisIsTheEnd();
     }
 
-    
+    public void StartMinigame(GameObject go)
+    {
+        if(! go.activeSelf) return;
+
+        NewGame();
+    }
+
+    float _delai;
     public void Spawn()
     {
         //TIRER AU SORT LA PIECE QUI SPAWN EN PREMIER Blue - Red - Yellow
@@ -52,6 +60,8 @@ public class PhialManager : MonoBehaviour
         fGO.name = "Item" + sprite_value;
 
         fGO.GetComponent<Image>().sprite = _FiolesSprite[sprite_value];
+        fGO.GetComponent<AnimationFioles>().Pop(_delai);
+        _delai+=.2f;
         _ID++;
     }
 
@@ -93,13 +103,14 @@ public class PhialManager : MonoBehaviour
             {
                 GameObject.Destroy(child.gameObject);
             }
-            NewGame();
+            PhialManager._isCompleted = false;
         }
     }
 
     public void NewGame()
     {
         spriteValueList.Clear();
+        _delai = 0f;
         _ID = 0;
         PhialManager._winner = false;
         PhialManager._isCompleted = false;
@@ -107,6 +118,7 @@ public class PhialManager : MonoBehaviour
         _trueValue = Random.Range(0,3);
         _gameData.idCiblePhial = _trueValue;
         CouleursMelangeFiole[1].color = CouleursPossible[_trueValue];
+        _Step1Finish=false;
         while (_ID < 3)
         {
             Spawn();
