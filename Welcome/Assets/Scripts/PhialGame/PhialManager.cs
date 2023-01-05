@@ -80,7 +80,7 @@ public class PhialManager : MonoBehaviour
         _isCompleted = false;
 
         //We spawn the 3 phials.
-        while (_ID < 3)
+        /*while (_ID < 3)
         {
             Spawn();
         }
@@ -89,7 +89,7 @@ public class PhialManager : MonoBehaviour
         _trueValue = Random.Range(0, 3);
         PhialScript p = new PhialScript(_trueValue);
         _gameData.idCiblePhial = p.value_response;
-        CouleursMelangeFiole[1].color = CouleursPossible[_gameData.idCiblePhial];
+        CouleursMelangeFiole[1].color = CouleursPossible[_gameData.idCiblePhial];*/
     }
 
     public void ThisIsTheEnd()

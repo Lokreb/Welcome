@@ -56,6 +56,7 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
         if (PhialSlots.nameSelectedSlot == null)
         {   
             if(PhialManager._Step1Finish)return;
+
             BackInit();
         }
         else
@@ -64,6 +65,7 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
             {
                 if(eventData.pointerEnter.name != "Fiole")
                 {
+                    if (PhialManager._Step1Finish) return;
                     BackInit();
                     return;
                 }
