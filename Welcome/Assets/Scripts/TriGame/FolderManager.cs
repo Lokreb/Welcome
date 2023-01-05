@@ -36,10 +36,6 @@ public class FolderManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*while(_ID < 10)
-            {
-                Spawn();
-        }*/
         if (!_start) return;
         EndGame();
     }
@@ -62,14 +58,12 @@ public class FolderManager : MonoBehaviour
     private float _delaiSpawn;
     public void Spawn()
     {
-        //GameObject fGO = Instantiate(FolderPrefab, new Vector3(_spawnPosition.transform.position.x, _spawnPosition.transform.position.y-210f, 0f), Quaternion.identity);
         Items fGO = Instantiate(FolderPrefab, new Vector3(_spawnPosition.transform.position.x, _spawnPosition.transform.position.y - 300f, 0f), Quaternion.identity);
 
         fGO.transform.parent = _spawnPosition.transform;
         
         int valueService = Random.Range(1, 5);
 
-        //fGO.GetComponent<Image>().sprite = CreateSprite(valueService);
         fGO.GetComponent<Image>().sprite = _ItemsSprite[valueService - 1];
 
         _gameData.idCible.Add(valueService);
@@ -90,18 +84,8 @@ public class FolderManager : MonoBehaviour
 
     }
 
-
-    public Sprite CreateSprite(int trueServiceValue)
-    {
-        string[] imagesName = { "Passoire", "Poêle", "Passoire", "Poêle" };
-        string image = "Sprites/" + imagesName[trueServiceValue - 1];
-        Sprite result = Resources.Load<Sprite>(image);
-        return result;
-    }
-
     public void EndGame()
     {
-        //if(_gameData.count == _gameData.idCible.Capacity)
         if (_gameData.count == NBFolder)
         {
             _Service.ResultMiniGame(NBFolder*10 == _gameData.scoreSortGame);
