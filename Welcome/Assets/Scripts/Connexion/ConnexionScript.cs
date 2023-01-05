@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System.IO;
+using System.Text.RegularExpressions;
+
 public class ConnexionScript : MonoBehaviour
 {
     [Header("Username zone")]
@@ -18,5 +20,8 @@ public class ConnexionScript : MonoBehaviour
             gameData.playerName = userName.text.Substring(0, 10);
         else
             gameData.playerName = userName.text;
+
+        gameData.playerName = Regex.Replace(gameData.playerName, @"[^a-zA-Z0-9 ]", "");
     }
+
 }
