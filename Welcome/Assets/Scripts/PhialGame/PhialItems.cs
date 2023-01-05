@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using DG.Tweening;
 
 public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
@@ -47,11 +48,14 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
             rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
     }
 
+
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.alpha = 1.0f;
+
         if (PhialSlots.nameSelectedSlot == null)
-        {
+        {   
+            if(PhialManager._Step1Finish)return;
             BackInit();
         }
         else
@@ -62,6 +66,12 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
                 Debug.Log("Selection : " + name );
 
                 Debug.Log("R�ponse : " + _gameData.idCiblePhial);
+                if(eventData.pointerEnter.name != "Fiole")
+                {
+                    BackInit();
+                    return;
+                }
+
                 if(PhialManager._isDraggable)return;
 
                 if(name == "Item" + _gameData.idCiblePhial)
@@ -70,6 +80,7 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
                 PhialManager._isDraggable = true;
 
                 Color tubeCouleur = new Color();
+                
                 PhialItems fiolescript = eventData.pointerEnter.GetComponentInParent<PhialItems>();
                 switch (fiolescript.FioleMelange)
                 {
@@ -87,28 +98,31 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
                 fiolescript._ContenantFiole.color = tubeCouleur;
                 fiolescript.FioleMelange += 1;
 
+                GameObject fioleGO = eventData.pointerCurrentRaycast.gameObject;
+   
+                fioleGO.transform.localScale = new Vector3(.8f,.8f,.8f);
+                fioleGO.transform.DOScale(1f,.5f).SetEase(Ease.OutElastic);
+                PhialManager._Step1Finish = true;
                 Destroy(eventData.pointerDrag);
             }
 
             if(PhialManager._isDraggable && name == "Phial" && PhialSlots.nameSelectedSlot == "FinalSlot")
             {
-                if (PhialManager._winner)
-                    Debug.Log("Le joueur a gagn�");
-                else
-                    Debug.Log("Le joueur est un looser, noooooooooooooooooooooob");
                 PhialManager._isCompleted = true;
 
                 _ContenantFiole.color = Color.white;
                 FioleMelange = 0;
                 BackInit();
-                //Destroy(eventData.pointerDrag);
             }
 
             if (PhialManager._isDraggable && name == "Phial" && PhialSlots.nameSelectedSlot != "FinalSlot")
+            {
                 BackInit();
-
-            if(PhialSlots.nameSelectedSlot == "FinalSlot" && name != "Phial" && !PhialManager._isCompleted)
+            }
+            if(PhialSlots.nameSelectedSlot == "FinalSlot" && name != "Phial")
+            {
                 BackInit();
+            }
         }
     }
 
@@ -122,6 +136,8 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
         rectTransform.anchoredPosition = initial_position;
         canvasGroup.blocksRaycasts = true;
         rectTransform.sizeDelta = initial_size;
+
+        if(name != "Phial")transform.Rotate(0f,0f,-30f);
     }
 
     public void ResizeOnDrag()
@@ -131,6 +147,7 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
             canvasGroup.alpha = 0.6f;
             canvasGroup.blocksRaycasts = false;
             rectTransform.sizeDelta = new Vector2(rectTransform.sizeDelta.x*.8f, rectTransform.sizeDelta.y * .8f);
+            transform.Rotate(0f,0f,30f);
         }
         else
         {

@@ -10,7 +10,31 @@ public class PhialSlots : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData)
     {
-        nameSelectedSlot = name;
+        if(name == eventData.pointerDrag.name)return;
+
+        if(eventData.pointerDrag.name == "Phial")
+        {
+            nameSelectedSlot = "FinalSlot";
+        }
+
+        if(eventData.pointerDrag.name != "Phial")
+        {
+            if(PhialManager._Step1Finish)return;
+            
+            if(name != "FinalSlot")
+            {
+                nameSelectedSlot = "Phial";
+            }else
+            {
+                nameSelectedSlot = null;
+            }
+            
+        }
+
+
+        
+
+        
     }
 
     public void PointerOnSlot()

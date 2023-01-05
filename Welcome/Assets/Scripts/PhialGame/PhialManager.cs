@@ -17,6 +17,7 @@ public class PhialManager : MonoBehaviour
     public static bool _winner;
     public static bool _isDraggable;
     public static bool _isCompleted;
+    public static bool  _Step1Finish;
 
     [SerializeField] private Service _Service;
     [SerializeField] private GameObject _phialItems;
@@ -123,7 +124,7 @@ public class PhialManager : MonoBehaviour
         _trueValue = Random.Range(0,3);
         _gameData.idCiblePhial = _trueValue;
         CouleursMelangeFiole[1].color = CouleursPossible[_trueValue];
-        //ResetAllSprites();
+        _Step1Finish=false;
         while (_ID < 3)
         {
             Spawn();
