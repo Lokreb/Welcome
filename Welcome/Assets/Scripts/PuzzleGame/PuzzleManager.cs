@@ -21,6 +21,7 @@ public class PuzzleManager : MonoBehaviour
 
     private int actualPuzzle;
     [SerializeField] Sprite slotSprite;
+    [SerializeField] Transform[] slotTransforms;
 
     // Start is called before the first frame update
     void Start()
@@ -67,8 +68,10 @@ public class PuzzleManager : MonoBehaviour
         _gameData.idCiblePuzzle.Add(sprite_value);
         _ID++;
 
-        fGO.GetComponent<AnimationPuzzle>().Apparition(_delaiSpawn);
-        _delaiSpawn += .02f;
+        //fGO.GetComponent<AnimationPuzzle>().Apparition(_delaiSpawn);
+        //_delaiSpawn += .02f;
+        fGO.transform.position = slotTransforms[sprite_value].position;
+        fGO.GetComponent<AnimationPuzzle>().CutPieces();
     }
 
     public void EndGame() {
