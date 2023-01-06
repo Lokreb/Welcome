@@ -26,6 +26,7 @@ public class Service : MonoBehaviour
         {
             _currentPatient = p;
             _PopupImage.SetActive(true);
+            print("Bruit Patient Arrive");
         }
     }
 
@@ -36,13 +37,14 @@ public class Service : MonoBehaviour
         GameManager.Instance.InMinigame(true);
         _Jeu.SetActive(true);
         GameStateManager.Instance.SetState(GameState.Paused);
+        print("Popup Sound");
 
     }
 
     public void ResultMiniGame(bool win)
     {
         if(win) GameManager.Instance.ChangeScore(50);
-
+        print("Play win ?"+win);
         _currentPatient.EndMiniGame(win, _serviceSecteur);
         _ResultScreen.gameObject.SetActive(true);
         _ResultScreen.Result(win,this);

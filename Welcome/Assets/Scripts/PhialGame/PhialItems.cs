@@ -55,8 +55,7 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
 
         if (PhialSlots.nameSelectedSlot == null)
         {   
-            if(PhialManager._Step1Finish)return;
-
+            if(PhialManager._Step1Finish || name == "Phial")return;
             BackInit();
         }
         else
@@ -101,6 +100,7 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
                 fioleGO.transform.localScale = new Vector3(.8f,.8f,.8f);
                 fioleGO.transform.DOScale(1f,.5f).SetEase(Ease.OutElastic);
                 PhialManager._Step1Finish = true;
+                print("Fill up sound");
                 Destroy(eventData.pointerDrag);
             }
 
@@ -126,7 +126,6 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("OnPointerClick");
     }
 
     public void BackInit()
@@ -134,12 +133,13 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
         rectTransform.anchoredPosition = initial_position;
         canvasGroup.blocksRaycasts = true;
         rectTransform.sizeDelta = initial_size;
-
+        print("Fail drag sound");
         if(name != "Phial")transform.Rotate(0f,0f,-30f);
     }
 
     public void ResizeOnDrag()
     {
+        print("Pick up glass sound");
         if(name != "Phial")
         {
             canvasGroup.alpha = 0.6f;
