@@ -16,4 +16,9 @@ public class AnimationBarriere : MonoBehaviour
 
         transform.DORotate(new Vector3(0f,0f,z),1f);
     }
+
+    void OnDestroy()
+    {
+        GameManager.Instance.OnMoveBarriere -= MoveBarriere;
+    }
 }
