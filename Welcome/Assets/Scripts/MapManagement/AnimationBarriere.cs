@@ -12,7 +12,7 @@ public class AnimationBarriere : MonoBehaviour
 
     public void MoveBarriere(bool opening)
     {
-        float z = opening ? -65 : 35;
+        float z = opening ? -55 : 0;
 
         transform.DORotate(new Vector3(0f,0f,z),1f);
     }
