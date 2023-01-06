@@ -55,13 +55,14 @@ public class SendScoreScript : MonoBehaviour
 
             var r_score = myLine.GetComponent<DisplayScoreScript>();
 
+            Debug.Log("PlayerName : " + line.playerName + "myData.playerName : " + myData.playerName + "lineScore : " + line.score + "myDataScore : " + myData.score);
+            
+            r_score.myScore.text = line.score.ToString();
+            r_score.myName.text = line.playerName;
+            
             if (line.playerName == myData.playerName && line.score < myData.score)
                 r_score.myScore.text = myData.score.ToString();
             
-            if(line.playerName != myData.playerName)
-                r_score.myScore.text = line.score.ToString();
-
-            r_score.myName.text = line.playerName;
             if (i == 5)
             {
                 break;
