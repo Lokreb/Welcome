@@ -38,6 +38,7 @@ public class FolderManager : MonoBehaviour
     {
         if (!_start) return;
         EndGame();
+        AudioComponent.volume = _gameData.volume;
     }
 
     public void StartMinigame(GameObject go)
