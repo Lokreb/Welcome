@@ -1,11 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.IO;
-using UnityEngine.Networking;
-using System;
 
-public class SongManager : MonoBehaviour
+public class CatchManager : MonoBehaviour
 {
     public static bool _isPlayed;
     public static bool _isCompleted;
