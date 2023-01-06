@@ -110,7 +110,10 @@ public class PhialItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandler
 
                 _ContenantFiole.color = Color.white;
                 FioleMelange = 0;
-                BackInit();
+                rectTransform.anchoredPosition = initial_position;
+                canvasGroup.blocksRaycasts = true;
+                rectTransform.sizeDelta = initial_size;
+                //BackInit();
             }
 
             if (PhialManager._isDraggable && name == "Phial" && PhialSlots.nameSelectedSlot != "FinalSlot")

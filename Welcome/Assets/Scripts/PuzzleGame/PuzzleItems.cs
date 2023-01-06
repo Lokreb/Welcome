@@ -51,11 +51,9 @@ public class PuzzleItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         if (PuzzleSlots.nameSelectedSlot == null)
         {
             StartingPosition();
-            print("Drop Card Sound");
         }
         else
         {
-            print("Put Card Sound");
             switch (PuzzleSlots.nameSelectedSlot)
             {
                 case "Slot_A":
@@ -153,6 +151,7 @@ public class PuzzleItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         rectTransform.anchoredPosition = new Vector2(0, 0);
         canvasGroup.blocksRaycasts = true;
         rectTransform.sizeDelta = new Vector2(200, 200);
+        print("Drop Card Sound");
     }
     
     public void GoodPosition(string name)
@@ -162,5 +161,6 @@ public class PuzzleItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         rectTransform.sizeDelta = new Vector2(200, 200);
         GameObject go = GameObject.Find(name);
         go.GetComponent<Image>().sprite = GetComponent<Image>().sprite;
+        print("Put Card Sound");
     }
 }
