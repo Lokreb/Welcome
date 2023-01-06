@@ -6062,10 +6062,10 @@ RectTransform:
   m_Father: {fileID: 1545587443}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &249543056
 MonoBehaviour:
@@ -6187,6 +6187,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 270048535}
+          m_TargetAssemblyTypeName: AnimationPopUpMinigames, Assembly-CSharp
+          m_MethodName: StartPop
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &263256678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6256,6 +6268,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 270048534}
+  - component: {fileID: 270048535}
   m_Layer: 5
   m_Name: PuzzleGame
   m_TagString: Untagged
@@ -6285,6 +6298,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &270048535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 270048533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cabe79ca3cb7c649b177416b438384a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &292940314
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7399,6 +7424,7 @@ GameObject:
   m_Component:
   - component: {fileID: 417892028}
   - component: {fileID: 417892029}
+  - component: {fileID: 417892030}
   m_Layer: 5
   m_Name: RythmGame
   m_TagString: Untagged
@@ -7439,6 +7465,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417892027}
   m_CullTransparentMesh: 1
+--- !u!114 &417892030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417892027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cabe79ca3cb7c649b177416b438384a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &432082931
 GameObject:
   m_ObjectHideFlags: 0
@@ -13485,6 +13523,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1670411456}
+          m_TargetAssemblyTypeName: AnimationPopUpMinigames, Assembly-CSharp
+          m_MethodName: StartPop
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &584643771
 GameObject:
   m_ObjectHideFlags: 0
@@ -19473,6 +19523,18 @@ MonoBehaviour:
         - m_Target: {fileID: 715763806}
           m_TargetAssemblyTypeName: Service, Assembly-CSharp
           m_MethodName: OnClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 417892030}
+          m_TargetAssemblyTypeName: AnimationPopUpMinigames, Assembly-CSharp
+          m_MethodName: StartPop
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -36354,6 +36416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1545587443}
   - component: {fileID: 1545587444}
+  - component: {fileID: 1545587445}
   m_Layer: 5
   m_Name: PhialGame
   m_TagString: Untagged
@@ -36381,7 +36444,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1545587444
 CanvasRenderer:
@@ -36391,6 +36454,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1545587442}
   m_CullTransparentMesh: 1
+--- !u!114 &1545587445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545587442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cabe79ca3cb7c649b177416b438384a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1554547878
 GameObject:
   m_ObjectHideFlags: 0
@@ -37499,6 +37574,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1670411454}
   - component: {fileID: 1670411455}
+  - component: {fileID: 1670411456}
   m_Layer: 5
   m_Name: SortGame
   m_TagString: Untagged
@@ -37536,6 +37612,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670411453}
   m_CullTransparentMesh: 1
+--- !u!114 &1670411456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670411453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cabe79ca3cb7c649b177416b438384a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1674093189
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50021,6 +50109,18 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 1545587442}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1545587445}
+          m_TargetAssemblyTypeName: AnimationPopUpMinigames, Assembly-CSharp
+          m_MethodName: StartPop
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 

@@ -95,6 +95,6 @@ public class Items : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEn
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("OnPointerClick");
+        Debug.Log(transform.position);
     }
 }
