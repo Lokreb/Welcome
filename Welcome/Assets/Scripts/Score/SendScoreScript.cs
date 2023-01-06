@@ -52,9 +52,16 @@ public class SendScoreScript : MonoBehaviour
         {
             i++;
             GameObject myLine = Instantiate(ScoreLinePrefab, scoreBoard);
+
             var r_score = myLine.GetComponent<DisplayScoreScript>();
+
+            if (line.playerName == myData.playerName && line.score < myData.score)
+                r_score.myScore.text = myData.score.ToString();
+            
+            if(line.playerName != myData.playerName)
+                r_score.myScore.text = line.score.ToString();
+
             r_score.myName.text = line.playerName;
-            r_score.myScore.text = line.score.ToString();
             if (i == 5)
             {
                 break;
