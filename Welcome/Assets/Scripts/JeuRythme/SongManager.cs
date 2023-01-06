@@ -14,8 +14,6 @@ public class SongManager : MonoBehaviour
 
     [SerializeField] private Service _Service;
     [SerializeField] public GameObject _Jeu;
-    //[SerializeField] public GameObject _lane;
-
 
     // Start is called before the first frame update
     void Start()

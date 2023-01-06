@@ -17,12 +17,14 @@ public class CubeCollider : MonoBehaviour
         if (other.CompareTag("Ground")) {
             Debug.Log("Sort");
             _isIn = false;
+            Miss();
         }
     }
 
     private void PressToDestroy() {
         if(Input.GetKeyDown(KeyCode.Space) && _isIn == true) {
             Destroy(gameObject);
+            Hit();
         }
     }
 
@@ -30,4 +32,12 @@ public class CubeCollider : MonoBehaviour
         PressToDestroy();
     }
 
+    private void Hit()
+    {
+        ScoreManager.Hit();
+    }
+    private void Miss()
+    {
+        ScoreManager.Miss();
+    }
 }
