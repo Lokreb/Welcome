@@ -7,7 +7,9 @@ public class Formes : MonoBehaviour
 {
     public Image _image;
 
+    void Start() {
+        GetComponent<Image>().enabled = true;
+    }
     void Update() {
-         GetComponent<Image>().enabled = true;
     }
 }
