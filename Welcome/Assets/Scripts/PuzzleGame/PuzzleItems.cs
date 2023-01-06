@@ -36,6 +36,7 @@ public class PuzzleItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
         rectTransform.sizeDelta = new Vector2(100, 100);
+        print("Pick up Card Sound");
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -46,12 +47,15 @@ public class PuzzleItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     public void OnEndDrag(PointerEventData eventData)
     {
         canvasGroup.alpha = 1.0f;
+        
         if (PuzzleSlots.nameSelectedSlot == null)
         {
             StartingPosition();
+            print("Drop Card Sound");
         }
         else
         {
+            print("Put Card Sound");
             switch (PuzzleSlots.nameSelectedSlot)
             {
                 case "Slot_A":

@@ -100,6 +100,7 @@ public class PuzzleManager : MonoBehaviour
         {
             Spawn();
         }
+        print("Decoupage sound");
     }
 
     public void ResetSprite(string name)
