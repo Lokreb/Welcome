@@ -11,6 +11,9 @@ public class Service : MonoBehaviour
     [SerializeField] private AnimationsClips _ResultScreen;
 
     [SerializeField] private Patient _currentPatient;
+
+    [SerializeField] private AudioClip[] _AudioClips;
+    [SerializeField] private AudioSource _AudioSource;
     
 
 
@@ -26,7 +29,8 @@ public class Service : MonoBehaviour
         {
             _currentPatient = p;
             _PopupImage.SetActive(true);
-            print("Bruit Patient Arrive");
+            _AudioSource.clip = _AudioClips[0];
+            _AudioSource.Play();
         }
     }
 
