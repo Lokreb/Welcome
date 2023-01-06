@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public event Action OnTimerChange;
     public event Action OnScoreChange;
     public event Action<bool> OnMiniGamePlaying;
+    public event Action<bool> OnMoveBarriere;
 
     [Header("Game Balance")]
     public float Timer = 600;
@@ -153,8 +154,10 @@ public class GameManager : MonoBehaviour
         choice = choice == _CharactersPrefabAnimations.Length-1 ? 0 : choice+1 ;
     }
 
+    bool _onePatientFinish;
     public void AvanceTapis()
     {
+        _onePatientFinish = false;
         int nbPatient = _ListPatient.Count;
         for (int a = 0; a < nbPatient; a++)
         {
@@ -162,6 +165,7 @@ public class GameManager : MonoBehaviour
         }
         _ListPatient.Remove(_patientRemove);
         _patientRemove = null;
+        OnMoveBarriere?.Invoke(_onePatientFinish);
     }
 
     Patient _patientRemove = null;
@@ -255,6 +259,8 @@ public class GameManager : MonoBehaviour
         p.TweenID = IdTweenSet;
         IdTweenSet++;
         if (IdTweenSet == 1000) IdTweenSet = 0;
+
+        if(p.ServiceToSee.Count == 0)_onePatientFinish = true;
     }
 
     int SplitPath(Patient p)
