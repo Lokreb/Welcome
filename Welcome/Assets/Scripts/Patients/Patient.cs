@@ -14,6 +14,8 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     private Color complet = new Color(1f, 1f, 1f, 1f);
     [SerializeField] private SpriteRenderer _bulle;
     [SerializeField]private SpriteRenderer _service;
+    [SerializeField] private AudioSource _AudioSource;
+    [SerializeField] private AudioClip[] _VoicesOnGrab;
     [HideInInspector] public AnimatorUI AnimatorUIScript;
     
 
@@ -30,6 +32,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
         PathIn[0] = 0;
         PathIn[1] = -1;
         GameManager.Instance.OnMiniGamePlaying += Playing;
+        _AudioSource.clip = _VoicesOnGrab[Random.Range(0, _VoicesOnGrab.Length)];
     }
 
     void OnDestroy()
@@ -50,6 +53,8 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (InMiniGame) return;
+        
+        _AudioSource.Play();
 
         AnimatorUIScript.Transparent(true);
         _bulle.color = alpha;
@@ -60,7 +65,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
         _clone = Instantiate(this);
         _clone.gameObject.transform.SetParent(transform.parent);
         _clone.AnimatorUIScript.AnimatorComponent.SetBool("isGrab", true);
-        
+
 
         if (ServiceToSee.Count == 0) return;
         _clone.ServiceToSee.Enqueue(ServiceToSee.Peek());
@@ -72,7 +77,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     {
         if(_clone==null)return;
 
-        _clone.transform.position = GetMousePos() - _offset;        
+        _clone.transform.position = GetMousePos() - _offset;
     }
 
     public void OnDrop(PointerEventData eventData)
