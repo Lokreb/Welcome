@@ -12,7 +12,7 @@ public class AnimationFioles : MonoBehaviour
 
         Sequence sequence = DOTween.Sequence();
 
-        sequence.SetDelay(delai);
+        sequence.SetDelay(delai+.2f);
         sequence.Append(transform.DOScale(1f,_vitesse).SetEase(Ease.OutElastic));
         sequence.Join(transform.DOShakeRotation(_vitesse*.8f, new Vector3(0f,0f,10f), 3 , 90f, true, ShakeRandomnessMode.Full).SetEase(Ease.Linear));
 
