@@ -41,7 +41,8 @@ public class Service : MonoBehaviour
         GameManager.Instance.InMinigame(true);
         _Jeu.SetActive(true);
         GameStateManager.Instance.SetState(GameState.Paused);
-        print("Popup Sound");
+        _AudioSource.clip = _AudioClips[1];
+        _AudioSource.Play();
 
     }
 
