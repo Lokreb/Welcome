@@ -148,7 +148,7 @@ public class PuzzleItems : MonoBehaviour, IPointerClickHandler, IBeginDragHandle
     {
         rectTransform.anchoredPosition = new Vector2(0, 0);
         canvasGroup.blocksRaycasts = true;
-        rectTransform.sizeDelta = new Vector2(150, 150);
+        rectTransform.sizeDelta = new Vector2(200, 200);
     }
     
     public void GoodPosition(string name)
