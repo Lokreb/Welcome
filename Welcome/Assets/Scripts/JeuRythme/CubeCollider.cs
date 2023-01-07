@@ -22,9 +22,11 @@ public class CubeCollider : MonoBehaviour
     }
 
     private void PressToDestroy() {
-        if(Input.GetKeyDown(KeyCode.Space) && _isIn == true) {
-            Destroy(gameObject);
-            Hit();
+        if(gameObject.layer == LayerMask.NameToLayer("Second Layer")) {
+            if(Input.GetKeyDown(KeyCode.Space) && _isIn == true) {
+                Destroy(gameObject);
+                Hit();
+            }
         }
     }
 
