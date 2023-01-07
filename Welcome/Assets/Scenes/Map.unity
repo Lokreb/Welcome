@@ -19015,7 +19015,7 @@ GameObject:
   m_Component:
   - component: {fileID: 701870789}
   - component: {fileID: 701870790}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Spawn
   m_TagString: Cube
   m_Icon: {fileID: 0}
@@ -19043,7 +19043,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701870788}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
