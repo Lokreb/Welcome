@@ -6,7 +6,7 @@ public class GroundController : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.CompareTag("Cube")) {
-            Debug.Log("Coll");
+            //Debug.Log("Collision");
         }
     }
 

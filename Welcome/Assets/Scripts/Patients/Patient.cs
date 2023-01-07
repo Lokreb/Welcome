@@ -182,6 +182,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
                     service = (Services)UnityEngine.Random.Range(0, (int)Services.MAX);
                 }
             }
+            service = Services.D;
             this.ServiceToSee.Enqueue(service);
 
         }
