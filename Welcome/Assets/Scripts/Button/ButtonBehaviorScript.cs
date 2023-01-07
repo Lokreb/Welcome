@@ -56,4 +56,10 @@ public class ButtonBehaviorScript : MonoBehaviour
     {
         SceneManager.LoadScene(nomScene);
     }
+
+    public void DeleteSound()
+    {
+        GameObject soundtrack = GameObject.Find("SoundTrack");
+        Destroy(soundtrack);
+    }
 }
