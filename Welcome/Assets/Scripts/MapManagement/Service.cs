@@ -15,6 +15,12 @@ public class Service : MonoBehaviour
     [SerializeField] private Spawner _Spawner;
     [SerializeField] private ScoreManager _scoreManagerRythm;
     
+    [SerializeField] private AudioClip[] _AudioClips;
+    [SerializeField] private AudioSource _AudioSource;
+
+    [SerializeField] SelectorMinigames _Selector;
+    [SerializeField] AnimationPopUpMinigames _AnimationPopUp;
+
 
 
     void Start()
@@ -29,6 +35,8 @@ public class Service : MonoBehaviour
         {
             _currentPatient = p;
             _PopupImage.SetActive(true);
+            _AudioSource.clip = _AudioClips[0];
+            _AudioSource.Play();
         }
     }
 
@@ -47,6 +55,8 @@ public class Service : MonoBehaviour
 
         _Jeu.SetActive(true);
         GameStateManager.Instance.SetState(GameState.Paused);
+        _AudioSource.clip = _AudioClips[1];
+        _AudioSource.Play();
 
     }
 
@@ -54,6 +64,18 @@ public class Service : MonoBehaviour
     {
         if(win) GameManager.Instance.ChangeScore(50);
 
+        if(win)
+        {
+            _AudioSource.clip =_AudioClips[2];
+            _AudioSource.PlayDelayed(.3f);
+        }
+        else
+        {
+            _AudioSource.clip = _AudioClips[3];
+            _AudioSource.PlayDelayed(.1f);
+        }
+        
+        
         _currentPatient.EndMiniGame(win, _serviceSecteur);
         _ResultScreen.gameObject.SetActive(true);
         _ResultScreen.Result(win,this);
@@ -67,5 +89,29 @@ public class Service : MonoBehaviour
         _PopupImage.SetActive(false);
         GameManager.Instance.InMinigame(false);
         GameStateManager.Instance.SetState(GameState.Gameplay);
+    }
+
+    private void OnMouseDown()
+    {
+        if (_currentPatient == null || GameStateManager.Instance.CurrentGameState == GameState.Paused) return;
+
+        OnClick();
+        
+        switch(_serviceSecteur)
+        {
+            case Services.A:
+                _Selector.FolderManager.StartMinigame(_AnimationPopUp.gameObject);
+                break;
+            case Services.C:
+                _Selector.PuzzleManager.StartMinigame(_AnimationPopUp.gameObject);
+                break;
+            case Services.D:
+                break;
+            case Services.E:
+                _Selector.PhialManager.StartMinigame(_AnimationPopUp.gameObject);
+                break;
+        }
+
+        _AnimationPopUp.StartPop();
     }
 }

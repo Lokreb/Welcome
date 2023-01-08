@@ -80,13 +80,15 @@ public class PuzzleManager : MonoBehaviour
             _Service.ResultMiniGame(true);
             //NewGame();
             _ID = 0;
+            _hasBeenClicked = false;
         }
     }
 
+    bool _hasBeenClicked = false;
     public void StartMinigame(GameObject go)
     {
-        if(! go.activeSelf) return;
-
+        if(! go.activeSelf || _hasBeenClicked) return;
+        _hasBeenClicked = true;
         NewGame();
     }
 
@@ -100,6 +102,7 @@ public class PuzzleManager : MonoBehaviour
         {
             Spawn();
         }
+        print("Decoupage sound");
     }
 
     public void ResetSprite(string name)

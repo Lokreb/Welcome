@@ -38,11 +38,12 @@ public class PhialManager : MonoBehaviour
         ThisIsTheEnd();
     }
 
+    bool _hasBeenClicked = false;
     public void StartMinigame(GameObject go)
     {
-        if(! go.activeSelf) return;
-
+        if(! go.activeSelf || _hasBeenClicked) return;
         NewGame();
+        _hasBeenClicked = true;
     }
 
     float _delai;
@@ -104,11 +105,13 @@ public class PhialManager : MonoBehaviour
                 GameObject.Destroy(child.gameObject);
             }
             PhialManager._isCompleted = false;
+            _hasBeenClicked = false;
         }
     }
 
     public void NewGame()
     {
+        
         spriteValueList.Clear();
         _delai = 0f;
         _ID = 0;

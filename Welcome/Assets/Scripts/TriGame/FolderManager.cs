@@ -41,9 +41,10 @@ public class FolderManager : MonoBehaviour
         AudioComponent.volume = _gameData.volume;
     }
 
+    bool _hasBeenClicked = false;
     public void StartMinigame(GameObject go)
     {
-        if(! go.activeSelf) return;
+        if(! go.activeSelf || _hasBeenClicked) return;
         _delaiSpawn = 0f;
         NewGame();
         AudioComponent.clip = Clip;
@@ -53,7 +54,9 @@ public class FolderManager : MonoBehaviour
             Spawn();
         }
         _start = true;
-        
+        _hasBeenClicked = true;
+
+
 
     }
     private float _delaiSpawn;
@@ -93,6 +96,7 @@ public class FolderManager : MonoBehaviour
             _gameData.count = 0;
             _gameData.scoreSortGame = 0;
             NewGame();
+            _hasBeenClicked = false;
         }
     }
 

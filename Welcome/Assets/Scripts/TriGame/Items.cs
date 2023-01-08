@@ -36,6 +36,7 @@ public class Items : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEn
         canvasGroup.alpha = 0.6f;
         canvasGroup.blocksRaycasts = false;
         rectTransform.sizeDelta = new Vector2(100, 100);
+        print("Pick up Card Sound");
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -51,13 +52,14 @@ public class Items : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEn
             rectTransform.anchoredPosition = new Vector2(0,0);
             canvasGroup.blocksRaycasts = true;
             rectTransform.sizeDelta = new Vector2(185.5f, 184.5f);
+            print("Drop Card Sound");
         }
         else
         {
             actualTarget = Slots.nameSelectedSlot;
             Slots.nameSelectedSlot = null;
             Destroy(eventData.pointerDrag);
-
+            print("Put Card Sound");
             switch (actualTarget)
             {
                 case "ServiceA":
@@ -93,6 +95,6 @@ public class Items : MonoBehaviour, IPointerClickHandler, IBeginDragHandler, IEn
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("OnPointerClick");
+        Debug.Log(transform.position);
     }
 }
