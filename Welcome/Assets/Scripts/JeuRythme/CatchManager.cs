@@ -23,7 +23,6 @@ public class CatchManager : MonoBehaviour
         _isPlayed = false;
         _isCompleted = false;
         _winner = false;
-        
     }
 
 
@@ -41,15 +40,13 @@ public class CatchManager : MonoBehaviour
                 _winner = false;
                 _Service.ResultMiniGame(_winner);
             }
-            StartCoroutine(NewGame());
+            NewGame();
         }
     }
 
-    IEnumerator NewGame() {
+    public void NewGame() {
         _GC._count = 0;
         _SM.comboScore = 0;
-        yield return new WaitForSeconds(3);
-        StartCoroutine(_Spawner.SpawnCubes());
     }
 
 
