@@ -15,6 +15,8 @@ public class Spawner : MonoBehaviour
 
     public IEnumerator SpawnCubes()
     {
+        yield return new WaitForSeconds(.5f);
+
         for (int i = 0; i < numCubes; i++)
         {
             // spawn a cube at the same position as the spawner

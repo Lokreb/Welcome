@@ -27,5 +27,6 @@ public class ScoreManager : MonoBehaviour
     private void Update()
     {
         scoreText.text = comboScore.ToString();
+        scoreText.canvas.additionalShaderChannels = AdditionalCanvasShaderChannels.None;
     }
 }
