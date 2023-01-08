@@ -119,6 +119,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4e0a397cf0f525d45bfe452f6b2801c8, type: 3}
   - {fileID: 8300000, guid: 7dcfc06eeaae42e45a27d81987f11edd, type: 3}
   AnimatorUIScript: {fileID: 0}
+  _gameData: {fileID: 11400000, guid: f9b4c65ed7f27264ab666117dfb94ffc, type: 2}
   Patience: 2
   PathIn: 00000000ffffffff
   InMiniGame: 0
