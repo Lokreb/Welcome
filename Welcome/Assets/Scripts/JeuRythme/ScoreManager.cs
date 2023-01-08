@@ -10,6 +10,7 @@ public class ScoreManager : MonoBehaviour
     public AudioSource missSFX;
     public TextMeshProUGUI scoreText;
     public int comboScore;
+    [SerializeField] private GameDataScript _gameData;
     void Start()
     {
         Instance = this;
@@ -28,5 +29,7 @@ public class ScoreManager : MonoBehaviour
     {
         scoreText.text = comboScore.ToString();
         scoreText.canvas.additionalShaderChannels = AdditionalCanvasShaderChannels.None;
+        Instance.hitSFX.volume = _gameData.volume;
+        Instance.missSFX.volume = _gameData.volume;
     }
 }
