@@ -6215,6 +6215,8 @@ MonoBehaviour:
   _PopupImage: {fileID: 711999296}
   _ResultScreen: {fileID: 990845437}
   _currentPatient: {fileID: 0}
+  _Spawner: {fileID: 584643773}
+  _scoreManagerRythm: {fileID: 1430838905}
 --- !u!114 &263256679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13281,6 +13283,8 @@ MonoBehaviour:
   _PopupImage: {fileID: 1500761574}
   _ResultScreen: {fileID: 990845437}
   _currentPatient: {fileID: 0}
+  _Spawner: {fileID: 584643773}
+  _scoreManagerRythm: {fileID: 1430838905}
 --- !u!114 &584540305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19400,6 +19404,8 @@ MonoBehaviour:
   _PopupImage: {fileID: 951532938}
   _ResultScreen: {fileID: 990845437}
   _currentPatient: {fileID: 0}
+  _Spawner: {fileID: 584643773}
+  _scoreManagerRythm: {fileID: 1430838905}
 --- !u!114 &715763807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -49779,6 +49785,8 @@ MonoBehaviour:
   _PopupImage: {fileID: 1276753899}
   _ResultScreen: {fileID: 990845437}
   _currentPatient: {fileID: 0}
+  _Spawner: {fileID: 584643773}
+  _scoreManagerRythm: {fileID: 1430838905}
 --- !u!114 &1973921185
 MonoBehaviour:
   m_ObjectHideFlags: 0
