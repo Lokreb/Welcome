@@ -11,6 +11,9 @@ public class Service : MonoBehaviour
     [SerializeField] private AnimationsClips _ResultScreen;
 
     [SerializeField] private Patient _currentPatient;
+
+    [SerializeField] private Spawner _Spawner;
+    [SerializeField] private ScoreManager _scoreManagerRythm;
     
 
 
@@ -34,6 +37,14 @@ public class Service : MonoBehaviour
         if (_currentPatient == null) return;
 
         GameManager.Instance.InMinigame(true);
+
+        if (_Jeu.name == "RythmGame")
+        {
+            _scoreManagerRythm.comboScore = 0;
+            StartCoroutine(_Spawner.SpawnCubes());
+            
+        }
+
         _Jeu.SetActive(true);
         GameStateManager.Instance.SetState(GameState.Paused);
 
