@@ -21,12 +21,19 @@ public class Service : MonoBehaviour
     [SerializeField] SelectorMinigames _Selector;
     [SerializeField] AnimationPopUpMinigames _AnimationPopUp;
 
+    [SerializeField] GameDataScript _gameData;
+
 
 
     void Start()
     {
         GameManager.Instance.OnPatientService += PatientArrive;
         _Jeu.SetActive(false);
+    }
+
+    private void Update()
+    {
+        _AudioSource.volume = _gameData.volume;
     }
 
     private void PatientArrive(WayPointsValue wp, Patient p)
