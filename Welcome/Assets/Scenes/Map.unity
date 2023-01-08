@@ -21446,6 +21446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdae8d9c8cf1bd247b4200c8f033b3be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _count: 0
 --- !u!1 &881237898
 GameObject:
   m_ObjectHideFlags: 0
@@ -37011,6 +37012,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1633662607}
+  - component: {fileID: 1633662608}
   m_Layer: 0
   m_Name: CatchManager
   m_TagString: Untagged
@@ -37032,6 +37034,23 @@ Transform:
   m_Father: {fileID: 1940683548}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1633662608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1633662606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f69f5135aeb19d42ad1b8801ad742ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _Service: {fileID: 715763806}
+  _Jeu: {fileID: 417892027}
+  _SM: {fileID: 1430838905}
+  _GC: {fileID: 867628754}
+  _Spawner: {fileID: 584643773}
 --- !u!1 &1634352789
 GameObject:
   m_ObjectHideFlags: 0

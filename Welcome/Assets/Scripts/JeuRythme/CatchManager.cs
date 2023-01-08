@@ -12,7 +12,9 @@ public class CatchManager : MonoBehaviour
     [SerializeField] private Service _Service;
     [SerializeField] public GameObject _Jeu;
     [SerializeField] private ScoreManager _SM;
-    [SerializeField] private CubeCollider _CC;
+    [SerializeField] private GroundController _GC;
+    [SerializeField] private Spawner _Spawner;
+
 
 
     // Start is called before the first frame update
@@ -28,7 +30,7 @@ public class CatchManager : MonoBehaviour
 
     public void ThisIsTheEnd()
     {
-        if (_CC._countMiss + _CC._countHit == 20) {
+        if (_GC._count == 20) {
             _isCompleted = true;
             if (_isCompleted && _SM.comboScore > 10)
             {
@@ -39,11 +41,15 @@ public class CatchManager : MonoBehaviour
                 _winner = false;
                 _Service.ResultMiniGame(_winner);
             }
+            StartCoroutine(NewGame());
         }
     }
 
-    public void NewGame() {
-        
+    IEnumerator NewGame() {
+        _GC._count = 0;
+        _SM.comboScore = 0;
+        yield return new WaitForSeconds(3);
+        StartCoroutine(_Spawner.SpawnCubes());
     }
 
 

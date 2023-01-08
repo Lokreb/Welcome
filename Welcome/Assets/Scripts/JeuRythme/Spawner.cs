@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Spawner : MonoBehaviour
 {
     public Formes cubePrefab; // reference to the cube prefab
-    [SerializeField] List<Sprite> sprites = new List<Sprite>();
+    [SerializeField] public List<Sprite> sprites = new List<Sprite>();
     public float spawnInterval = 1f; // interval between each spawn
     public int numCubes = 20; // number of cubes to spawn
 
@@ -19,7 +19,7 @@ public class Spawner : MonoBehaviour
         StartCoroutine(SpawnCubes());
     }
 
-    IEnumerator SpawnCubes()
+    public IEnumerator SpawnCubes()
     {
         for (int i = 0; i < numCubes; i++)
         {
