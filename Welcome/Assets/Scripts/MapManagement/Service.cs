@@ -49,7 +49,8 @@ public class Service : MonoBehaviour
     public void ResultMiniGame(bool win)
     {
         if(win) GameManager.Instance.ChangeScore(50);
-        print("Play win ?"+win);
+        _AudioSource.clip = _AudioClips[2];
+        _AudioSource.PlayDelayed(.35f);
         _currentPatient.EndMiniGame(win, _serviceSecteur);
         _ResultScreen.gameObject.SetActive(true);
         _ResultScreen.Result(win,this);
