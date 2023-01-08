@@ -6250,6 +6250,7 @@ MonoBehaviour:
   _AudioSource: {fileID: 1094635283}
   _Selector: {fileID: 1094635284}
   _AnimationPopUp: {fileID: 270048535}
+  _gameData: {fileID: 11400000, guid: f9b4c65ed7f27264ab666117dfb94ffc, type: 2}
 --- !u!114 &263256679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13384,6 +13385,7 @@ MonoBehaviour:
   _AudioSource: {fileID: 1094635283}
   _Selector: {fileID: 1094635284}
   _AnimationPopUp: {fileID: 1670411456}
+  _gameData: {fileID: 11400000, guid: f9b4c65ed7f27264ab666117dfb94ffc, type: 2}
 --- !u!114 &584540305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13570,7 +13572,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ca597cd50c39fc943bf32cf57b47bb40, type: 3}
   - {fileID: 21300000, guid: 1568d24bb54e78340a09805bedd197cb, type: 3}
   spawnInterval: 0.7
-  numCubes: 5
+  numCubes: 10
   zone: {fileID: 701870788}
 --- !u!1 &604219940
 GameObject:
@@ -19569,6 +19571,7 @@ MonoBehaviour:
   _AudioSource: {fileID: 1094635283}
   _Selector: {fileID: 1094635284}
   _AnimationPopUp: {fileID: 417892030}
+  _gameData: {fileID: 11400000, guid: f9b4c65ed7f27264ab666117dfb94ffc, type: 2}
 --- !u!114 &715763807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35506,6 +35509,7 @@ MonoBehaviour:
   missSFX: {fileID: 757003977}
   scoreText: {fileID: 118746083}
   comboScore: 0
+  _gameData: {fileID: 11400000, guid: f9b4c65ed7f27264ab666117dfb94ffc, type: 2}
 --- !u!1 &1453796424
 GameObject:
   m_ObjectHideFlags: 0
@@ -50328,6 +50332,7 @@ MonoBehaviour:
   _AudioSource: {fileID: 1094635283}
   _Selector: {fileID: 1094635284}
   _AnimationPopUp: {fileID: 1545587445}
+  _gameData: {fileID: 11400000, guid: f9b4c65ed7f27264ab666117dfb94ffc, type: 2}
 --- !u!114 &1973921185
 MonoBehaviour:
   m_ObjectHideFlags: 0
