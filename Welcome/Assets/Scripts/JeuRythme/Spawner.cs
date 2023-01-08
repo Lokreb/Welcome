@@ -13,12 +13,6 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] private GameObject zone;
 
-    void Start()
-    {
-        // spawn the cubes with a delay of "spawnInterval" seconds between each spawn
-        StartCoroutine(SpawnCubes());
-    }
-
     public IEnumerator SpawnCubes()
     {
         for (int i = 0; i < numCubes; i++)
