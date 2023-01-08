@@ -14,7 +14,10 @@ public class Service : MonoBehaviour
 
     [SerializeField] private AudioClip[] _AudioClips;
     [SerializeField] private AudioSource _AudioSource;
-    
+
+    [SerializeField] SelectorMinigames _Selector;
+    [SerializeField] AnimationPopUpMinigames _AnimationPopUp;
+
 
 
     void Start()
@@ -75,5 +78,29 @@ public class Service : MonoBehaviour
         _PopupImage.SetActive(false);
         GameManager.Instance.InMinigame(false);
         GameStateManager.Instance.SetState(GameState.Gameplay);
+    }
+
+    private void OnMouseDown()
+    {
+        if (_currentPatient == null) return;
+
+        OnClick();
+        
+        switch(_serviceSecteur)
+        {
+            case Services.A:
+                _Selector.FolderManager.StartMinigame(_AnimationPopUp.gameObject);
+                break;
+            case Services.C:
+                _Selector.PuzzleManager.StartMinigame(_AnimationPopUp.gameObject);
+                break;
+            case Services.D:
+                break;
+            case Services.E:
+                _Selector.PhialManager.StartMinigame(_AnimationPopUp.gameObject);
+                break;
+        }
+
+        _AnimationPopUp.StartPop();
     }
 }
