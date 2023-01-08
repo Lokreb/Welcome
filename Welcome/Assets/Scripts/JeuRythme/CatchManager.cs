@@ -31,7 +31,7 @@ public class CatchManager : MonoBehaviour
     {
         if (_GC._count == _Spawner.numCubes) {
             _isCompleted = true;
-            if (_isCompleted && _SM.comboScore > 10)
+            if (_isCompleted && _SM.comboScore > _Spawner.numCubes / 2)
             {
                 _winner = true;
                 _Service.ResultMiniGame(_winner);
