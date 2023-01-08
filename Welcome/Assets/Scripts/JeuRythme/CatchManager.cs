@@ -29,7 +29,7 @@ public class CatchManager : MonoBehaviour
 
     public void ThisIsTheEnd()
     {
-        if (_GC._count == 20) {
+        if (_GC._count == _Spawner.numCubes) {
             _isCompleted = true;
             if (_isCompleted && _SM.comboScore > 10)
             {
