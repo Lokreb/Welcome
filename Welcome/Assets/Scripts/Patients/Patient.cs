@@ -17,6 +17,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     [SerializeField] private AudioSource _AudioSource;
     [SerializeField] private AudioClip[] _VoicesOnGrab;
     [HideInInspector] public AnimatorUI AnimatorUIScript;
+    [SerializeField] private GameDataScript _gameData;
     
 
     public float Patience = 5f;
@@ -55,6 +56,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
         if (InMiniGame) return;
         
         _AudioSource.Play();
+        _AudioSource.volume = _gameData.volume;
 
         AnimatorUIScript.Transparent(true);
         _bulle.color = alpha;
