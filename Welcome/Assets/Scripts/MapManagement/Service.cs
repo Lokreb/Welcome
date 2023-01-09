@@ -14,7 +14,8 @@ public class Service : MonoBehaviour
 
     [SerializeField] private Spawner _Spawner;
     [SerializeField] private ScoreManager _scoreManagerRythm;
-    
+    [SerializeField] private TrueValueManager _spritesManagerRythm;
+
     [SerializeField] private AudioClip[] _AudioClips;
     [SerializeField] private AudioSource _AudioSource;
 
@@ -55,9 +56,13 @@ public class Service : MonoBehaviour
 
         if (_Jeu.name == "RythmGame")
         {
+            //All important values of the mini rhythm game are reset.
+            _Spawner._scoreMax = 0;
+            _spritesManagerRythm._trueSpritesList.Clear();
+            _spritesManagerRythm._trueValueList.Clear();
+            _spritesManagerRythm.AssignTrueValue();
             _scoreManagerRythm.comboScore = 0;
             StartCoroutine(_Spawner.SpawnCubes());
-            
         }
 
         _Jeu.SetActive(true);
