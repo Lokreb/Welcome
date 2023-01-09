@@ -57,6 +57,8 @@ public class Service : MonoBehaviour
         if (_Jeu.name == "RythmGame")
         {
             //All important values of the mini rhythm game are reset.
+            _Spawner._gameStarted = false;
+            _Spawner.numberStillAlive = 1;
             _Spawner._scoreMax = 0;
             _spritesManagerRythm._trueSpritesList.Clear();
             _spritesManagerRythm._trueValueList.Clear();
