@@ -23,7 +23,7 @@ public class ScoreManager : MonoBehaviour
     }
     public static void Miss()
     {
-        Instance.missSFX.Play();
+        //Instance.missSFX.Play();
     }
     private void Update()
     {
