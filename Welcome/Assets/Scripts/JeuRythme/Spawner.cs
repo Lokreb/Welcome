@@ -15,6 +15,14 @@ public class Spawner : MonoBehaviour
     [SerializeField] private TrueValueManager _trueValueManager;
 
     public int _scoreMax = 0;
+    public int numberStillAlive = 1;
+    public bool _gameStarted = false;
+
+    private void Update()
+    {
+        if(_gameStarted)
+            numberStillAlive = zone.transform.childCount;
+    }
 
     public IEnumerator SpawnCubes()
     {
@@ -37,6 +45,7 @@ public class Spawner : MonoBehaviour
                     _scoreMax++;
             
             _formes.transform.SetParent(zone.transform);
+            _gameStarted = true;
             // wait for "spawnInterval" seconds before spawning the next cube
             yield return new WaitForSeconds(spawnInterval);
         }
