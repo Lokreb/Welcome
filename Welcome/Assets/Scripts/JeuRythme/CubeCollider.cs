@@ -33,6 +33,16 @@ public class CubeCollider : MonoBehaviour
             Destroy(gameObject);
             Hit();
         }
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            foreach(Touch touch in Input.touches)
+                if(touch.phase == TouchPhase.Began)
+                    if(_isIn && ValidTarget())
+                    {
+                        Destroy(gameObject);
+                        Hit();
+                    }
+        }
     }
 
     void Update() {
