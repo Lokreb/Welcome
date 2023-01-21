@@ -22713,6 +22713,7 @@ MonoBehaviour:
   _SpawnRateVariance: 30
   _ConveyorDelai: 60
   TimerSpeed: 5
+  _listPatient: []
   _ListChemins:
   - {fileID: 1572838055}
   - {fileID: 1382353039}
@@ -22722,7 +22723,6 @@ MonoBehaviour:
   - {fileID: 755861936}
   - {fileID: 2052986080}
   _spawnPoint: {fileID: 770976101}
-  _ListPatient: []
   _prefab_Patient: {fileID: 3863949272120917945, guid: 77e2037b03e3d79448f2cdbd65e2e701, type: 3}
   _CharactersPrefabAnimations:
   - {fileID: 3108809892654710351, guid: b9dee9baa40320b438ab2406bbaa61ca, type: 3}

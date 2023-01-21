@@ -32,7 +32,9 @@ public class GameManager : MonoBehaviour
     private bool _inMinigame = false;
     [Range(1f,2f)]public float TimerSpeed = 1f;
     private int _timerTotal = 0;
-    
+    int[] order = { 6, 4, 2, 3, 1, 5, 0 };
+    [SerializeField] private List<Patient> _listPatient;
+
 
     [HideInInspector]
     public int PatientFailed { get; private set; } = 0;
@@ -42,7 +44,6 @@ public class GameManager : MonoBehaviour
     [Header("GameObject to link")]
     [SerializeField] private List<Paths> _ListChemins;
     [SerializeField] private GameObject _spawnPoint;
-    [SerializeField] private List<Patient> _ListPatient;
     [SerializeField] private Patient _prefab_Patient;
     [SerializeField] private GameObject[] _CharactersPrefabAnimations;
     [SerializeField] private GameObject _EndPopUp;
@@ -57,18 +58,37 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    public void Test()
+    void OrderedPatient()
     {
-        List<Tween> t = DOTween.PlayingTweens();
-        int nb = t.Count;
-        for(int a=0;a<nb;a++)
+        List<Patient> temp = new List<Patient>();
+        //order
+        
+        //parcours WayPoints sortie -> entree
+        foreach(int a in order)
         {
-            print(t[a].intId);
+            int nb = _ListChemins[a].ListWaypoints.Count -1;
+            for (int b = nb; b >= 0; b--)
+            {
+                Patient p = _ListChemins[a].ListWaypoints[b].CurrentPatient;
+
+                if (p == null) continue;
+
+                temp.Add(p);
+            }
         }
+
+        if (_listPatient.Count != temp.Count)
+        {
+            temp.Add(_listPatient[_listPatient.Count-1]);
+        }
+        _listPatient = new List<Patient>(temp);
+
     }
+
     float _spawnRate;
     void Start()
     {
+        OnTimerChange?.Invoke();
         //initialisation ID waypoints
         int nbPath = _ListChemins.Count;
         for(int a=0;a<nbPath;a++)
@@ -82,7 +102,6 @@ public class GameManager : MonoBehaviour
             }
             _LastWP[0] = a;
         }
-        OnTimerChange?.Invoke();
 
         _spawnRate = _SpawnRate;
         _timerStart = Timer;
@@ -142,7 +161,7 @@ public class GameManager : MonoBehaviour
     {
         Patient p = Instantiate(_prefab_Patient, _spawnPoint.transform.position, Quaternion.identity);
         p.gameObject.transform.SetParent(_spawnPoint.transform);
-        _ListPatient.Add(p);
+        _listPatient.Add(p);
 
         //int choice = UnityEngine.Random.Range(0,_CharactersPrefabAnimations.Length);
         GameObject go = Instantiate(_CharactersPrefabAnimations[choice], p.transform.position, Quaternion.identity);
@@ -158,12 +177,13 @@ public class GameManager : MonoBehaviour
     public void AvanceTapis()
     {
         _onePatientFinish = false;
-        int nbPatient = _ListPatient.Count;
+        OrderedPatient();
+        int nbPatient = _listPatient.Count;
         for (int a = 0; a < nbPatient; a++)
         {
-            NextCase(_ListPatient[a]);
+            NextCase(_listPatient[a]);
         }
-        _ListPatient.Remove(_patientRemove);
+        _listPatient.Remove(_patientRemove);
         _patientRemove = null;
         OnMoveBarriere?.Invoke(_onePatientFinish);
     }
@@ -189,6 +209,7 @@ public class GameManager : MonoBehaviour
         }
 
         WayPointsValue wp = _ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]];
+        wp.CurrentPatient = p;
 
         if (p.PathIn[0] == _LastWP[0] && p.PathIn[1] == _LastWP[1])//Delete fin de chemin
         {
@@ -205,6 +226,7 @@ public class GameManager : MonoBehaviour
             OnPatientEnd?.Invoke();
 
             wp.Dispo = true;
+            wp.CurrentPatient = null;
             _patientRemove = p;
             Destroy(p.gameObject);
             return;
@@ -241,14 +263,18 @@ public class GameManager : MonoBehaviour
                         p.AttenteInGame();
                         OnPatientService?.Invoke(wpNext,p);
                         wp.Dispo = true;
+                        wp.CurrentPatient = null;
                         wpNext.Dispo = false;
+                        wpNext.CurrentPatient = p;
                         p.PathIn = nextWP;
                     }
                 }
             }else
             {
                 wp.Dispo = true;
+                wp.CurrentPatient = null;
                 wpNext.Dispo = false;
+                wpNext.CurrentPatient = p;
                 p.PathIn = nextWP;
             }
 
@@ -302,7 +328,9 @@ public class GameManager : MonoBehaviour
 
     public void SetWayPointDispo(int[] id)
     {
-        _ListChemins[id[0]].ListWaypoints[id[1]].Dispo = true;
+        WayPointsValue wp = _ListChemins[id[0]].ListWaypoints[id[1]];
+        wp.Dispo = true;
+        wp.CurrentPatient = null;
     }
 
     public void ChangeHumor(int value)

@@ -12,6 +12,7 @@ public class WayPointsValue : MonoBehaviour, IDropHandler
     public bool Service = false;
     public Services ServiceAffiliated;
     public int[] ID = { 0, 0 };
+    public Patient CurrentPatient;
 
     public void OnDrop(PointerEventData eventData)
     {
@@ -26,6 +27,7 @@ public class WayPointsValue : MonoBehaviour, IDropHandler
             p.PathIn[0] = ID[0];
             p.PathIn[1] = ID[1];
             Dispo=false;
+            CurrentPatient = p;
         }
     }
 }
