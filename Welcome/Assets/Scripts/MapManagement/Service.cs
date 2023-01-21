@@ -24,7 +24,9 @@ public class Service : MonoBehaviour
 
     [SerializeField] GameDataScript _gameData;
 
-
+    bool _patientIn = false;
+    public float DuréeTraitement = 120f;
+    float _duréeTraitement;
 
     void Start()
     {
@@ -37,6 +39,7 @@ public class Service : MonoBehaviour
         _AudioSource.volume = _gameData.volume;
     }
 
+    
     private void PatientArrive(WayPointsValue wp, Patient p)
     {
         if (_wpService.ID == wp.ID)
@@ -45,7 +48,28 @@ public class Service : MonoBehaviour
             _PopupImage.SetActive(true);
             _AudioSource.clip = _AudioClips[0];
             _AudioSource.Play();
+            print("Start Traitement");
+            _patientIn = true;
+            _duréeTraitement = DuréeTraitement;
         }
+        
+        
+    }
+
+    void Traitement()
+    {
+        _duréeTraitement -= 1 * GameManager.Instance.TimerSpeed;
+
+        print("Restant = " + _duréeTraitement * 100 / DuréeTraitement);
+
+        if(_duréeTraitement<=0)
+        {
+            ResultMiniGame(true);
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (_patientIn) Traitement();
     }
 
     public void OnClick()
@@ -76,6 +100,7 @@ public class Service : MonoBehaviour
 
     public void ResultMiniGame(bool win)
     {
+        _patientIn = false;
         if(win) GameManager.Instance.ChangeScore(50);
 
         if(win)
