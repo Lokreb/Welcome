@@ -260,13 +260,14 @@ public class GameManager : MonoBehaviour
                 {
                     if(wpNext.ServiceAffiliated == p.ServiceToSee.Peek())
                     {
-                        p.AttenteInGame();
-                        OnPatientService?.Invoke(wpNext,p);
+                        
                         wp.Dispo = true;
                         wp.CurrentPatient = null;
                         wpNext.Dispo = false;
                         wpNext.CurrentPatient = p;
                         p.PathIn = nextWP;
+                        p.AttenteInGame();
+                        OnPatientService?.Invoke(wpNext, p);
                     }
                 }
             }else

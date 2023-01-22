@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Service : MonoBehaviour
@@ -24,14 +25,24 @@ public class Service : MonoBehaviour
 
     [SerializeField] GameDataScript _gameData;
 
+    [SerializeField] FinishBar _finishBar;
+    public event Action<float> OnFillBar;
+
     bool _patientIn = false;
-    public float DuréeTraitement = 120f;
+    public float DuréeTraitement = 300f;
     float _duréeTraitement;
 
     void Start()
     {
         GameManager.Instance.OnPatientService += PatientArrive;
+        OnFillBar += _finishBar.SetFill;
         _Jeu.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnPatientService -= PatientArrive;
+        OnFillBar -= _finishBar.SetFill;
     }
 
     private void Update()
@@ -46,9 +57,9 @@ public class Service : MonoBehaviour
         {
             _currentPatient = p;
             _PopupImage.SetActive(true);
+            _finishBar.gameObject.SetActive(true);
             _AudioSource.clip = _AudioClips[0];
             _AudioSource.Play();
-            print("Start Traitement");
             _patientIn = true;
             _duréeTraitement = DuréeTraitement;
         }
@@ -60,15 +71,23 @@ public class Service : MonoBehaviour
     {
         _duréeTraitement -= 1 * GameManager.Instance.TimerSpeed;
 
-        print("Restant = " + _duréeTraitement * 100 / DuréeTraitement);
+        OnFillBar?.Invoke(1 - _duréeTraitement / DuréeTraitement);
 
-        if(_duréeTraitement<=0)
+        if (_duréeTraitement<=0)
         {
-            ResultMiniGame(true);
+            _patientIn = false;
+            _currentPatient.EndMiniGame(true, _serviceSecteur);
+            _currentPatient = null;
+            _PopupImage.SetActive(false);
+            _finishBar.gameObject.SetActive(false);
         }
+
+        
     }
     private void FixedUpdate()
     {
+        if (GameStateManager.Instance.CurrentGameState == GameState.Paused) return;
+
         if (_patientIn) Traitement();
     }
 
@@ -100,8 +119,7 @@ public class Service : MonoBehaviour
 
     public void ResultMiniGame(bool win)
     {
-        _patientIn = false;
-        if(win) GameManager.Instance.ChangeScore(50);
+        if (win) GameManager.Instance.ChangeScore(50);
 
         if(win)
         {
