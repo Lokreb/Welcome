@@ -106,6 +106,7 @@ public class GameManager : MonoBehaviour
         _spawnRate = _SpawnRate;
         _timerStart = Timer;
         GameStateManager.Instance.SetState(GameState.Paused);
+        GeneratePatient();
     }
 
     float _TimerSeconds = 0;

@@ -106,7 +106,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     {
         float tempsRestant = GameManager.Instance.Timer/GameManager.Instance._timerStart*100f;
         float rng = UnityEngine.Random.Range(0f,1f);
-        int nbServices = 1;
+        int nbServices;
         if(tempsRestant>95)
         {
             nbServices = 1;//100%
@@ -142,7 +142,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
             {
                 nbServices = 4;//10%
             }
-        }else if(tempsRestant>10)
+        }else
         {
             if(rng <= .1f)
             {
@@ -153,27 +153,9 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
             }else if(rng <= .8f)
             {
                 nbServices = 3;//50%
-            }else if(rng <= .95f)
+            }else
             {
                 nbServices = 4;//15%
-            }else
-            {
-                nbServices = 5;//5%
-            }
-        }else
-        {
-            if(rng <= .1f)
-            {
-                nbServices = 2;//10%
-            }else if(rng <= .6f)
-            {
-                nbServices = 3;//50%
-            }else if(rng <= .9f)
-            {
-                nbServices = 4;//30%
-            }else
-            {
-                nbServices = 5;//10%
             }
         }
         
