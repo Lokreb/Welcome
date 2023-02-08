@@ -11,7 +11,7 @@ public class Service : MonoBehaviour
     [SerializeField] private GameObject _PopupImage;
     [SerializeField] private AnimationsClips _ResultScreen;
 
-    [SerializeField] private Patient _currentPatient;
+    [SerializeField] private Queue<Patient> _currentPatient = new Queue<Patient>();
 
     [SerializeField] private Spawner _Spawner;
     [SerializeField] private ScoreManager _scoreManagerRythm;
@@ -55,16 +55,18 @@ public class Service : MonoBehaviour
     {
         if (_wpService.ID == wp.ID)
         {
-            _currentPatient = p;
-            _PopupImage.SetActive(true);
-            _finishBar.gameObject.SetActive(true);
-            _AudioSource.clip = _AudioClips[0];
-            _AudioSource.Play();
-            _patientIn = true;
-            _duréeTraitement = DuréeTraitement;
+            _currentPatient.Enqueue(p);
+
+            if(_currentPatient.Count == 1)
+            {
+                _PopupImage.SetActive(true);
+                _finishBar.gameObject.SetActive(true);
+                _AudioSource.clip = _AudioClips[0];
+                _AudioSource.Play();
+                _patientIn = true;
+                _duréeTraitement = DuréeTraitement;
+            }
         }
-        
-        
     }
 
     void Traitement()
@@ -75,11 +77,15 @@ public class Service : MonoBehaviour
 
         if (_duréeTraitement<=0)
         {
-            _patientIn = false;
-            _currentPatient.EndMiniGame(true, _serviceSecteur);
-            _currentPatient = null;
-            _PopupImage.SetActive(false);
-            _finishBar.gameObject.SetActive(false);
+            _currentPatient.Peek().EndMiniGame(true, _serviceSecteur);
+            _currentPatient.Dequeue();
+
+            _patientIn = _currentPatient.Count != 0;
+
+            _PopupImage.SetActive(_patientIn);
+            _finishBar.gameObject.SetActive(_patientIn);
+
+            _duréeTraitement = DuréeTraitement;
         }
 
         
@@ -93,7 +99,7 @@ public class Service : MonoBehaviour
 
     public void OnClick()
     {
-        if (_currentPatient == null) return;
+        if (_currentPatient.Count == 0) return;
 
         GameManager.Instance.InMinigame(true);
 
@@ -133,7 +139,7 @@ public class Service : MonoBehaviour
         }
         
         
-        _currentPatient.EndMiniGame(win, _serviceSecteur);
+        _currentPatient.Peek().EndMiniGame(win, _serviceSecteur);
         _ResultScreen.gameObject.SetActive(true);
         _ResultScreen.Result(win,this);
     }
@@ -142,7 +148,7 @@ public class Service : MonoBehaviour
     {
         _ResultScreen.gameObject.SetActive(false);
         _Jeu.SetActive(false);
-        _currentPatient = null;
+        _currentPatient.Dequeue();
         _PopupImage.SetActive(false);
         GameManager.Instance.InMinigame(false);
         GameStateManager.Instance.SetState(GameState.Gameplay);
@@ -150,7 +156,7 @@ public class Service : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (_currentPatient == null || GameStateManager.Instance.CurrentGameState == GameState.Paused) return;
+        if (_currentPatient.Count == 0 || GameStateManager.Instance.CurrentGameState == GameState.Paused) return;
 
         OnClick();
         

@@ -209,7 +209,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
     public void EndMiniGame(bool win,Services service)
     {
-        StopCoroutine(Attente());
+        //StopCoroutine(Attente());
 
         if (win && ServiceToSee.Count > 0)
         {
@@ -239,7 +239,7 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
 
         if(InMiniGame)
         {
-            StopCoroutine(_coroutine);
+            //StopCoroutine(_coroutine);
         }
         
     }
@@ -252,8 +252,8 @@ public class Patient : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
         }
         _service.transform.parent.gameObject.SetActive(false);
         InMiniGame = true;
-        _coroutine = Attente();
-        StartCoroutine(_coroutine);
+        /*_coroutine = Attente();
+        StartCoroutine(_coroutine);*/
     }
 
     private IEnumerator _coroutine;

@@ -212,7 +212,7 @@ public class GameManager : MonoBehaviour
         WayPointsValue wp = _ListChemins[p.PathIn[0]].ListWaypoints[p.PathIn[1]];
         wp.CurrentPatient = p;
 
-        if (p.PathIn[0] == _LastWP[0] && p.PathIn[1] == _LastWP[1])//Delete fin de chemin
+        if (p.PathIn[0] == _LastWP[0] && p.PathIn[1] == _LastWP[1])//fin de chemin
         {
             if (p.ServiceToSee.Count > 0)
             {
@@ -249,6 +249,7 @@ public class GameManager : MonoBehaviour
         {
             nextWP[0] = p.PathIn[0];
             nextWP[1] = p.PathIn[1];
+            return;
         }
 
         WayPointsValue wpNext = _ListChemins[nextWP[0]].ListWaypoints[nextWP[1]];
@@ -264,7 +265,7 @@ public class GameManager : MonoBehaviour
                         
                         wp.Dispo = true;
                         wp.CurrentPatient = null;
-                        wpNext.Dispo = false;
+                        //wpNext.Dispo = false;
                         wpNext.CurrentPatient = p;
                         p.PathIn = nextWP;
                         p.AttenteInGame();
