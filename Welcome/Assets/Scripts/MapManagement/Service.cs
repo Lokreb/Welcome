@@ -27,10 +27,15 @@ public class Service : MonoBehaviour
 
     [SerializeField] FinishBar _finishBar;
     public event Action<float> OnFillBar;
+    public event Action OnMultiplicatorChange;
+    public event Action<int> OnPatientChange;
 
     bool _patientIn = false;
     public float DuréeTraitement = 300f;
     float _duréeTraitement;
+    
+    public float VitesseMultiplicator = 1f;
+    public float VitesseDurée = 300f;
 
     void Start()
     {
@@ -56,6 +61,7 @@ public class Service : MonoBehaviour
         if (_wpService.ID == wp.ID)
         {
             _currentPatient.Enqueue(p);
+            OnPatientChange?.Invoke(_currentPatient.Count);
 
             if(_currentPatient.Count == 1)
             {
@@ -71,7 +77,7 @@ public class Service : MonoBehaviour
 
     void Traitement()
     {
-        _duréeTraitement -= 1 * GameManager.Instance.TimerSpeed;
+        _duréeTraitement -= 1 * GameManager.Instance.TimerSpeed * VitesseMultiplicator;
 
         OnFillBar?.Invoke(1 - _duréeTraitement / DuréeTraitement);
 
@@ -79,6 +85,8 @@ public class Service : MonoBehaviour
         {
             _currentPatient.Peek().EndMiniGame(true, _serviceSecteur);
             _currentPatient.Dequeue();
+
+            OnPatientChange?.Invoke(_currentPatient.Count);
 
             _patientIn = _currentPatient.Count != 0;
 
@@ -95,6 +103,14 @@ public class Service : MonoBehaviour
         if (GameStateManager.Instance.CurrentGameState == GameState.Paused) return;
 
         if (_patientIn) Traitement();
+
+        VitesseDurée = VitesseDurée >= 0 ? VitesseDurée - 1 : 0;
+
+        if (VitesseDurée == 0)
+        {
+            VitesseMultiplicator = 1f;
+            OnMultiplicatorChange?.Invoke();
+        }
     }
 
     public void OnClick()
@@ -131,6 +147,10 @@ public class Service : MonoBehaviour
         {
             _AudioSource.clip =_AudioClips[2];
             _AudioSource.PlayDelayed(.3f);
+            VitesseMultiplicator = 2f;
+            VitesseDurée = 300f;
+
+            OnMultiplicatorChange?.Invoke();
         }
         else
         {
@@ -139,7 +159,7 @@ public class Service : MonoBehaviour
         }
         
         
-        _currentPatient.Peek().EndMiniGame(win, _serviceSecteur);
+        //_currentPatient.Peek().EndMiniGame(win, _serviceSecteur);
         _ResultScreen.gameObject.SetActive(true);
         _ResultScreen.Result(win,this);
     }
