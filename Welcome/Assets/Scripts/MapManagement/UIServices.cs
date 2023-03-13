@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using TMPro;
 
 public class UIServices : MonoBehaviour
 {
+    public event Action<int> OnAnimationService;
+
     public TextMeshProUGUI NB_Patient;
     public TextMeshProUGUI Multiplicator;
     public Sprite[] SpriteSheetsAnimation;
@@ -40,6 +43,8 @@ public class UIServices : MonoBehaviour
         {
             _ImageAnim.sprite = SpriteSheetsAnimation[0];
             _waitASecond = 0f;
+
+            OnAnimationService?.Invoke(_indexAnimation);
         }
     }
 
@@ -70,6 +75,8 @@ public class UIServices : MonoBehaviour
             _frameRateAnimation = 0f;
             _indexAnimation = (_indexAnimation + 1) % SpriteSheetsAnimation.Length;
             _ImageAnim.sprite = SpriteSheetsAnimation[_indexAnimation % SpriteSheetsAnimation.Length];
+
+            OnAnimationService?.Invoke(_indexAnimation);
         }
 
     }

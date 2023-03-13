@@ -168,7 +168,7 @@ public class Service : MonoBehaviour
     {
         _ResultScreen.gameObject.SetActive(false);
         _Jeu.SetActive(false);
-        _currentPatient.Dequeue();
+        //_currentPatient.Dequeue();
         _PopupImage.SetActive(false);
         GameManager.Instance.InMinigame(false);
         GameStateManager.Instance.SetState(GameState.Gameplay);

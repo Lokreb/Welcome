@@ -135,10 +135,10 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 2786
-        width: 980
+        width: 930
         height: 1310
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.16}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -154,12 +154,12 @@ TextureImporter:
       name: sprite_service_04_1
       rect:
         serializedVersion: 2
-        x: 970
+        x: 908
         y: 2786
-        width: 980
+        width: 930
         height: 1310
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.16}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -175,12 +175,12 @@ TextureImporter:
       name: sprite_service_04_2
       rect:
         serializedVersion: 2
-        x: 1937
+        x: 1809
         y: 2786
-        width: 980
+        width: 930
         height: 1310
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.16}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -196,12 +196,12 @@ TextureImporter:
       name: sprite_service_04_3
       rect:
         serializedVersion: 2
-        x: 2932
+        x: 2710
         y: 2786
-        width: 980
+        width: 930
         height: 1310
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.16}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -217,12 +217,12 @@ TextureImporter:
       name: sprite_service_04_4
       rect:
         serializedVersion: 2
-        x: 0
-        y: 1476
-        width: 980
+        x: 9
+        y: 1551
+        width: 930
         height: 1310
       alignment: 9
-      pivot: {x: 0.5, y: 0.07}
+      pivot: {x: 0.5, y: 0.16}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
