@@ -53380,10 +53380,10 @@ MonoBehaviour:
   _UIServices: {fileID: 584540309}
   PositionToBe:
   - {x: -91, y: 7.5}
-  - {x: -86, y: 7.6}
-  - {x: -82, y: 7.7}
-  - {x: -86, y: 7.6}
-  - {x: -97, y: 7.3}
+  - {x: -88, y: 7.6}
+  - {x: -85, y: 7.7}
+  - {x: -90, y: 7.6}
+  - {x: -95, y: 7.3}
 --- !u!1 &1905667117
 GameObject:
   m_ObjectHideFlags: 0
